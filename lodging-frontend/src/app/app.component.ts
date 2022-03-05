@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import {AuthService, FooControllerService} from "../core/openapi";
 
 @Component({
@@ -12,7 +13,11 @@ export class AppComponent implements OnInit{
     token: String = '';
 
     constructor(private authService: AuthService,
-                private fooService: FooControllerService) {
+                private fooService: FooControllerService,
+                private translate: TranslateService) {
+
+                    translate.setDefaultLang('en');
+                    translate.use('pl');
     }
 
     ngOnInit(): void {
@@ -25,4 +30,6 @@ export class AppComponent implements OnInit{
         this.fooService.getBar()
             .subscribe();
     }
+
+
 }
