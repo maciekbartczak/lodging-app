@@ -8,6 +8,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import {ButtonModule} from "primeng/button";
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -29,7 +31,9 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             },
             defaultLanguage: 'en'
-        })
+        }),
+        BrowserAnimationsModule,
+        ButtonModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
