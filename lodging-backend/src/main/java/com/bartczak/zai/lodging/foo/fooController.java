@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @SecurityRequirement(name = "bearerAuth")
 public class fooController {
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/bar")
+    @PreAuthorize("hasAuthority('USER')")
     public String getBar() {
         return "bar";
     }

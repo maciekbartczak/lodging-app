@@ -22,7 +22,7 @@ public class AuthController {
     @Operation(description = "registers a new user")
     public ResponseEntity<Void> register(@RequestBody @Valid RegisterRequest registerRequest) {
         registerService.registerUser(registerRequest);
-        return ResponseEntity.ok(null);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/login")
