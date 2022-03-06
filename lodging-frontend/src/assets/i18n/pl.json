@@ -1,5 +1,38 @@
 {
-    "main": {
-        "header": "Witam!"
+    "global": {
+        "error": {
+            "required": "Pole jest wymagane"
+        }
+    },
+    "topBar": {
+        "menu": {
+            "search": "Wyszukaj"
+        },
+        "auth": {
+            "login": "Zaloguj",
+            "register": "Zarejestruj"
+        }
+    },
+    "auth": {
+        "login": {
+            "header": "Zaloguj się",
+            "username.label": "Nazwa użytkownika",
+            "password.label": "Hasło",
+            "submitButton": "Zaloguj",
+            "invalidCredentials": "Nieprawidłowa nazwa użytkownika lub hasło"
+        },
+        "register": {
+            "header": "Zarejestruj się",
+            "username.label": "Nazwa użytkownika",
+            "password.label": "Hasło",
+            "firstName.label": "Imię",
+            "lastName.label": "Nazwisko",
+            "userExists": "Użytkownik istnieje",
+            "submitButton": "Zarejestruj",
+            "username.error.min": "Nazwa użytkownika musi mieć przynajmniej 3 znaki",
+            "username.error.max": "Nazwa użytkownika nie może mieć więcej niż 20 znaków",
+            "password.error.min": "Hasło musi mieć przynajmniej 6 znaków",
+            "password.error.max": "Hasło nie może mieć więcej niż 50 znaków"
+        }
     }
 }

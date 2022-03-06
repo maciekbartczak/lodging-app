@@ -1,5 +1,38 @@
 {
-    "main": {
-        "header": "Hello!"
+    "global": {
+        "error": {
+            "required": "Field is required"
+        }
+    },
+    "topBar": {
+        "menu": {
+            "search": "Search"
+        },
+        "auth": {
+            "login": "Log in",
+            "register": "Register"
+        }
+    },
+    "auth": {
+        "login": {
+            "header": "Log in",
+            "username.label": "Username",
+            "password.label": "Password",
+            "submitButton": "Log in",
+            "invalidCredentials": "Invalid username or password"
+        },
+        "register": {
+            "header": "Register",
+            "username.label": "Username",
+            "password.label": "Password",
+            "firstName.label": "First name",
+            "lastName.label": "Last name",
+            "userExists": "Username exists",
+            "submitButton": "Register",
+            "username.error.min": "Username has to have at least 3 characters",
+            "username.error.max": "Username has to have at most 20 characters",
+            "password.error.min": "Password has to have at least 6 characters",
+            "password.error.max": "Password has to have at most 50 characters"
+        }
     }
 }

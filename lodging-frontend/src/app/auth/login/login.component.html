@@ -1,0 +1,32 @@
+<div class="container">
+    <p-card class="login-card">
+        <ng-template pTemplate="header">
+            <h1 class="login-card-header">{{ 'auth.login.header' | translate}}</h1>
+        </ng-template>
+
+        <p-progressBar *ngIf="loading" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+
+        <p-messages class="error-messages" severity="error" *ngIf="error">
+            <ng-template pTemplate>
+                <div>{{ 'auth.login.invalidCredentials' | translate}}</div>
+            </ng-template>
+        </p-messages>
+
+        <form class="login-form" #loginForm="ngForm" (ngSubmit)="login()">
+            <div class="form-input-container">
+                <input id="username" type="text" pInputText [placeholder]="'auth.login.username.label' | translate"
+                       class="form-input" required [(ngModel)]="loginData.username" #username="ngModel" name="username"
+                       [ngClass]="{'ng-invalid ng-dirty': loginForm.submitted && !username.valid}">
+                <small *ngIf="loginForm.submitted && !username.valid" class="p-error">{{ 'global.error.required' | translate }}</small>
+            </div>
+            <div class="form-input-container">
+                <input id="password" type="password" pInputText [placeholder]="'auth.login.password.label' | translate"
+                       class="form-input" required [(ngModel)]="loginData.password" #password="ngModel" name="password"
+                       [ngClass]="{'ng-invalid ng-dirty': loginForm.submitted && !password.valid}">
+                <small *ngIf="loginForm.submitted && !password.valid" class="p-error">{{ 'global.error.required' | translate }}</small>
+            </div>
+
+            <button pButton type="submit" [label]="'auth.login.submitButton' | translate" class="submit-button"></button>
+        </form>
+    </p-card>
+</div>

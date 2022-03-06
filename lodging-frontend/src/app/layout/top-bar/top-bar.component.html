@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="menu-container">
+        <p-button routerLink="/" class="p-button-secondary" icon="pi pi-home"></p-button>
+    </div>
+    <div class="search-container">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" [placeholder]="'topBar.menu.search' | translate" class="search-input">
+        </span>
+    </div>
+    <div class="auth-container">
+        <p-button routerLink="/auth/login" [label]="'topBar.auth.login' | translate" icon="pi pi-lock" iconPos="right"></p-button>
+        <p-button routerLink="/auth/register" [label]="'topBar.auth.register' | translate" icon="pi pi-user" iconPos="right"></p-button>
+    </div>
+</div>

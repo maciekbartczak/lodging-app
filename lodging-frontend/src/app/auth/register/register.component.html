@@ -1,0 +1,52 @@
+<div class="container">
+    <p-card class="register-card">
+        <ng-template pTemplate="header">
+            <h1 class="register-card-header">{{ 'auth.register.header' | translate}}</h1>
+        </ng-template>
+
+        <p-progressBar *ngIf="loading" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+
+        <p-messages class="error-messages" severity="error" *ngIf="error">
+            <ng-template pTemplate>
+                <div>{{ 'auth.register.userExists' | translate}}</div>
+            </ng-template>
+        </p-messages>
+
+      <form class="register-form" [formGroup]="registerForm" (ngSubmit)="register()">
+
+            <div class="form-input-container">
+                <input type="text" pInputText [placeholder]="'auth.register.username.label' | translate"
+                    class="form-input" [(ngModel)]="model.email" formControlName="username"
+                    [ngClass]="{'ng-invalid ng-dirty': submitted && registerForm.get('username')?.errors}">
+                <small *ngIf="submitted && registerForm.get('username')?.errors?.['required']" class="p-error">{{ 'global.error.required' | translate }}</small>
+                <small *ngIf="submitted && registerForm.get('username')?.errors?.['minlength']" class="p-error">{{ 'auth.register.username.error.min' | translate }}</small>
+                <small *ngIf="submitted && registerForm.get('username')?.errors?.['maxlength']" class="p-error">{{ 'auth.register.username.error.max' | translate }}</small>
+            </div>
+
+            <div class="form-input-container">
+                <input type="password" pInputText [placeholder]="'auth.register.password.label' | translate"
+                    class="form-input" [(ngModel)]="model.password" formControlName="password"
+                    [ngClass]="{'ng-invalid ng-dirty': submitted && registerForm.get('password')?.errors}">
+                <small *ngIf="submitted && registerForm.get('password')?.errors?.['required']" class="p-error">{{ 'global.error.required' | translate }}</small>
+                <small *ngIf="submitted && registerForm.get('password')?.errors?.['minlength']" class="p-error">{{ 'auth.register.password.error.min' | translate }}</small>
+                <small *ngIf="submitted && registerForm.get('password')?.errors?.['maxlength']" class="p-error">{{ 'auth.register.username.error.max' | translate }}</small>
+            </div>
+
+            <div class="form-input-container">
+                <input type="text" pInputText [placeholder]="'auth.register.firstName.label' | translate"
+                    class="form-input" [(ngModel)]="model.firstName" formControlName="firstName"
+                    [ngClass]="{'ng-invalid ng-dirty': submitted && registerForm.get('firstName')?.errors}">
+                <small *ngIf="submitted && registerForm.get('firstName')?.errors?.['required']" class="p-error">{{ 'global.error.required' | translate }}</small>
+            </div>
+
+            <div class="form-input-container">
+                <input type="text" pInputText [placeholder]="'auth.register.lastName.label' | translate"
+                    class="form-input" [(ngModel)]="model.lastName" formControlName="lastName"
+                    [ngClass]="{'ng-invalid ng-dirty': submitted && registerForm.get('lastName')?.errors}">
+                <small *ngIf="submitted && registerForm.get('lastName')?.errors?.['required']" class="p-error">{{ 'global.error.required' | translate }}</small>
+            </div>
+
+            <button pButton type="submit" [label]="'auth.register.submitButton' | translate" class="submit-button"></button>
+      </form>
+    </p-card>
+</div>

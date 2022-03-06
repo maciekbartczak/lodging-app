@@ -1,7 +1,6 @@
-<h1 translate>main.header</h1>
-
-<a *ngIf="token">
-    <p>{{ token }}</p>
-</a>
-
-<button pButton type="button" class="p-button-danger" [label]="'main.header' | translate"></button>
+<div class="container">
+    <app-top-bar class="top-bar"></app-top-bar>
+    <div class="router-outlet">
+        <router-outlet></router-outlet>
+    </div>
+</div>

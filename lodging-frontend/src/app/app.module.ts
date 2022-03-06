@@ -1,22 +1,26 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {ApiModule} from '../core/openapi';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {CommonModule} from "@angular/common";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ApiModule } from '../core/openapi';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import {ButtonModule} from "primeng/button";
+import { ButtonModule } from 'primeng/button';
+import { TopBarComponent } from './layout/top-bar/top-bar.component';
+import { MenubarModule } from 'primeng/menubar';
+import { InputTextModule } from 'primeng/inputtext';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        TopBarComponent
     ],
     imports: [
         BrowserModule,
@@ -34,6 +38,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         }),
         BrowserAnimationsModule,
         ButtonModule,
+        MenubarModule,
+        InputTextModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
