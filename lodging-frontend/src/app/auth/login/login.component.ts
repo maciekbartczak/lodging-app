@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService, LoginRequest } from '../../../core/openapi';
+import { AuthService, LoginRequest, UserDto } from '../../../core/openapi';
 import { TokenService } from '../../core/token.service';
 import { Router } from '@angular/router';
+import { UserStateService } from '../../core/user-state.service';
 
 @Component({
     selector: 'app-login',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
     error = false;
     loading = false;
+    user: UserDto | null = null;
 
     loginData: LoginRequest = {
         username: '',
@@ -19,18 +21,24 @@ export class LoginComponent {
 
     constructor(private authService: AuthService,
                 private tokenService: TokenService,
+                private userStateService: UserStateService,
                 private router: Router) {
     }
 
     login() {
         if (this.loginData.username && this.loginData.password) {
-            this.loading = true;
-
             this.authService.login(this.loginData).subscribe(
                 (response) => {
                     this.tokenService.saveToken(response.token);
-                    console.log(this.tokenService.getUserId());
-                    this.router.navigate(['/']);
+                    this.userStateService.getCurrentUser();
+
+                    this.userStateService.user.subscribe(
+                        user => {
+                            this.user = user;
+                            console.log(this.user);
+                        }
+                    );
+                    // this.router.navigate(['/']);
                 },
                 (err) => {
                     console.log(err);
@@ -41,6 +49,8 @@ export class LoginComponent {
                     this.loading = false;
                 }
             )
+
+            this.loading = true;
         }
     }
 
