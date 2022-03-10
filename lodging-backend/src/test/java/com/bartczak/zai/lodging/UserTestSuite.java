@@ -2,7 +2,7 @@ package com.bartczak.zai.lodging;
 
 import org.junit.jupiter.api.BeforeAll;
 
-public abstract class UserTest extends AuthenticatedTest {
+public abstract class UserTestSuite extends AuthenticatedTestSuite {
 
     @Override
     @BeforeAll

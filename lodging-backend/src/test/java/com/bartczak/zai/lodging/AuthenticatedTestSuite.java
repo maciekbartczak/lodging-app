@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @IntegrationTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public abstract class AuthenticatedTest {
+public abstract class AuthenticatedTestSuite {
 
     @Autowired
     protected MockLoginService mockLoginService;

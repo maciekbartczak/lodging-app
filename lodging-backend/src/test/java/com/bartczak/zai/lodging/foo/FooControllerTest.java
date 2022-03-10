@@ -1,12 +1,12 @@
 package com.bartczak.zai.lodging.foo;
 
-import com.bartczak.zai.lodging.UserTest;
+import com.bartczak.zai.lodging.UserTestSuite;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpHeaders;
 
-class FooControllerTest extends UserTest {
+class FooControllerTest extends UserTestSuite {
 
     @Test
     void shouldAccessProtectedEndpoint() {

@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 class AuthControllerTest {
 
     @Test
-    public void shouldLoginWithCorrectCredentials() {
+    void shouldLoginWithCorrectCredentials() {
         val response = RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(LoginRequest.builder()
@@ -31,7 +31,7 @@ class AuthControllerTest {
     }
 
     @Test
-    public void shouldNotLoginWithInvalidCredentials() {
+    void shouldNotLoginWithInvalidCredentials() {
         RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(LoginRequest.builder()
@@ -47,7 +47,7 @@ class AuthControllerTest {
     }
 
     @Test
-    public void shouldRegisterUserWithValidRequest() {
+    void shouldRegisterUserWithValidRequest() {
         RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(RegisterRequest.builder()
@@ -65,25 +65,7 @@ class AuthControllerTest {
     }
 
     @Test
-    public void shouldNotRegisterUserWithInvalidEmail() {
-        RestAssured.given()
-                .contentType(ContentType.JSON)
-                .body(RegisterRequest.builder()
-                        .username("foo")
-                        .firstName("test")
-                        .lastName("test")
-                        .password("asdffdsa")
-                        .build())
-
-                .when()
-                .post("/auth/register")
-
-                .then()
-                .statusCode(400);
-    }
-
-    @Test
-    public void shouldNotRegisterUserWithTooShortPassword() {
+    void shouldNotRegisterUserWithTooShortPassword() {
         RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(RegisterRequest.builder()
