@@ -1,7 +1,8 @@
 {
     "global": {
         "error": {
-            "required": "Field is required"
+            "required": "Field is required",
+            "generic": "Something went wrong"
         }
     },
     "topBar": {
@@ -32,7 +33,9 @@
             "username.error.min": "Username has to have at least 3 characters",
             "username.error.max": "Username has to have at most 20 characters",
             "password.error.min": "Password has to have at least 6 characters",
-            "password.error.max": "Password has to have at most 50 characters"
+            "password.error.max": "Password has to have at most 50 characters",
+            "toast.success.header": "Registered successfully!",
+            "toast.success.content": "You can now log in"
         }
     }
 }

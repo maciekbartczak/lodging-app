@@ -18,11 +18,11 @@ import { ProgressBarModule } from 'primeng/progressbar';
 
 
 @NgModule({
-  declarations: [
-    AuthComponent,
-    RegisterComponent,
-    LoginComponent
-  ],
+    declarations: [
+        AuthComponent,
+        RegisterComponent,
+        LoginComponent
+    ],
     imports: [
         CommonModule,
         AuthRoutingModule,
@@ -36,7 +36,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
         FormsModule,
         ReactiveFormsModule,
         ProgressSpinnerModule,
-        ProgressBarModule
+        ProgressBarModule,
     ]
 })
-export class AuthModule { }
+export class AuthModule {
+}

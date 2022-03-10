@@ -19,7 +19,7 @@ public class RegisterService {
 
     public void registerUser(RegisterRequest registerRequest) {
         val user = User.builder()
-                .username(registerRequest.getEmail())
+                .username(registerRequest.getUsername())
                 .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
                 .authorities(Set.of(Role.builder().authority(Role.USER).build()))

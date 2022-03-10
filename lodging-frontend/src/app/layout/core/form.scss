@@ -20,7 +20,7 @@
         width: 50%;
     }
 
-    & > :not(:first-child) {
+    & > :nth-child(n) {
         margin-top: 0.75rem;
     }
 }

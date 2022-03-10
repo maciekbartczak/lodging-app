@@ -7,8 +7,6 @@ const TOKEN_STORAGE_KEY = 'auth-token'
 })
 export class TokenService {
 
-    constructor() {
-    }
 
     public saveToken(token: string): void {
         localStorage.removeItem(TOKEN_STORAGE_KEY);

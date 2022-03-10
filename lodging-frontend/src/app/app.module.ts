@@ -14,6 +14,8 @@ import { TopBarComponent } from './layout/top-bar/top-bar.component';
 import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import { AuthInterceptor } from './core/auth.interceptor';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -41,13 +43,15 @@ export function HttpLoaderFactory(http: HttpClient) {
         ButtonModule,
         MenubarModule,
         InputTextModule,
+        ToastModule
     ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true
-        }
+        },
+        MessageService
     ],
     bootstrap: [AppComponent]
 })

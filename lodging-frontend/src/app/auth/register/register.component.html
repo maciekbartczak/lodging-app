@@ -1,4 +1,4 @@
-<div class="container-center">
+<div class="container-center ">
     <p-card class="register-card">
         <ng-template pTemplate="header">
             <h1 class="register-card-header">{{ 'auth.register.header' | translate}}</h1>
@@ -16,7 +16,7 @@
 
             <div class="form-input-container">
                 <input type="text" pInputText [placeholder]="'auth.register.username.label' | translate"
-                    class="form-input" [(ngModel)]="model.email" formControlName="username"
+                    class="form-input" [(ngModel)]="model.username" formControlName="username"
                     [ngClass]="{'ng-invalid ng-dirty': submitted && registerForm.get('username')?.errors}">
 
                 <small *ngIf="submitted && registerForm.get('username')?.errors?.['required']" class="p-error">{{ 'global.error.required' | translate }}</small>
@@ -51,3 +51,4 @@
       </form>
     </p-card>
 </div>
+

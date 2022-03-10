@@ -1,7 +1,8 @@
 {
     "global": {
         "error": {
-            "required": "Pole jest wymagane"
+            "required": "Pole jest wymagane",
+            "generic": "Coś poszło nie tak"
         }
     },
     "topBar": {
@@ -32,7 +33,9 @@
             "username.error.min": "Nazwa użytkownika musi mieć przynajmniej 3 znaki",
             "username.error.max": "Nazwa użytkownika nie może mieć więcej niż 20 znaków",
             "password.error.min": "Hasło musi mieć przynajmniej 6 znaków",
-            "password.error.max": "Hasło nie może mieć więcej niż 50 znaków"
+            "password.error.max": "Hasło nie może mieć więcej niż 50 znaków",
+            "toast.success.header": "Zarejestrowano pomyślnie!",
+            "toast.success.content": "Możesz się teraz zalogować"
         }
     }
 }
