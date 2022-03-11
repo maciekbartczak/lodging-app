@@ -54,7 +54,7 @@ export class RegisterComponent {
                         severity: 'success',
                         summary: this.translateService.instant('auth.register.toast.success.header'),
                         detail: this.translateService.instant('auth.register.toast.success.content')
-                    })
+                    });
                 });
             },
             error: () => {

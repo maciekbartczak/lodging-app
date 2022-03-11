@@ -36,6 +36,8 @@
             "password.error.max": "Hasło nie może mieć więcej niż 50 znaków",
             "toast.success.header": "Zarejestrowano pomyślnie!",
             "toast.success.content": "Możesz się teraz zalogować"
-        }
+        },
+        "sessionExpired.header": "Twoja sesja wygasła!",
+        "sessionExpired.content": "Zaloguj się ponownie"
     }
 }

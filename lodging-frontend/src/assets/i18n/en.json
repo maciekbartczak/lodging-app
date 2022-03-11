@@ -36,6 +36,8 @@
             "password.error.max": "Password has to have at most 50 characters",
             "toast.success.header": "Registered successfully!",
             "toast.success.content": "You can now log in"
-        }
+        },
+        "sessionExpired.header": "Your session has expired!",
+        "sessionExpired.content": "Please log in"
     }
 }

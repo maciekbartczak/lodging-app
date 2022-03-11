@@ -16,6 +16,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { AuthInterceptor } from './core/auth.interceptor';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -51,7 +52,12 @@ export function HttpLoaderFactory(http: HttpClient) {
             useClass: AuthInterceptor,
             multi: true
         },
-        MessageService
+        {
+            provide: JWT_OPTIONS,
+            useValue: JWT_OPTIONS
+        },
+        MessageService,
+        JwtHelperService
     ],
     bootstrap: [AppComponent]
 })
