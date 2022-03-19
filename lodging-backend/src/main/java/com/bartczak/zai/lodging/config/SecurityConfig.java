@@ -1,7 +1,7 @@
 package com.bartczak.zai.lodging.config;
 
 import com.bartczak.zai.lodging.auth.InvalidCredentialsException;
-import com.bartczak.zai.lodging.auth.jwt.JwtTokenFilter;
+import com.bartczak.zai.lodging.auth.session.TokenFilter;
 import com.bartczak.zai.lodging.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -27,14 +27,14 @@ import javax.servlet.http.HttpServletResponse;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserRepository userRepository;
-    private final JwtTokenFilter jwtTokenFilter;
+    private final TokenFilter tokenFilter;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(username -> userRepository
                 .findByUsername(username)
                 .orElseThrow(InvalidCredentialsException::new)
-        );
+        ).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Bean
@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http = http.cors().and().csrf().disable();
 
         http = http.sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 .and();
 
         http = http
@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 ).and();
 
         http.addFilterBefore(
-                jwtTokenFilter,
+                tokenFilter,
                 UsernamePasswordAuthenticationFilter.class
         );
     }

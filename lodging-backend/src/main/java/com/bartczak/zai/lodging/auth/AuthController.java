@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
@@ -26,9 +27,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    @ResponseStatus(HttpStatus.OK)
     @Operation(description = "logs in a user")
-    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
-        return loginService.login(loginRequest);
+    public ResponseEntity<Void> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
+        response.addCookie(loginService.login(loginRequest));
+        return ResponseEntity.ok().build();
     }
 }

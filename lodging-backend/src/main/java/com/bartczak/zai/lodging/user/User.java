@@ -1,10 +1,11 @@
 package com.bartczak.zai.lodging.user;
 
+import com.bartczak.zai.lodging.auth.session.Session;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -23,6 +24,10 @@ public class User implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Session> sessions;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(

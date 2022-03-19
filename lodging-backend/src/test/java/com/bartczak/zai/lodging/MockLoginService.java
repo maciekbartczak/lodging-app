@@ -1,8 +1,7 @@
 package com.bartczak.zai.lodging;
 
-import com.bartczak.zai.lodging.auth.LoginResponse;
-import com.bartczak.zai.lodging.auth.jwt.JwtTokenUtil;
-import com.bartczak.zai.lodging.user.UserRepository;
+import com.bartczak.zai.lodging.auth.session.SessionRepository;
+import io.restassured.http.Cookie;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;
@@ -11,23 +10,26 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MockLoginService {
 
-    private final JwtTokenUtil jwtTokenUtil;
-    private final UserRepository userRepository;
+    private final SessionRepository sessionRepository;
 
-    public LoginResponse loginUser() {
-
-        val user = userRepository.findByUsername("testuser").orElse(null);
-        assert user != null;
-        return new LoginResponse(jwtTokenUtil.generateJwt(user));
+    public Cookie loginUser() {
+        val session = sessionRepository
+                .findById(TestFixture.USER_SESSION_ID)
+                .orElse(null);
+        return new Cookie.Builder("auth-token", session.getToken())
+                .setSecured(true)
+                .setHttpOnly(true)
+                .build();
     }
 
-    public LoginResponse loginAdmin() {
-        val user = userRepository.findByUsername("testadmin").orElse(null);
-        assert user != null;
-        return new LoginResponse(jwtTokenUtil.generateJwt(user));
+    public Cookie loginAdmin() {
+        val session = sessionRepository
+                .findById(TestFixture.ADMIN_SESSION_ID)
+                .orElse(null);
+        return new Cookie.Builder("auth-token", session.getToken())
+                .setSecured(true)
+                .setHttpOnly(true)
+                .build();
     }
 
-    public static String header(String token) {
-        return "Bearer " + token;
-    }
 }

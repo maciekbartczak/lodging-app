@@ -4,7 +4,6 @@ import com.bartczak.zai.lodging.UserTestSuite;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpHeaders;
 
 class FooControllerTest extends UserTestSuite {
 
@@ -12,7 +11,7 @@ class FooControllerTest extends UserTestSuite {
     void shouldAccessProtectedEndpoint() {
         RestAssured.given()
                 .contentType(ContentType.JSON)
-                .header(HttpHeaders.AUTHORIZATION, jwtHeader)
+                .cookie(authCookie)
 
                 .when()
                 .get("/foo/bar")

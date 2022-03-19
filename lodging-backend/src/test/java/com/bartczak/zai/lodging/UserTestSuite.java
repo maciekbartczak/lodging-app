@@ -7,6 +7,6 @@ public abstract class UserTestSuite extends AuthenticatedTestSuite {
     @Override
     @BeforeAll
     public void beforeAll() {
-        this.jwtHeader = MockLoginService.header(mockLoginService.loginUser().getToken());
+        this.authCookie = mockLoginService.loginUser();
     }
 }

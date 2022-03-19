@@ -1,5 +1,6 @@
 package com.bartczak.zai.lodging;
 
+import io.restassured.http.Cookie;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,7 +10,7 @@ public abstract class AuthenticatedTestSuite {
 
     @Autowired
     protected MockLoginService mockLoginService;
-    protected String jwtHeader;
+    protected Cookie authCookie;
 
     public abstract void beforeAll();
 
