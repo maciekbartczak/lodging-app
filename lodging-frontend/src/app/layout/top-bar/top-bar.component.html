@@ -1,6 +1,6 @@
 <div class="container">
     <div class="menu-container">
-        <p-button routerLink="/" class="p-button-secondary" icon="pi pi-home"></p-button>
+        <button pButton routerLink="/" icon="pi pi-home"></button>
     </div>
     <div class="search-container">
         <span class="p-input-icon-left">
@@ -8,8 +8,14 @@
             <input pInputText type="text" [placeholder]="'topBar.menu.search' | translate" class="search-input">
         </span>
     </div>
-    <div class="auth-container">
+    <div class="auth-container" *ngIf="!user && !loading; else userInfo">
         <p-button routerLink="/auth/login" [label]="'topBar.auth.login' | translate" icon="pi pi-lock" iconPos="right"></p-button>
         <p-button routerLink="/auth/register" [label]="'topBar.auth.register' | translate" icon="pi pi-user" iconPos="right"></p-button>
     </div>
+    <ng-template #userInfo>
+        <div class="user-info-container" *ngIf="user && !loading">
+            <p-menu [model]="userItems" [popup]="true" #menu></p-menu>
+            <button type="button" pButton icon="pi pi-user" [label]="user.username" (click)="menu.toggle($event)"></button>
+        </div>
+    </ng-template>
 </div>

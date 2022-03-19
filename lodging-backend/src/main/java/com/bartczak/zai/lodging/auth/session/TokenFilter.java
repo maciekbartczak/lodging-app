@@ -33,13 +33,7 @@ public class TokenFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
 
-        val token = Arrays.stream(Optional
-                        .ofNullable(request.getCookies())
-                        .orElse(new Cookie[] {}))
-                .filter(cookie -> cookie.getName().equals("auth-token"))
-                .findFirst()
-                .map(Cookie::getValue)
-                .orElse(null);
+        val token = TokenUtil.getTokenFromRequest(request);
 
         if (token == null) {
             filterChain.doFilter(request, response);

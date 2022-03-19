@@ -27,12 +27,20 @@ export class LoginComponent {
         if (!this.loginData.username || !this.loginData.password) {
             return;
         }
+        this.loading = true;
 
         this.authService.login(this.loginData).subscribe({
             next: _ => {
                 this.loading = false;
                 this.userStateService.getCurrentUser();
                 this.router.navigate(["/"]);
+            },
+            error: err => {
+                this.loading = false;
+                console.log(err);
+                if (err.error.status === 401) {
+                    this.error = true;
+                }
             }
         });
     }

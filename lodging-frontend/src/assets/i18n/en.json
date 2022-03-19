@@ -7,7 +7,9 @@
     },
     "topBar": {
         "menu": {
-            "search": "Search"
+            "search": "Search",
+            "user.profile": "Profile",
+            "user.logout": "Logout"
         },
         "auth": {
             "login": "Log in",

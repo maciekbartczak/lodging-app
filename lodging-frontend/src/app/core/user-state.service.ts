@@ -20,8 +20,7 @@ export class UserStateService {
         this.userService.getCurrentUser().subscribe({
             next: res => this.userSubject.next(res.user),
             error: _ => this.userSubject.next(undefined)
-        }
-        )
+        });
     }
 
     removeCurrentUser() {

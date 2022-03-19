@@ -24,3 +24,12 @@
         margin-top: 0.75rem;
     }
 }
+
+.error-messages {
+    display: flex;
+    justify-content: center;
+
+    & > div {
+        width: 80%;
+    }
+}

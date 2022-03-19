@@ -14,17 +14,5 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class RegisterService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public void registerUser(RegisterRequest registerRequest) {
-        val user = User.builder()
-                .username(registerRequest.getUsername())
-                .firstName(registerRequest.getFirstName())
-                .lastName(registerRequest.getLastName())
-                .authorities(Set.of(Role.builder().authority(Role.USER).build()))
-                .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .build();
-        userRepository.save(user);
-    }
 }

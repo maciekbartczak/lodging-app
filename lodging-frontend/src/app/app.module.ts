@@ -15,6 +15,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { AvatarModule } from 'primeng/avatar';
+import { MenuModule } from 'primeng/menu';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -42,7 +44,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         ButtonModule,
         MenubarModule,
         InputTextModule,
-        ToastModule
+        ToastModule,
+        AvatarModule,
+        MenuModule
     ],
     providers: [
         MessageService,
