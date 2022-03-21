@@ -50,7 +50,7 @@ public class TokenFilter extends OncePerRequestFilter {
         }
 
         UserDetails userDetails = userRepository
-                .findById(session.getUserId())
+                .findById(session.getUser().getId())
                 .orElse(null);
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(

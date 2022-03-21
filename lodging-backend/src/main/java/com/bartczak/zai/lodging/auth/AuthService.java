@@ -51,7 +51,7 @@ public class AuthService {
 
         val foo = TokenUtil.generateToken();
         val session = Session.builder()
-                .userId(user.getId())
+                .user(user)
                 .token(foo)
                 .build();
 

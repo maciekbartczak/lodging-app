@@ -24,8 +24,7 @@ public class User extends BaseEntity implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
-    @OneToMany
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user")
     private List<Session> sessions;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

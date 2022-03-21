@@ -1,6 +1,7 @@
 package com.bartczak.zai.lodging.auth.session;
 
 import com.bartczak.zai.lodging.common.BaseEntity;
+import com.bartczak.zai.lodging.user.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import javax.persistence.*;
 public class Session extends BaseEntity {
     @Column(unique = true)
     private String token;
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
