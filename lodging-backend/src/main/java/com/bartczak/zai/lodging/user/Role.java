@@ -1,5 +1,6 @@
 package com.bartczak.zai.lodging.user;
 
+import com.bartczak.zai.lodging.common.BaseEntity;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -8,17 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Role implements GrantedAuthority {
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Role extends BaseEntity implements GrantedAuthority {
     public static final String USER = "USER";
     public static final String ADMIN = "ADMIN";
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String authority;
 }

@@ -1,6 +1,7 @@
 package com.bartczak.zai.lodging.user;
 
 import com.bartczak.zai.lodging.auth.session.Session;
+import com.bartczak.zai.lodging.common.BaseEntity;
 import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,22 +10,20 @@ import java.util.List;
 import java.util.Set;
 
 
-@Getter
-@Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
-@Table(name = "users")
 @Entity
-public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Table(name = "users")
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class User extends BaseEntity implements UserDetails {
+
     @Column(unique = true)
     private String username;
     private String password;
     private String firstName;
     private String lastName;
-
     @OneToMany
     @JoinColumn(name = "user_id")
     private List<Session> sessions;
