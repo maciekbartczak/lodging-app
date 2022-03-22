@@ -18,4 +18,9 @@ public class HotelController {
     public HotelPageResponse getPage(@RequestBody @Valid HotelPagesRequest hotelPagesRequest) {
         return this.hotelService.getPage(hotelPagesRequest);
     }
+
+    @PostMapping("/available")
+    public AvailableHotelsResponse getAvailable(@RequestBody @Valid AvailableHotelsRequest availableHotelsRequest) {
+        return this.hotelService.getAvailableHotels(availableHotelsRequest);
+    }
 }

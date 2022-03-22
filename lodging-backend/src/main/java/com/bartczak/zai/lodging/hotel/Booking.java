@@ -1,6 +1,7 @@
 package com.bartczak.zai.lodging.hotel;
 
 import com.bartczak.zai.lodging.common.BaseEntity;
+import com.bartczak.zai.lodging.util.DateUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -17,10 +18,15 @@ import java.util.Set;
 public class Booking extends BaseEntity {
 
     private int guestCount;
-    @ElementCollection
-    private Set<LocalDate> bookedDays;
+    private LocalDate startDate;
+    private LocalDate endDate;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
+
+    public boolean isDateRangeBetween(Booking other) {
+        return DateUtil.isDateBetweenRange(other.startDate, this.startDate, this.endDate)
+                || DateUtil.isDateBetweenRange(other.endDate, this.startDate, this.endDate);
+    }
 }

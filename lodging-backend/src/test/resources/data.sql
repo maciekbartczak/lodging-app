@@ -13,8 +13,9 @@ insert into user_roles values (1, 1), (2, 1), (2, 2);
 insert into hotel values (1, 5, 300);
 insert into hotel values (2, 2, 400);
 insert into hotel values (3, 3, 350);
-insert into hotel values (4, 1, 350);
-insert into hotel values (5, 2, 200);
-insert into hotel values (6, 7, 600.5);
-insert into hotel values (7, 4, 100);
-insert into hotel values (8, 3, 230);
+insert into hotel values (4, 1, 600);
+
+--test range 2022-03-26 2022-03-27 -> hotel.id [1, 2]
+insert into booking (start_date, end_date, guest_count, hotel_id) values (date '2022-03-22', date '2022-03-25', 3, 1),
+                                                                         (date '2022-03-28', date '2022-03-30', 2, 1),
+                                                                         (date '2022-03-26', date '2022-03-30', 2, 3);
