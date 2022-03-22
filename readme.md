@@ -4,7 +4,8 @@ This application is a project for Advanced Internet Application course and it ai
 
 ## Technologies
 
-- Java, Maven, REST Assured
+- Java, Maven
 - Spring
+- JUnit, REST Assured
 - Postgresql
 - Angular
