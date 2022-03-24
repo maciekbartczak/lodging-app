@@ -14,6 +14,7 @@ export class TopBarComponent implements OnInit {
     }
 
     userItems: MenuItem[] = [];
+    authItems: MenuItem[] = [];
 
     @Input()
     user?: UserDto;
@@ -34,6 +35,13 @@ export class TopBarComponent implements OnInit {
                     icon: PrimeIcons.POWER_OFF,
                     command: _ => this.logout.emit()
                 })
+        );
+
+        this.translateService.get('topBar.auth.login').subscribe(
+            v => this.authItems.push({label: v, icon: PrimeIcons.UNLOCK, routerLink: '/auth/login'})
+        );
+        this.translateService.get('topBar.auth.register').subscribe(
+            v => this.authItems.push({label: v, icon: PrimeIcons.USER_PLUS, routerLink: '/auth/register'})
         );
     }
 }
