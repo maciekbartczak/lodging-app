@@ -7,6 +7,7 @@
     "prestart": "npm run generate:api:local",
     "ng": "ng",
     "start": "ng serve",
+    "serve": "ng serve",
     "prebuild": "npm run generate:api",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
