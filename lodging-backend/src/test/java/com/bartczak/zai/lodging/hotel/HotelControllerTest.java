@@ -2,12 +2,12 @@ package com.bartczak.zai.lodging.hotel;
 
 import com.bartczak.zai.lodging.IntegrationTest;
 import com.bartczak.zai.lodging.TestFixture;
+import com.bartczak.zai.lodging.booking.BookingDetails;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import lombok.val;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -42,8 +42,10 @@ class HotelControllerTest {
         val response = RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(AvailableHotelsRequest.builder()
-                        .startDate(TestFixture.BOOKING_START_DATE)
-                        .endDate(TestFixture.BOOKING_END_DATE)
+                        .bookingDetails(BookingDetails.builder()
+                            .startDate(TestFixture.BOOKING_START_DATE)
+                            .endDate(TestFixture.BOOKING_END_DATE)
+                            .build())
                         .build())
 
                 .when()

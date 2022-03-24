@@ -1,5 +1,7 @@
 package com.bartczak.zai.lodging.hotel;
 
+import com.bartczak.zai.lodging.booking.Booking;
+import com.bartczak.zai.lodging.booking.BookingDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.data.domain.PageRequest;
@@ -27,8 +29,10 @@ public class HotelService {
 
     public AvailableHotelsResponse getAvailableHotels(AvailableHotelsRequest availableHotelsRequest) {
         val requestedBooking = Booking.builder()
-                .startDate(availableHotelsRequest.getStartDate())
-                .endDate(availableHotelsRequest.getEndDate())
+                .bookingDetails(BookingDetails.builder()
+                    .startDate(availableHotelsRequest.getBookingDetails().getStartDate())
+                    .endDate(availableHotelsRequest.getBookingDetails().getEndDate())
+                    .build())
                 .build();
 
         val notBookedHotels = hotelRepository.findByBookingsIsNull();
