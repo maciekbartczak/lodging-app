@@ -7,13 +7,15 @@
         </span>
     </div>
 
-    <div class="auth-container hidden-mobile" *ngIf="!user && !loading; else userInfo">
+    <div class="actions-container hidden-mobile" *ngIf="!user && !loading; else userInfo">
+        <p-menu [model]="languageItems" [popup]="true" #languageMenu></p-menu>
+        <button type="button" pButton icon="pi pi-flag" (click)="languageMenu.toggle($event)"></button>
         <p-button routerLink="/auth/login" [label]="'topBar.auth.login' | translate" icon="pi pi-unlock" iconPos="right"></p-button>
         <p-button routerLink="/auth/register" [label]="'topBar.auth.register' | translate" icon="pi pi-user-plus" iconPos="right"></p-button>
     </div>
-    <div class="auth-container hidden-desktop" *ngIf="!user && !loading; else userInfo">
-        <p-menu [model]="authItems" [popup]="true" #authMenu></p-menu>
-        <button type="button" pButton icon="pi pi-bars" (click)="authMenu.toggle($event)"></button>
+    <div class="actions-container hidden-desktop" *ngIf="!user && !loading; else userInfo">
+        <p-slideMenu [model]="actionItems" [popup]="true" #actionMenu></p-slideMenu>
+        <button type="button" pButton icon="pi pi-bars" (click)="actionMenu.toggle($event)"></button>
     </div>
 
     <ng-template #userInfo>

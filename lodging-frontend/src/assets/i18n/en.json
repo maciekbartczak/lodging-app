@@ -14,7 +14,8 @@
         "auth": {
             "login": "Log in",
             "register": "Register"
-        }
+        },
+        "language": "Language"
     },
     "auth": {
         "login": {

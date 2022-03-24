@@ -18,6 +18,7 @@ import { ToastModule } from 'primeng/toast';
 import { AvatarModule } from 'primeng/avatar';
 import { MenuModule } from 'primeng/menu';
 import { RouteNotFoundComponent } from './core/route-not-found/route-not-found.component';
+import { SlideMenuModule } from 'primeng/slidemenu';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         InputTextModule,
         ToastModule,
         AvatarModule,
-        MenuModule
+        MenuModule,
+        SlideMenuModule
     ],
     providers: [
         MessageService,

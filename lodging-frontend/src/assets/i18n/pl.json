@@ -14,7 +14,8 @@
         "auth": {
             "login": "Zaloguj",
             "register": "Zarejestruj"
-        }
+        },
+        "language": "Język"
     },
     "auth": {
         "login": {
