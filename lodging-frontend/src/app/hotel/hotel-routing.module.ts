@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
 
 const routes: Routes = [
-    { path: '/list', component: HotelListComponent }
+    { path: 'list', component: HotelListComponent }
 ];
 
 @NgModule({
