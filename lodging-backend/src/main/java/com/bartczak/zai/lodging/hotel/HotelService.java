@@ -5,8 +5,11 @@ import com.bartczak.zai.lodging.booking.BookingDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -58,5 +61,15 @@ public class HotelService {
         return AvailableHotelsResponse.builder()
                 .hotels(availableHotels)
                 .build();
+    }
+
+    public HotelCreatedResponse addHotel(AddHotelRequest addHotelRequest) {
+        val hotel = Hotel.builder()
+                        .maxGuests(addHotelRequest.getMaxGuests())
+                        .pricePerNight(addHotelRequest.getPricePerNight())
+                        .bookings(Set.of())
+                        .build();
+        val created = hotelRepository.save(hotel);
+        return new HotelCreatedResponse(created);
     }
 }

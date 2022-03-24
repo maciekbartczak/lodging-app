@@ -2,19 +2,25 @@ package com.bartczak.zai.lodging.hotel;
 
 import com.bartczak.zai.lodging.IntegrationTest;
 import com.bartczak.zai.lodging.TestFixture;
+import com.bartczak.zai.lodging.UserTestSuite;
 import com.bartczak.zai.lodging.booking.BookingDetails;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import lombok.val;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 
 @IntegrationTest
-class HotelControllerTest {
+class HotelControllerTest extends UserTestSuite {
+
+    @Autowired
+    private HotelRepository hotelRepository;
 
     @Test
     void shouldGetCorrectHotelPage() {
@@ -58,6 +64,27 @@ class HotelControllerTest {
 
         val hotelIds = response.getHotels().stream().map(Hotel::getId).collect(Collectors.toList());
 
-        assertThat(hotelIds, containsInAnyOrder(TestFixture.AVAILABLE_HOTEL_IDS.toArray()));
+        assertThat(hotelIds).containsExactlyInAnyOrderElementsOf(TestFixture.AVAILABLE_HOTEL_IDS);
+    }
+
+    @Test
+    void shouldCreateHotel() {
+        val response = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .cookie(this.authCookie)
+                .body(AddHotelRequest.builder()
+                        .maxGuests(4)
+                        .pricePerNight(BigDecimal.valueOf(200))
+                        .build())
+
+                .when()
+                .post("/hotel/add")
+
+                .then()
+                .statusCode(201)
+                .extract().as(HotelCreatedResponse.class);
+
+        val created = hotelRepository.findById(response.getCreated().getId());
+        assertThat(created).isPresent();
     }
 }
