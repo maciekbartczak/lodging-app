@@ -19,6 +19,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { MenuModule } from 'primeng/menu';
 import { RouteNotFoundComponent } from './core/route-not-found/route-not-found.component';
 import { SlideMenuModule } from 'primeng/slidemenu';
+import { MainComponent } from './main/main.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -27,7 +28,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     declarations: [
         AppComponent,
         TopBarComponent,
-        RouteNotFoundComponent
+        RouteNotFoundComponent,
+        MainComponent
     ],
     imports: [
         BrowserModule,

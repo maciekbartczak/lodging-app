@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserDto } from '../../../core/openapi';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
-import { Language } from '../../app.component';
+import { Language } from '../../main/main.component';
 
 @Component({
   selector: 'app-top-bar',
@@ -20,8 +20,6 @@ export class TopBarComponent implements OnInit {
 
     @Input()
     user?: UserDto;
-    @Input()
-    loading = false;
 
     @Output()
     onLogout: EventEmitter<void> = new EventEmitter<void>();
@@ -38,6 +36,9 @@ export class TopBarComponent implements OnInit {
     private populateMenus(): void {
         this.translateService.get('topBar.menu.user.profile').subscribe(
             v => this.userItems.push({label: v, icon: PrimeIcons.USER})
+        );
+        this.translateService.get('topBar.language').subscribe(
+            v => this.userItems.push({label: v, icon: PrimeIcons.FLAG, items: this.languageItems, })
         );
         this.translateService.get('topBar.menu.user.logout').subscribe(
             v => this.userItems.push(

@@ -32,7 +32,6 @@ export class LoginComponent {
         this.authService.login(this.loginData).subscribe({
             next: _ => {
                 this.loading = false;
-                this.userStateService.getCurrentUser();
                 this.router.navigate(["/"]);
             },
             error: err => {
