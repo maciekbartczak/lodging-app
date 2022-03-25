@@ -22,6 +22,7 @@ import { SlideMenuModule } from 'primeng/slidemenu';
 import { MainComponent } from './main/main.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { firstValueFrom } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -66,18 +67,23 @@ export function HttpLoaderFactory(http: HttpClient) {
         {
             provide: APP_INITIALIZER,
             useFactory: appInitializerFactory,
-            deps: [TranslateService],
+            deps: [TranslateService, CookieService],
             multi: true
-        }
+        },
+        [
+            CookieService,
+        ]
     ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
 }
 
-export function appInitializerFactory(translateService: TranslateService) {
+export function appInitializerFactory(translateService: TranslateService, cookieService: CookieService) {
     return () => {
         translateService.setDefaultLang('en');
-        return firstValueFrom(translateService.use('en'));
+        let language = cookieService.get('app-lang');
+        language = language ? language : 'en';
+        return firstValueFrom(translateService.use(language));
     }
 }
