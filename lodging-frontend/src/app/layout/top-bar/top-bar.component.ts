@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserDto } from '../../../core/openapi';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';

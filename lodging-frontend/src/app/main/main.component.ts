@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService, UserDto } from '../../core/openapi';
 import { TranslateService } from '@ngx-translate/core';
 import { UserStateService } from '../core/user-state.service';
-import { firstValueFrom, noop } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 export type Language = 'en' | 'pl';
 
