@@ -1,0 +1,24 @@
+@keyframes router-load-indicator-animation {
+    from {
+        opacity: 0.0 ;
+    }
+
+    to {
+        opacity: 1.0 ;
+    }
+}
+
+.loading-overlay {
+    height: 100vh;
+    width: 100%;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    animation-delay: 100ms;
+    animation-duration: 200ms;
+    animation-fill-mode: both;
+    animation-name: router-load-indicator-animation;
+}
