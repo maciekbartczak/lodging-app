@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService, UserDto } from '../../core/openapi';
 import { TranslateService } from '@ngx-translate/core';
 import { UserStateService } from '../core/user-state.service';
+import { firstValueFrom, noop } from 'rxjs';
 
 export type Language = 'en' | 'pl';
 
@@ -15,13 +16,11 @@ export class MainComponent implements OnInit {
 
     user?: UserDto;
     currentLanguage: Language = 'en';
+    loading = false;
 
     constructor(private translate: TranslateService,
                 private userState: UserStateService,
                 private authService: AuthService) {
-
-        translate.setDefaultLang('en');
-        translate.use(this.currentLanguage);
     }
 
     ngOnInit(): void {
@@ -38,8 +37,10 @@ export class MainComponent implements OnInit {
         );
     }
 
-    changeLanguage(language: Language): void {
-        this.translate.use(language);
+    async changeLanguage(language: Language): Promise<void> {
+        this.loading = true;
+        await firstValueFrom(this.translate.use(language));
+        this.loading = false;
     }
 
 }

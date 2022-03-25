@@ -5,7 +5,6 @@ import {
     NavigationError,
     NavigationStart,
     Router,
-    RouterEvent
 } from '@angular/router';
 import { filter, map, Observable, of } from 'rxjs';
 

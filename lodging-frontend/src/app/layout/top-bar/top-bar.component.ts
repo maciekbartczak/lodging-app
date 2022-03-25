@@ -9,14 +9,27 @@ import { Language } from '../../main/main.component';
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
-export class TopBarComponent implements OnInit {
+export class TopBarComponent {
 
-    userItems: MenuItem[] = [];
-    actionItems: MenuItem[] = [];
     languageItems: MenuItem[] = [
         { label: 'Polski', command: () => this.changeLanguage('pl') },
         { label: 'English', command: () => this.changeLanguage('en') },
     ]
+    userItems: MenuItem[] = [
+        { label: this.translateService.instant('topBar.menu.user.profile'), icon: PrimeIcons.USER },
+        { label: this.translateService.instant('topBar.language'), icon: PrimeIcons.FLAG, items: this.languageItems },
+        {
+            label: this.translateService.instant('topBar.menu.user.logout'),
+            icon: PrimeIcons.POWER_OFF,
+            command: _ => this.onLogout.emit()
+        }
+    ];
+    actionItems: MenuItem[] = [
+        { label: this.translateService.instant('topBar.auth.login'), icon: PrimeIcons.UNLOCK, routerLink: '/auth/login' },
+        { label: this.translateService.instant('topBar.auth.register'), icon: PrimeIcons.USER_PLUS, routerLink: '/auth/register' },
+        { label: this.translateService.instant('topBar.language'), icon: PrimeIcons.FLAG, items: this.languageItems }
+    ];
+
 
     @Input()
     user?: UserDto;
@@ -29,42 +42,12 @@ export class TopBarComponent implements OnInit {
     constructor(private translateService: TranslateService) {
     }
 
-    ngOnInit(): void {
-        this.populateMenus();
-    }
 
-    private populateMenus(): void {
-        this.translateService.get('topBar.menu.user.profile').subscribe(
-            v => this.userItems.push({label: v, icon: PrimeIcons.USER})
-        );
-        this.translateService.get('topBar.language').subscribe(
-            v => this.userItems.push({label: v, icon: PrimeIcons.FLAG, items: this.languageItems, })
-        );
-        this.translateService.get('topBar.menu.user.logout').subscribe(
-            v => this.userItems.push(
-                {
-                    label: v,
-                    icon: PrimeIcons.POWER_OFF,
-                    command: _ => this.onLogout.emit()
-                })
-        );
-
-        this.translateService.get('topBar.auth.login').subscribe(
-            v => this.actionItems.push({label: v, icon: PrimeIcons.UNLOCK, routerLink: '/auth/login'})
-        );
-        this.translateService.get('topBar.auth.register').subscribe(
-            v => this.actionItems.push({label: v, icon: PrimeIcons.USER_PLUS, routerLink: '/auth/register'})
-        );
-        this.translateService.get('topBar.language').subscribe(
-            v => this.actionItems.push({label: v, icon: PrimeIcons.FLAG, items: this.languageItems, })
-        );
-    }
 
     private changeLanguage(language: Language): void {
         this.userItems = [];
         this.actionItems = [];
 
         this.onLanguageChange.emit(language);
-        this.populateMenus();
     }
 }
