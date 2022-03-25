@@ -21,8 +21,8 @@ import { RouteNotFoundComponent } from './core/route-not-found/route-not-found.c
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { MainComponent } from './main/main.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { firstValueFrom } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import appInitializerFactory from './core/appInitializerFactory';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -79,11 +79,4 @@ export function HttpLoaderFactory(http: HttpClient) {
 export class AppModule {
 }
 
-export function appInitializerFactory(translateService: TranslateService, cookieService: CookieService) {
-    return () => {
-        translateService.setDefaultLang('en');
-        let language = cookieService.get('app-lang');
-        language = language ? language : 'en';
-        return firstValueFrom(translateService.use(language));
-    }
-}
+
