@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppStateService } from 'src/app/core/app-state.service';
-import { Hotel, HotelDto, HotelService } from '../../../core/openapi';
+import { HotelDto, HotelService } from '../../../core/openapi';
 
 @Component({
     selector: 'app-hotel-list',

@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    NavigationCancel,
-    NavigationEnd,
-    NavigationError,
-    NavigationStart,
-    Router,
-} from '@angular/router';
-import { filter, map, Observable, of } from 'rxjs';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, } from '@angular/router';
+import { filter, map } from 'rxjs';
 import { AppStateService } from './core/app-state.service';
 
 @Component({
@@ -19,8 +13,8 @@ export class AppComponent implements OnInit {
     constructor(private router: Router,
                 private appState: AppStateService) {
     }
-    
- 
+
+
 
     ngOnInit(): void {
         this.router.events.pipe(
@@ -33,7 +27,7 @@ export class AppComponent implements OnInit {
             ),
             map((e) => e instanceof NavigationStart)
         ).subscribe(loading => this.loading = loading);
-        
+
         this.appState.loading.subscribe(
             loading => {
                 this.loading = loading;
