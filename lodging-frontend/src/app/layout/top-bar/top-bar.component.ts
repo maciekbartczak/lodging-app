@@ -42,12 +42,7 @@ export class TopBarComponent {
     constructor(private translateService: TranslateService) {
     }
 
-
-
     private changeLanguage(language: Language): void {
-        this.userItems = [];
-        this.actionItems = [];
-
         this.onLanguageChange.emit(language);
     }
 }

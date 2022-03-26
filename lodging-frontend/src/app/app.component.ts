@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { AppStateService } from './core/app-state.service';
@@ -7,14 +7,17 @@ import { AppStateService } from './core/app-state.service';
     selector: 'app-root',
     templateUrl: 'app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewChecked {
     loading = false;
 
     constructor(private router: Router,
-                private appState: AppStateService) {
+                private appState: AppStateService,
+                private cdr: ChangeDetectorRef) {
     }
 
-
+    ngAfterViewChecked(): void {
+        this.cdr.detectChanges();
+    }
 
     ngOnInit(): void {
         this.router.events.pipe(
