@@ -64,12 +64,6 @@ export function HttpLoaderFactory(http: HttpClient) {
             provide: Configuration,
             useValue: new Configuration({withCredentials: true})
         },
-        {
-            provide: APP_INITIALIZER,
-            useFactory: appInitializerFactory,
-            deps: [TranslateService, CookieService],
-            multi: true
-        },
         [
             CookieService,
         ]

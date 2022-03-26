@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RouteNotFoundComponent } from './core/route-not-found/route-not-found.component';
 import { MainComponent } from './main/main.component';
 import { UserResolver } from './core/user.resolver';
+import { LanguageResolver } from './core/language.resolver';
 
 const routes: Routes = [
     {
@@ -15,7 +16,8 @@ const routes: Routes = [
         component: MainComponent,
         runGuardsAndResolvers: "always",
         resolve: {
-            user: UserResolver
+            user: UserResolver,
+            language: LanguageResolver
         },
         children: [
             {
