@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService, LoginRequest, UserDto } from '../../../core/openapi';
 import { Router } from '@angular/router';
-import { UserStateService } from '../../core/user-state.service';
+import { AppStateService } from '../../core/app-state.service';
 
 @Component({
     selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent {
     }
 
     constructor(private authService: AuthService,
-                private userStateService: UserStateService,
+                private appState: AppStateService,
                 private router: Router) {
     }
 

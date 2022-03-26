@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppStateService } from 'src/app/core/app-state.service';
 import { Hotel, HotelDto, HotelService } from '../../../core/openapi';
 
 @Component({
@@ -14,7 +15,8 @@ export class HotelListComponent implements OnInit {
     totalItems = 0;
     loading = false;
 
-    constructor(private hotelService: HotelService) {
+    constructor(private hotelService: HotelService,
+                private appState: AppStateService) {
     }
 
     ngOnInit() {
@@ -28,10 +30,12 @@ export class HotelListComponent implements OnInit {
     }
 
     private fetchPage() {
+        this.appState.setLoading(true);
         this.hotelService.getPage({pageSize: this.pageSize, pageNumber: this.pageNumber}).subscribe(
             (data) => {
                 this.hotels = data.hotels;
                 this.totalItems = data.totalItems;
+                this.appState.setLoading(false);
             }
         );
     }

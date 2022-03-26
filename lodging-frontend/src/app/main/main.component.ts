@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, UserDto } from '../../core/openapi';
 import { TranslateService } from '@ngx-translate/core';
-import { UserStateService } from '../core/user-state.service';
+import { AppStateService } from '../core/app-state.service';
 import { firstValueFrom } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -17,16 +17,15 @@ export class MainComponent implements OnInit {
 
     user?: UserDto;
     currentLanguage: Language = 'en';
-    loading = false;
 
     constructor(private translate: TranslateService,
-                private userState: UserStateService,
+                private appState: AppStateService,
                 private authService: AuthService,
                 private cookieService: CookieService) {
     }
 
     ngOnInit(): void {
-        this.userState.user.subscribe(
+        this.appState.user.subscribe(
             user => {
                 this.user = user;
             }
@@ -35,15 +34,15 @@ export class MainComponent implements OnInit {
 
     logout(): void {
         this.authService.logout().subscribe(
-            _ => this.userState.setUser(undefined)
+            _ => this.appState.setUser(undefined)
         );
     }
 
     async changeLanguage(language: Language): Promise<void> {
         this.cookieService.set('app-lang', language, new Date(9999, 11));
-        this.loading = true;
+        this.appState.setLoading(true);
         await firstValueFrom(this.translate.use(language));
-        this.loading = false;
+        this.appState.setLoading(false);
     }
 
 }

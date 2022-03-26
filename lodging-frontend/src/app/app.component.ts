@@ -7,19 +7,23 @@ import {
     Router,
 } from '@angular/router';
 import { filter, map, Observable, of } from 'rxjs';
+import { AppStateService } from './core/app-state.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
-    loading$: Observable<any> = of(false);
+    loading = false;
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private appState: AppStateService) {
     }
+    
+ 
 
     ngOnInit(): void {
-        this.loading$ = this.router.events.pipe(
+        this.router.events.pipe(
             filter(
                 (e) =>
                     e instanceof NavigationStart ||
@@ -28,7 +32,12 @@ export class AppComponent implements OnInit {
                     e instanceof NavigationError
             ),
             map((e) => e instanceof NavigationStart)
-        );
+        ).subscribe(loading => this.loading = loading);
+        
+        this.appState.loading.subscribe(
+            loading => {
+                this.loading = loading;
+            });
     }
 
 }
