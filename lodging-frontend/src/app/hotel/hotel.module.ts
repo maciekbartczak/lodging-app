@@ -8,6 +8,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
 import { TranslateModule } from '@ngx-translate/core';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TranslateModule } from '@ngx-translate/core';
         PaginatorModule,
         CardModule,
         ImageModule,
-        TranslateModule
+        TranslateModule,
+        ButtonModule
     ]
 })
 export class HotelModule { }

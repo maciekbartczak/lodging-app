@@ -44,6 +44,7 @@
         "sessionExpired.content": "Please log in"
     },
     "hotel": {
+        "add": "Add your hotel",
         "header.night": "night"
     }
 }

@@ -5,6 +5,15 @@
     justify-content: space-between;
 
     .hotel-table {
-        height: 90%;
+        height: 80%;
+    }
+
+    .row {
+        height: 5%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 2.5rem;
+        margin-top: 1rem;
     }
 }

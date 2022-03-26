@@ -44,6 +44,7 @@
         "sessionExpired.content": "Zaloguj się ponownie"
     },
     "hotel": {
+        "add": "Dodaj swój hotel",
         "header.night": "noc"
     }
 }
