@@ -1,7 +1,7 @@
 package com.bartczak.zai.lodging.booking;
 
 import com.bartczak.zai.lodging.common.BaseEntity;
-import com.bartczak.zai.lodging.hotel.Hotel;
+import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import com.bartczak.zai.lodging.util.DateUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

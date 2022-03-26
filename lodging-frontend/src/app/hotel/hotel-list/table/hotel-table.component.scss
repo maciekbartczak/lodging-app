@@ -1,0 +1,42 @@
+.container {
+    margin-top: 20px;
+    padding: 2rem;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, calc(100% / 5 - 1rem)));
+    @media (min-width: 681px) and (max-width: 1000px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 680px) {
+        grid-template-columns: 1fr;
+    }
+
+    grid-gap: 1rem;
+    align-items: center;
+    overflow: auto;
+
+    .hotel-card {
+
+        .p-card-content {
+            padding: 0;
+        }
+
+        .card-header {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 1rem 0 1rem;
+
+            .header-row {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+
+        .main-image {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

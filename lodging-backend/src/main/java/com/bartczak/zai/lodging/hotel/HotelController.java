@@ -1,5 +1,6 @@
 package com.bartczak.zai.lodging.hotel;
 
+import com.bartczak.zai.lodging.hotel.dto.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

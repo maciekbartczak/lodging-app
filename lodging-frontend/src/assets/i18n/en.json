@@ -42,5 +42,8 @@
         },
         "sessionExpired.header": "Your session has expired!",
         "sessionExpired.content": "Please log in"
+    },
+    "hotel": {
+        "header.night": "night"
     }
 }

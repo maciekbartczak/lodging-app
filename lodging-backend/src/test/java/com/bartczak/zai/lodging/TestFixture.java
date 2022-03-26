@@ -10,7 +10,6 @@ public class TestFixture {
     public static final Long USER_SESSION_ID = 1L;
     public static final Long ADMIN_SESSION_ID = 2L;
     public static final int HOTELS_COUNT = 4;
-    public static final int PAGES_COUNT = 2;
     public static final LocalDate BOOKING_START_DATE = LocalDate.of(2022, 3, 26);
     public static final LocalDate BOOKING_END_DATE = LocalDate.of(2022, 3, 27);
     public static final List<Long> AVAILABLE_HOTEL_IDS = List.of(1L, 2L, 4L);

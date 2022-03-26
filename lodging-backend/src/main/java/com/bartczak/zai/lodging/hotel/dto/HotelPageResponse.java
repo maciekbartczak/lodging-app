@@ -1,4 +1,4 @@
-package com.bartczak.zai.lodging.hotel;
+package com.bartczak.zai.lodging.hotel.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +10,7 @@ import java.util.List;
 @Builder
 public class HotelPageResponse {
     @NotNull
-    private final int totalPages;
-    @NotNull
     private final long totalItems;
     @NotNull
-    private final List<Hotel> hotels;
+    private final List<HotelDto> hotels;
 }

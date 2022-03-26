@@ -1,4 +1,4 @@
-package com.bartczak.zai.lodging.hotel;
+package com.bartczak.zai.lodging.hotel.dto;
 
 import lombok.Builder;
 import lombok.Data;

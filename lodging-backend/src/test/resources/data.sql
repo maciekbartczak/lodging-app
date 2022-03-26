@@ -10,10 +10,13 @@ insert into session values (2, '4321', 2);
 
 insert into user_roles values (1, 1), (2, 1), (2, 2);
 
-insert into hotel values (1, 5, 300);
-insert into hotel values (2, 2, 400);
-insert into hotel values (3, 3, 350);
-insert into hotel values (4, 1, 600);
+insert into hotel values (1, 5, 'hotel 1', 300);
+insert into hotel values (2, 2, 'hotel 2', 400);
+insert into hotel values (3, 3, 'hotel 3', 350);
+insert into hotel values (4, 1, 'foo', 600);
+
+insert into address values (1, 'Warsaw', 'Poland', 'test street');
+
 
 --test range 2022-03-26 2022-03-27 -> hotel.id [1, 2]
 insert into booking (start_date, end_date, guest_count, hotel_id) values (date '2022-03-22', date '2022-03-25', 3, 1),

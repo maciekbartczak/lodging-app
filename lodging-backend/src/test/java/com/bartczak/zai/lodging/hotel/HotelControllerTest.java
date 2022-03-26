@@ -4,6 +4,8 @@ import com.bartczak.zai.lodging.IntegrationTest;
 import com.bartczak.zai.lodging.TestFixture;
 import com.bartczak.zai.lodging.UserTestSuite;
 import com.bartczak.zai.lodging.booking.BookingDetails;
+import com.bartczak.zai.lodging.hotel.dto.*;
+import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import lombok.val;
@@ -37,10 +39,10 @@ class HotelControllerTest extends UserTestSuite {
 
                 .then()
                 .statusCode(200)
-                .body("totalPages", is(TestFixture.PAGES_COUNT),
-                        "totalItems", is(TestFixture.HOTELS_COUNT),
+                .body("totalItems", is(TestFixture.HOTELS_COUNT),
                         "hotels", hasSize(2),
-                        "hotels[0].id", is(1));
+                        "hotels[0].id", is(1),
+                        "hotels[0].address.country", is("Poland"));
     }
 
     @Test
@@ -73,8 +75,14 @@ class HotelControllerTest extends UserTestSuite {
                 .contentType(ContentType.JSON)
                 .cookie(this.authCookie)
                 .body(AddHotelRequest.builder()
+                        .name("Test hotel")
                         .maxGuests(4)
                         .pricePerNight(BigDecimal.valueOf(200))
+                        .address(AddressDto.builder()
+                                .city("Warsaw")
+                                .country("Poland")
+                                .street("Test street")
+                                .build())
                         .build())
 
                 .when()
@@ -86,5 +94,6 @@ class HotelControllerTest extends UserTestSuite {
 
         val created = hotelRepository.findById(response.getCreated().getId());
         assertThat(created).isPresent();
+        assertThat(created.get().getName()).isEqualTo("Test hotel");
     }
 }

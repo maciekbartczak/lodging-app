@@ -42,5 +42,8 @@
         },
         "sessionExpired.header": "Twoja sesja wygasła!",
         "sessionExpired.content": "Zaloguj się ponownie"
+    },
+    "hotel": {
+        "header.night": "noc"
     }
 }

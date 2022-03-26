@@ -1,0 +1,21 @@
+insert into hotel values (1, 5, 'hotel 1', 300);
+insert into hotel values (2, 2, 'hotel 2', 400);
+insert into hotel values (3, 3, 'hotel 3', 350);
+insert into hotel values (4, 1, 'foo', 600);
+insert into hotel values (5, 5, 'hotel 1', 300);
+insert into hotel values (6, 2, 'hotel 2', 400);
+insert into hotel values (7, 3, 'hotel 3', 350);
+insert into hotel values (8, 1, 'foo', 600);
+insert into hotel values (9, 5, 'hotel 1', 300);
+insert into hotel values (10, 2, 'hotel 2', 400);
+insert into hotel values (11, 3, 'hotel 3', 350);
+insert into hotel values (12, 1, 'foo', 600);
+
+insert into address values (1, 'Warsaw', 'Poland', 'test street');
+insert into address values (2, 'Cracow', 'Poland', 'test street');
+insert into address values (3, 'Lodz', 'Poland', 'test street');
+insert into address values (4, 'Wroclaw', 'Poland', 'test street');
+insert into address values (5, 'Radom', 'Poland', 'test street');
+insert into address values (6, 'Radomsko', 'Poland', 'test street');
+insert into address values (7, 'Plock', 'Poland', 'test street');
+insert into address values (8, 'Berlin', 'Germany', 'test street');

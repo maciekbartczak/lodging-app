@@ -1,0 +1,15 @@
+<div class="container">
+    <p-card class="hotel-card" *ngFor="let hotel of hotels">
+        <ng-template pTemplate="header">
+            <div class="card-header">
+                <h3 class="name">{{hotel.name}}</h3>
+                <div class="header-row">
+                    <h4 class="location">{{hotel.address.city}}, {{hotel.address.country}}</h4>
+                    <span class="price">{{hotel.pricePerNight | currency: 'PLN' }} / {{'hotel.header.night' | translate}}</span>
+                </div>
+            </div>
+        </ng-template>
+        <img class="main-image" src="https://via.placeholder.com/512" alt="Hotel image">
+        <div class="price"></div>
+    </p-card>
+</div>

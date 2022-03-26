@@ -1,4 +1,4 @@
-package com.bartczak.zai.lodging.hotel;
+package com.bartczak.zai.lodging.hotel.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
 public class HotelCreatedResponse {
-    private final Hotel created;
+    private final HotelDto created;
 }
 
