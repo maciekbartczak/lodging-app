@@ -18,14 +18,14 @@
                 <input id="username" type="text" pInputText [placeholder]="'auth.login.username.label' | translate"
                        class="form-input" required [(ngModel)]="loginData.username" #username="ngModel" name="username"
                        [ngClass]="{'ng-invalid ng-dirty': loginForm.submitted && !username.valid}">
-                <small *ngIf="loginForm.submitted && !username.valid" class="p-error">{{ 'global.error.required' | translate }}</small>
+                <small *ngIf="loginForm.submitted && !username.valid" class="p-error">{{ 'error.required' | translate }}</small>
             </div>
 
             <div class="form-input-container">
                 <input id="password" type="password" pInputText [placeholder]="'auth.login.password.label' | translate"
                        class="form-input" required [(ngModel)]="loginData.password" #password="ngModel" name="password"
                        [ngClass]="{'ng-invalid ng-dirty': loginForm.submitted && !password.valid}">
-                <small *ngIf="loginForm.submitted && !password.valid" class="p-error">{{ 'global.error.required' | translate }}</small>
+                <small *ngIf="loginForm.submitted && !password.valid" class="p-error">{{ 'error.required' | translate }}</small>
             </div>
 
             <button pButton type="submit" [label]="'auth.login.submitButton' | translate" class="form-submit"></button>

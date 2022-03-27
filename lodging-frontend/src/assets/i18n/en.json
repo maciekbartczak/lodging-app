@@ -1,9 +1,9 @@
 {
-    "global": {
-        "error": {
-            "required": "Field is required",
-            "generic": "Something went wrong"
-        }
+    "error": {
+        "required": "Field is required",
+        "generic": "Something went wrong",
+        "not-logged-in": "Please log in to continue",
+        "not-logged-in-details": "You need to be logged in to perform this action"
     },
     "topBar": {
         "menu": {

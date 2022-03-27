@@ -3,13 +3,14 @@ import { AuthService, UserDto } from '../../core/openapi';
 import { TranslateService } from '@ngx-translate/core';
 import { AppStateService } from '../core/app-state.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 export type Language = 'en' | 'pl';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
     title = 'lodging-frontend';
@@ -19,7 +20,8 @@ export class MainComponent implements OnInit {
     constructor(private translate: TranslateService,
                 private appState: AppStateService,
                 private authService: AuthService,
-                private cookieService: CookieService) {
+                private cookieService: CookieService,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -32,11 +34,13 @@ export class MainComponent implements OnInit {
 
     logout(): void {
         this.authService.logout().subscribe(
-            _ => this.appState.setUser(undefined)
-        );
+            _ => {
+                this.appState.setUser(undefined);
+                this.router.navigate(['/']);
+            });
     }
 
-    async changeLanguage(language: Language): Promise<void> {
+    changeLanguage(language: Language): void {
         if (this.cookieService.get('app-lang') != language) {
             this.cookieService.set('app-lang', language, new Date(9999, 11));
             window.location.reload();

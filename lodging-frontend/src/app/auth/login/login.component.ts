@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService, LoginRequest, UserDto } from '../../../core/openapi';
-import { Router } from '@angular/router';
+import { AuthService, LoginRequest, UserService } from '../../../core/openapi';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppStateService } from '../../core/app-state.service';
 
 @Component({
@@ -11,7 +11,6 @@ import { AppStateService } from '../../core/app-state.service';
 export class LoginComponent {
     error = false;
     loading = false;
-    user: UserDto | null = null;
 
     loginData: LoginRequest = {
         username: '',
@@ -20,7 +19,9 @@ export class LoginComponent {
 
     constructor(private authService: AuthService,
                 private appState: AppStateService,
-                private router: Router) {
+                private router: Router,
+                private route: ActivatedRoute,
+                private userService: UserService) {
     }
 
     login() {
@@ -32,7 +33,7 @@ export class LoginComponent {
         this.authService.login(this.loginData).subscribe({
             next: _ => {
                 this.loading = false;
-                this.router.navigate(["/"]);
+                this.onLoginSuccess();
             },
             error: err => {
                 this.loading = false;
@@ -42,6 +43,15 @@ export class LoginComponent {
                 }
             }
         });
+    }
+
+    private onLoginSuccess(): void {
+        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.userService.getCurrentUser().subscribe(
+            response => {
+                this.appState.setUser(response.user);
+                this.router.navigate([returnUrl]);
+            });
     }
 
 }

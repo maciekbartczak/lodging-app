@@ -1,9 +1,9 @@
 {
-    "global": {
-        "error": {
-            "required": "Pole jest wymagane",
-            "generic": "Coś poszło nie tak"
-        }
+    "error": {
+        "required": "Pole jest wymagane",
+        "generic": "Coś poszło nie tak",
+        "not-logged-in": "Zaloguj się, by kontynuować",
+        "not-logged-in-detail": "Musisz być zalogowany, by korzystać z tej funkcji"
     },
     "topBar": {
         "menu": {

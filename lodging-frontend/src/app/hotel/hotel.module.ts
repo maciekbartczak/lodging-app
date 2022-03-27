@@ -9,13 +9,17 @@ import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
+import { AddHotelComponent } from './add-hotel/add-hotel.component';
+import { HotelComponent } from './hotel.component';
 
 
 @NgModule({
-  declarations: [
-    HotelListComponent,
-    HotelTableComponent
-  ],
+    declarations: [
+        HotelComponent,
+        HotelListComponent,
+        HotelTableComponent,
+        AddHotelComponent
+    ],
     imports: [
         CommonModule,
         HotelRoutingModule,
@@ -26,4 +30,5 @@ import { ButtonModule } from 'primeng/button';
         ButtonModule
     ]
 })
-export class HotelModule { }
+export class HotelModule {
+}

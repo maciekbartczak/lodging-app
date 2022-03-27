@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { UserDto } from '../../core/openapi';
+import { UserDto, UserService } from '../../core/openapi';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +13,13 @@ export class AppStateService {
     private userSubject = new ReplaySubject<UserDto | undefined>(1)
     private loadingSubject = new ReplaySubject<boolean>(1);
 
-    constructor() {
+    constructor(private userService: UserService) {
+        this.userService.getCurrentUser().subscribe({
+                next: response => this.userSubject.next(response.user),
+                error:  _ => this.userSubject.next(undefined)
+        });
+        this.loadingSubject.next(false);
+
         this.user = this.userSubject.asObservable();
         this.loading = this.loadingSubject.asObservable();
     }

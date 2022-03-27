@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <button pButton type="button" [label]="'hotel.add' | translate" icon="pi pi-plus"></button>
+        <button pButton routerLink="/hotel/add" type="button" [label]="'hotel.add' | translate" icon="pi pi-plus"></button>
     </div>
     <app-hotel-table [hotels]="hotels" class="hotel-table"></app-hotel-table>
     <p-paginator [rows]="pageSize" [totalRecords]="totalItems" [rowsPerPageOptions]="[5, 10, 20]" (onPageChange)="pageChanged($event)"></p-paginator>
