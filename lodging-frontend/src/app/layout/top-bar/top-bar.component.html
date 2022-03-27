@@ -19,7 +19,7 @@
     </div>
 
     <div class="user-info-container" *ngIf="user">
-        <p-slideMenu [viewportHeight]="185" [model]="userItems" [popup]="true" #userMenu></p-slideMenu>
+        <p-slideMenu [backLabel]="'menu.back' | translate" [viewportHeight]="185" [model]="userItems" [popup]="true" #userMenu></p-slideMenu>
         <button type="button" pButton icon="pi pi-user" [label]="user.username" (click)="userMenu.toggle($event)"></button>
     </div>
 </div>

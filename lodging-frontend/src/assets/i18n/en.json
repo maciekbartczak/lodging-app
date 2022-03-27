@@ -46,5 +46,8 @@
     "hotel": {
         "add": "Add your hotel",
         "header.night": "night"
+    },
+    "menu": {
+        "back": "Back"
     }
 }

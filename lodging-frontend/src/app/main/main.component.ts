@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AppStateService } from '../core/app-state.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { PrimeNGConfig } from 'primeng/api';
 
 export type Language = 'en' | 'pl';
 
@@ -21,15 +22,15 @@ export class MainComponent implements OnInit {
                 private appState: AppStateService,
                 private authService: AuthService,
                 private cookieService: CookieService,
-                private router: Router) {
+                private router: Router,
+                private config: PrimeNGConfig) {
     }
 
     ngOnInit(): void {
         this.appState.user.subscribe(
             user => {
                 this.user = user;
-            }
-        );
+            });
     }
 
     logout(): void {
