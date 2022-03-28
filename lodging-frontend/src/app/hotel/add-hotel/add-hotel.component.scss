@@ -1,0 +1,28 @@
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+
+
+    .add-hotel-card {
+        width: 100%;
+        height: 100%;
+
+        ::ng-deep .p-component {
+            height: 100%;
+        }
+
+        .view-header {
+            padding: 1rem;
+        }
+
+        .form-layout {
+            width: 50%;
+            margin: auto;
+        }
+    }
+}

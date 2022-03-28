@@ -1,1 +1,90 @@
-<p>add-hotel works!</p>
+<div class="container">
+    <p-card class="add-hotel-card">
+
+        <ng-template pTemplate="header">
+            <header class="view-header">
+                <h1>{{'hotel.add.title' | translate}}</h1>
+                <app-router-back [backRoute]="'/hotel/list'"></app-router-back>
+            </header>
+        </ng-template>
+
+        <form class="form-layout form-float" [formGroup]="hotelForm" (ngSubmit)="addHotel()">
+            <div class="form-input-container">
+                <span class="p-float-label">
+                      <input type="text" pInputText id="name"
+                             class="form-input" [(ngModel)]="model.name" formControlName="name"
+                             [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('name')?.errors}">
+                      <label for="name">{{'hotel.add.name.label' | translate}}</label>
+                </span>
+
+                <small *ngIf="submitted && hotelForm.get('name')?.errors?.['required']"
+                       class="p-error">{{ 'error.required' | translate }}</small>
+            </div>
+
+            <div class="form-input-container">
+                <span class="p-float-label">
+                    <input type="text" pInputText id="country"
+                           class="form-input" [(ngModel)]="model.address.country" formControlName="country"
+                           [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('country')?.errors}">
+                    <label for="country">{{'hotel.add.country.label' | translate}}</label>
+                </span>
+
+                <small *ngIf="submitted && hotelForm.get('country')?.errors?.['required']"
+                       class="p-error">{{ 'error.required' | translate }}</small>
+            </div>
+
+            <div class="form-input-container">
+                <span class="p-float-label">
+                     <input type="text" pInputText id="city"
+                            class="form-input" [(ngModel)]="model.address.city" formControlName="city"
+                            [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('city')?.errors}">
+                     <label for="country">{{'hotel.add.city.label' | translate}}</label>
+                </span>
+
+                <small *ngIf="submitted && hotelForm.get('city')?.errors?.['required']"
+                       class="p-error">{{ 'error.required' | translate }}</small>
+            </div>
+
+            <div class="form-input-container">
+                <span class="p-float-label">
+                    <input type="text" pInputText id="street"
+                           class="form-input" [(ngModel)]="model.address.street" formControlName="street"
+                           [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('street')?.errors}">
+                    <label for="street">{{'hotel.add.street.label' | translate}}</label>
+                </span>
+
+
+                <small *ngIf="submitted && hotelForm.get('street')?.errors?.['required']"
+                       class="p-error">{{ 'error.required' | translate }}</small>
+            </div>
+
+            <div class="form-input-container">
+                <span class="p-float-label">
+                    <p-inputNumber class="form-input" [(ngModel)]="model.maxGuests" id="maxGuests"
+                                   [showButtons]="true" [min]="1" formControlName="maxGuests"
+                                   [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('maxGuests')?.errors}"></p-inputNumber>
+                    <label for="maxGuests">{{'hotel.add.maxGuests.label' | translate}}</label>
+                </span>
+
+
+                <small *ngIf="submitted && hotelForm.get('maxGuests')?.errors?.['required']"
+                       class="p-error">{{ 'error.required' | translate }}</small>
+            </div>
+
+            <div class="form-input-container">
+                <span class="p-float-label">
+                    <p-inputNumber class="form-input" [(ngModel)]="model.pricePerNight" id="pricePerNight"
+                                   [min]="1" mode="currency" currency="PLN" locale="pl-PL" formControlName="pricePerNight"
+                                   [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('pricePerNight')?.errors}"></p-inputNumber>
+                    <label for="pricePerNight">{{'hotel.add.pricePerNight.label' | translate}}</label>
+                </span>
+
+                <small *ngIf="submitted && hotelForm.get('pricePerNight')?.errors?.['required']"
+                       class="p-error">{{ 'error.required' | translate }}</small>
+            </div>
+
+            <button pButton type="submit" [label]="'hotel.add.submit' | translate"
+                    class="form-submit p-button-success"></button>
+        </form>
+    </p-card>
+</div>

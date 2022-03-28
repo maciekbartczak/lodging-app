@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RouteNotFoundComponent } from './core/route-not-found/route-not-found.component';
+import { RouteNotFoundComponent } from './core/components/route-not-found/route-not-found.component';
 import { MainComponent } from './main/main.component';
 import { LanguageResolver } from './core/language.resolver';
 

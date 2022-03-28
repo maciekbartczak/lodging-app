@@ -18,7 +18,7 @@
 
     .hotel-card {
 
-        .p-card-content {
+        ::ng-deep .p-card-content {
             padding: 0;
         }
 

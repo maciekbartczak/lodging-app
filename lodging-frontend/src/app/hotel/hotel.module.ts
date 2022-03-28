@@ -11,6 +11,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { HotelComponent } from './hotel.component';
+import { AppModule } from '../app.module';
+import { CoreModule } from '../core/core.module';
+import { InputTextModule } from 'primeng/inputtext';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,7 +31,10 @@ import { HotelComponent } from './hotel.component';
         CardModule,
         ImageModule,
         TranslateModule,
-        ButtonModule
+        ButtonModule,
+        CoreModule,
+        InputTextModule,
+        ReactiveFormsModule
     ]
 })
 export class HotelModule {

@@ -3,6 +3,7 @@ package com.bartczak.zai.lodging.hotel;
 import com.bartczak.zai.lodging.booking.Booking;
 import com.bartczak.zai.lodging.booking.BookingDetails;
 import com.bartczak.zai.lodging.hotel.dto.*;
+import com.bartczak.zai.lodging.hotel.entity.Address;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -70,10 +71,12 @@ public class HotelService {
     public HotelCreatedResponse addHotel(AddHotelRequest addHotelRequest) {
         val hotel = Hotel.builder()
                 .name(addHotelRequest.getName())
+                .address(Address.of(addHotelRequest.getAddress()))
                 .maxGuests(addHotelRequest.getMaxGuests())
                 .pricePerNight(addHotelRequest.getPricePerNight())
                 .bookings(Set.of())
                 .build();
+        hotel.getAddress().setHotel(hotel);
         val created = hotelRepository.save(hotel);
         return new HotelCreatedResponse(HotelDto.from(created));
     }

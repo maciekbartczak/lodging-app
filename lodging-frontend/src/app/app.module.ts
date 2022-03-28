@@ -17,7 +17,6 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { AvatarModule } from 'primeng/avatar';
 import { MenuModule } from 'primeng/menu';
-import { RouteNotFoundComponent } from './core/route-not-found/route-not-found.component';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { MainComponent } from './main/main.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -30,7 +29,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     declarations: [
         AppComponent,
         TopBarComponent,
-        RouteNotFoundComponent,
         MainComponent
     ],
     imports: [

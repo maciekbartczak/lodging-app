@@ -45,7 +45,16 @@
     },
     "hotel": {
         "add": "Add your hotel",
-        "header.night": "night"
+        "add.title": "Add hotel",
+        "add.name.label": "Name",
+        "add.country.label": "Country",
+        "add.city.label": "City",
+        "add.street.label": "Street",
+        "add.maxGuests.label": "Max guests",
+        "add.pricePerNight.label": "Price per night",
+        "add.submit": "Add",
+        "header.night": "night",
+        "add.success": "Hotel added successfully!"
     },
     "menu": {
         "back": "Back"

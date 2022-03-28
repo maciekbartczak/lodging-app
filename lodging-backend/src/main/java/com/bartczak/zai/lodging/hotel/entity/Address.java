@@ -1,5 +1,6 @@
 package com.bartczak.zai.lodging.hotel.entity;
 
+import com.bartczak.zai.lodging.hotel.dto.AddressDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -28,4 +29,12 @@ public class Address {
     @MapsId
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
+
+    public static Address of(AddressDto addressDto) {
+        return Address.builder()
+                .city(addressDto.getCity())
+                .country(addressDto.getCountry())
+                .street(addressDto.getStreet())
+                .build();
+    }
 }
