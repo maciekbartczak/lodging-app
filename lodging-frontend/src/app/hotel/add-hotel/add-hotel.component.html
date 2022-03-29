@@ -58,29 +58,30 @@
                        class="p-error">{{ 'error.required' | translate }}</small>
             </div>
 
-            <div class="form-input-container">
-                <span class="p-float-label">
-                    <p-inputNumber class="form-input" [(ngModel)]="model.maxGuests" id="maxGuests"
-                                   [showButtons]="true" [min]="1" formControlName="maxGuests"
-                                   [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('maxGuests')?.errors}"></p-inputNumber>
-                    <label for="maxGuests">{{'hotel.add.maxGuests.label' | translate}}</label>
-                </span>
+            <div class="form-input-row">
+                <div class="row-item">
+                    <span class="p-float-label">
+                        <p-inputNumber class="form-input" [(ngModel)]="model.maxGuests" id="maxGuests"
+                                       [showButtons]="true" [min]="1" formControlName="maxGuests"
+                                       [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('maxGuests')?.errors}"></p-inputNumber>
+                        <label for="maxGuests">{{'hotel.add.maxGuests.label' | translate}}</label>
+                    </span>
 
+                    <small *ngIf="submitted && hotelForm.get('maxGuests')?.errors"
+                           class="p-error">{{ 'error.required' | translate }}</small>
+                </div>
 
-                <small *ngIf="submitted && hotelForm.get('maxGuests')?.errors?.['required']"
-                       class="p-error">{{ 'error.required' | translate }}</small>
-            </div>
+                <div class="row-item">
+                    <span class="p-float-label">
+                        <p-inputNumber class="form-input" [(ngModel)]="model.pricePerNight" id="pricePerNight"
+                                       [min]="1" mode="currency" currency="PLN" locale="pl-PL" formControlName="pricePerNight"
+                                       [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('pricePerNight')?.errors}"></p-inputNumber>
+                        <label for="pricePerNight">{{'hotel.add.pricePerNight.label' | translate}}</label>
+                    </span>
 
-            <div class="form-input-container">
-                <span class="p-float-label">
-                    <p-inputNumber class="form-input" [(ngModel)]="model.pricePerNight" id="pricePerNight"
-                                   [min]="1" mode="currency" currency="PLN" locale="pl-PL" formControlName="pricePerNight"
-                                   [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('pricePerNight')?.errors}"></p-inputNumber>
-                    <label for="pricePerNight">{{'hotel.add.pricePerNight.label' | translate}}</label>
-                </span>
-
-                <small *ngIf="submitted && hotelForm.get('pricePerNight')?.errors?.['required']"
-                       class="p-error">{{ 'error.required' | translate }}</small>
+                    <small *ngIf="submitted && hotelForm.get('pricePerNight')?.errors"
+                           class="p-error">{{ 'error.required' | translate }}</small>
+                </div>
             </div>
 
             <button pButton type="submit" [label]="'hotel.add.submit' | translate"

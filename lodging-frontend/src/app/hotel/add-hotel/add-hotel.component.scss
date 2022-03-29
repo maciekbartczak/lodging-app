@@ -21,8 +21,35 @@
         }
 
         .form-layout {
-            width: 50%;
+            width: 30%;
             margin: auto;
+
+            .form-input-container, .form-input-row {
+                min-width: 280px;
+
+            }
+
+            .form-input-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 1rem;
+
+                @media (max-width: 1750px) {
+                    grid-template-columns: 1fr;
+                    grid-gap: 1.3rem;
+                }
+
+                width: 100%;
+
+                ::ng-deep p-inputnumber, ::ng-deep .p-inputnumber {
+                    width: 100%;
+                }
+
+                .row-item {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
         }
     }
 }
