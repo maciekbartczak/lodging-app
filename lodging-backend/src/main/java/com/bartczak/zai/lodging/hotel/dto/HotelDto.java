@@ -25,6 +25,8 @@ public class HotelDto {
     private final Set<Booking> bookings;
     @NotNull
     private final Address address;
+    @NotNull
+    private final String imageName;
 
     public static HotelDto from(Hotel hotel) {
         return HotelDto.builder()
@@ -34,6 +36,7 @@ public class HotelDto {
                 .maxGuests(hotel.getMaxGuests())
                 .bookings(hotel.getBookings())
                 .address(hotel.getAddress())
+                .imageName(hotel.getImageName())
                 .build();
     }
 }

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ import java.util.stream.Stream;
 public class HotelService {
 
     private final HotelRepository hotelRepository;
+    private final HotelImageService hotelImageService;
 
     public HotelPageResponse getPage(HotelPagesRequest hotelPagesRequest) {
         val pageRequest = PageRequest.of(hotelPagesRequest.getPageNumber(), hotelPagesRequest.getPageSize());
@@ -68,12 +70,14 @@ public class HotelService {
                 .build();
     }
 
-    public HotelCreatedResponse addHotel(AddHotelRequest addHotelRequest) {
+    public HotelCreatedResponse addHotel(AddHotelRequest addHotelRequest, MultipartFile image) {
+        val imageName = hotelImageService.save(image);
         val hotel = Hotel.builder()
                 .name(addHotelRequest.getName())
                 .address(Address.of(addHotelRequest.getAddress()))
                 .maxGuests(addHotelRequest.getMaxGuests())
                 .pricePerNight(addHotelRequest.getPricePerNight())
+                .imageName(imageName)
                 .bookings(Set.of())
                 .build();
         hotel.getAddress().setHotel(hotel);

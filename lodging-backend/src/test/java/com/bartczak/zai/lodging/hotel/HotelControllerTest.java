@@ -9,9 +9,12 @@ import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import lombok.val;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.util.ReflectionTestUtils;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
@@ -23,6 +26,13 @@ class HotelControllerTest extends UserTestSuite {
 
     @Autowired
     private HotelRepository hotelRepository;
+
+    @Autowired
+    private HotelImageService hotelImageService;
+
+    @BeforeAll void setUp() {
+        ReflectionTestUtils.setField(hotelImageService, "hotelImageDir", TestFixture.TEST_UPLOAD_PATH);
+    }
 
     @Test
     void shouldGetCorrectHotelPage() {
@@ -71,19 +81,23 @@ class HotelControllerTest extends UserTestSuite {
 
     @Test
     void shouldCreateHotel() {
-        val response = RestAssured.given()
-                .contentType(ContentType.JSON)
-                .cookie(this.authCookie)
-                .body(AddHotelRequest.builder()
-                        .name("Test hotel")
-                        .maxGuests(4)
-                        .pricePerNight(BigDecimal.valueOf(200))
-                        .address(AddressDto.builder()
-                                .city("Warsaw")
-                                .country("Poland")
-                                .street("Test street")
-                                .build())
+        val hotelRequest = AddHotelRequest.builder()
+                .name(TestFixture.HOTEL_NAME)
+                .maxGuests(4)
+                .pricePerNight(BigDecimal.valueOf(200))
+                .address(AddressDto.builder()
+                        .city("Warsaw")
+                        .country("Poland")
+                        .street("Test street")
                         .build())
+                .build();
+        val image = new File(TestFixture.TEST_IMAGE_PATH);
+
+        val response = RestAssured.given()
+                .cookie(this.authCookie)
+                .contentType(ContentType.MULTIPART)
+                .multiPart("hotel", hotelRequest, "application/json")
+                .multiPart("image", image)
 
                 .when()
                 .post("/hotel/add")
@@ -92,8 +106,13 @@ class HotelControllerTest extends UserTestSuite {
                 .statusCode(201)
                 .extract().as(HotelCreatedResponse.class);
 
+        val imageName = response.getCreated().getImageName();
+        val imageFile = new File(TestFixture.TEST_UPLOAD_PATH + imageName);
+        assertThat(imageName).isNotBlank();
+        assertThat(imageFile).exists();
+
         val created = hotelRepository.findById(response.getCreated().getId());
         assertThat(created).isPresent();
-        assertThat(created.get().getName()).isEqualTo("Test hotel");
+        assertThat(created.get().getName()).isEqualTo(TestFixture.HOTEL_NAME);
     }
 }

@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -30,7 +31,7 @@ public class HotelController {
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('USER')")
-    public HotelCreatedResponse addHotel(@RequestBody @Valid AddHotelRequest addHotelRequest) {
-        return this.hotelService.addHotel(addHotelRequest);
+    public HotelCreatedResponse addHotel(@RequestPart("hotel") @Valid AddHotelRequest addHotelRequest, @RequestPart("image") MultipartFile image) {
+        return this.hotelService.addHotel(addHotelRequest, image);
     }
 }

@@ -10,10 +10,10 @@ insert into session values (2, '4321', 2);
 
 insert into user_roles values (1, 1), (2, 1), (2, 2);
 
-insert into hotel values (1, 5, 'hotel 1', 300);
-insert into hotel values (2, 2, 'hotel 2', 400);
-insert into hotel values (3, 3, 'hotel 3', 350);
-insert into hotel values (4, 1, 'foo', 600);
+insert into hotel (max_guests, name, price_per_night, image_name) values (5, 'hotel 1', 300, '');
+insert into hotel (max_guests, name, price_per_night, image_name) values (2, 'hotel 2', 400, '');
+insert into hotel (max_guests, name, price_per_night, image_name) values (3, 'hotel 3', 350, '');
+insert into hotel (max_guests, name, price_per_night, image_name) values (1, 'foo', 600, '');
 
 insert into address values (1, 'Warsaw', 'Poland', 'test street');
 

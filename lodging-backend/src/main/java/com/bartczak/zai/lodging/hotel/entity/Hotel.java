@@ -19,6 +19,8 @@ public class Hotel extends BaseEntity {
     private String name;
     private BigDecimal pricePerNight;
     private int maxGuests;
+    private String imageName;
+
     @OneToMany(mappedBy = "hotel")
     private Set<Booking> bookings;
     @OneToOne(mappedBy = "hotel", cascade = CascadeType.ALL)
