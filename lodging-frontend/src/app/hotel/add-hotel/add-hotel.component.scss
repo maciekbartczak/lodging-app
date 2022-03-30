@@ -50,6 +50,12 @@
                     flex-direction: column;
                 }
             }
+
+            ::ng-deep .p-fileupload, ::ng-deep .p-fileupload-basic, ::ng-deep .p-fileupload-choose {
+                width: 100%;
+                max-height: 50px;
+            }
+
         }
     }
 }

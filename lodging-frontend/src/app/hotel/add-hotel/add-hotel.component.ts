@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AddHotelRequest, HotelService } from '../../../core/openapi';
+import {  HotelService } from '../../../core/openapi';
 import { MessageService } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
+import { AddHotelRequest } from '../../../core/openapi/model/addHotelRequest';
 
 @Component({
     selector: 'app-add-hotel',
@@ -14,6 +15,7 @@ export class AddHotelComponent {
     hotelForm: FormGroup;
     submitted = false;
     loading = false;
+    image?: Blob;
 
     model: AddHotelRequest = {
         name: '',
@@ -43,20 +45,25 @@ export class AddHotelComponent {
     addHotel() {
         this.submitted = true;
 
-        if(this.hotelForm.invalid) {
+        if(this.hotelForm.invalid || !this.image) {
             return;
         }
 
         this.loading = true;
 
-        this.hotelService.addHotel(this.model).subscribe({
+        this.hotelService.addHotel(this.model, this.image).subscribe({
                 next: _ => {
                     this.messageService.add(
                         {
                             severity: 'success',
                             summary: this.translate.instant('hotel.add.success')
                         });
+                    this.loading = false;
                 }
             });
+    }
+
+    imageSelected($event: any) {
+        this.image = $event.files[0];
     }
 }

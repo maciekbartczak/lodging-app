@@ -74,7 +74,8 @@
                 <div class="row-item">
                     <span class="p-float-label">
                         <p-inputNumber class="form-input" [(ngModel)]="model.pricePerNight" id="pricePerNight"
-                                       [min]="1" mode="currency" currency="PLN" locale="pl-PL" formControlName="pricePerNight"
+                                       [min]="1" mode="currency" currency="PLN" locale="pl-PL"
+                                       formControlName="pricePerNight"
                                        [ngClass]="{'ng-invalid ng-dirty': submitted && hotelForm.get('pricePerNight')?.errors}"></p-inputNumber>
                         <label for="pricePerNight">{{'hotel.add.pricePerNight.label' | translate}}</label>
                     </span>
@@ -84,7 +85,15 @@
                 </div>
             </div>
 
-            <button pButton type="submit" [label]="'hotel.add.submit' | translate"
+            <div class="form-input-container">
+                <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="500000" [auto]="false"
+                              chooseLabel="{{ 'hotel.add.image.label' | translate }}"
+                              (onSelect)="imageSelected($event)" ></p-fileUpload>
+                <small *ngIf="submitted && !image"
+                       class="p-error">{{ 'error.required' | translate }}</small>
+            </div>
+
+            <button pButton type="submit" [label]="'hotel.add.submit' | translate" [loading]="loading"
                     class="form-submit p-button-success"></button>
         </form>
     </p-card>

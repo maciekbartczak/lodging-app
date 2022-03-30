@@ -15,6 +15,7 @@ import { AppModule } from '../app.module';
 import { CoreModule } from '../core/core.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         ButtonModule,
         CoreModule,
         InputTextModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FileUploadModule
     ]
 })
 export class HotelModule {
