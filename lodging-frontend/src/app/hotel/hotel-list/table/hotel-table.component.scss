@@ -37,6 +37,8 @@
         .main-image {
             height: 100%;
             width: 100%;
+            max-height: 512px;
+            max-width: 512px;
         }
     }
 }
