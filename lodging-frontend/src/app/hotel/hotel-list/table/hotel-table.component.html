@@ -1,5 +1,5 @@
 <div class="container">
-    <p-card class="hotel-card" *ngFor="let hotel of hotels">
+    <p-card class="hotel-card loading-animation" *ngFor="let hotel of hotels">
         <ng-template pTemplate="header">
             <div class="card-header">
                 <h3 class="name">{{hotel.hotel.name}}</h3>
@@ -12,4 +12,7 @@
         <img class="main-image" [src]="hotel.image" alt="Hotel image">
         <div class="price"></div>
     </p-card>
+
+    <p-skeleton class="loading-animation" *ngFor="let _ of [].constructor(isLastPage ? 0 : itemCount - hotels.length)" shape="rectangle" size="300px">
+    </p-skeleton>
 </div>

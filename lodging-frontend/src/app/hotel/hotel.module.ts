@@ -16,6 +16,7 @@ import { CoreModule } from '../core/core.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
+import { SkeletonModule } from 'primeng/skeleton';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { FileUploadModule } from 'primeng/fileupload';
         CoreModule,
         InputTextModule,
         ReactiveFormsModule,
-        FileUploadModule
+        FileUploadModule,
+        SkeletonModule
     ]
 })
 export class HotelModule {

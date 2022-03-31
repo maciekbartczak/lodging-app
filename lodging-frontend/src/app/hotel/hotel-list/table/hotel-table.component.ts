@@ -10,5 +10,8 @@ export class HotelTableComponent {
 
     @Input()
     hotels: Hotel[] = [];
-
+    @Input()
+    itemCount = 0;
+    @Input()
+    isLastPage = true;
 }
