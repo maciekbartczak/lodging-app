@@ -3,12 +3,13 @@ package com.bartczak.zai.lodging.hotel;
 import com.bartczak.zai.lodging.hotel.dto.*;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Encoding;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springdoc.api.annotations.ParameterObject;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +23,7 @@ import javax.validation.Valid;
 public class HotelController {
 
     private final HotelService hotelService;
+    private final HotelImageService hotelImageService;
 
     @PostMapping("/pages")
     public HotelPageResponse getPage(@RequestBody @Valid HotelPagesRequest hotelPagesRequest) {
@@ -45,5 +47,15 @@ public class HotelController {
                                              @Parameter(content = @Content(mediaType = MediaType.IMAGE_PNG_VALUE))
                                                  MultipartFile image) {
         return this.hotelService.addHotel(addHotelRequest, image);
+    }
+
+    @GetMapping("/image/{filename}")
+    @ResponseBody
+    public ResponseEntity<Resource> getFile(@PathVariable String filename) {
+        Resource file = hotelImageService.load(filename);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+                .contentType(MediaType.IMAGE_PNG)
+                .body(file);
     }
 }

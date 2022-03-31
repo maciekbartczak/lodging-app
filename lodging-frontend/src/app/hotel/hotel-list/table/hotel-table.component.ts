@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HotelDto } from '../../../../core/openapi';
+import { Hotel } from '../../../core/model/hotel.model';
 
 @Component({
     selector: 'app-hotel-table',
@@ -9,6 +9,9 @@ import { HotelDto } from '../../../../core/openapi';
 export class HotelTableComponent {
 
     @Input()
-    hotels: HotelDto[] = [];
-
+    hotels: Hotel[] = [];
+    @Input()
+    itemCount = 0;
+    @Input()
+    isLastPage = true;
 }
