@@ -2,9 +2,8 @@
   "name": "lodging-frontend",
   "version": "0.0.0",
   "scripts": {
-    "generate:api:local": "openapi-generator-cli generate -g typescript-angular -i http://localhost:8080/v3/api-docs -o ./src/core/openapi",
-    "generate:api": "openapi-generator-cli generate -g typescript-angular -i ../schema.yaml -o ./src/core/openapi",
-    "prestart": "npm run generate:api:local",
+    "generate-api": "openapi-generator-cli generate --global-property skipFormModel=false -g typescript-angular -i http://localhost:8080/v3/api-docs -o ./src/core/openapi",
+    "prestart": "npm run generate-api",
     "ng": "ng",
     "start": "ng serve",
     "serve": "ng serve",
