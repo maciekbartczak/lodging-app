@@ -1,18 +1,3 @@
 <div class="container">
-    <p-card class="hotel-card loading-animation" *ngFor="let hotel of hotels">
-        <ng-template pTemplate="header">
-            <div class="card-header">
-                <h3 class="name">{{hotel.hotel.name}}</h3>
-                <div class="header-row">
-                    <h4 class="location">{{hotel.hotel.address.city}}, {{hotel.hotel.address.country}}</h4>
-                    <span class="price">{{hotel.hotel.pricePerNight | currency: 'PLN' }} / {{'hotel.header.night' | translate}}</span>
-                </div>
-            </div>
-        </ng-template>
-        <img class="main-image" [src]="hotel.image" alt="Hotel image">
-        <div class="price"></div>
-    </p-card>
-
-    <p-skeleton class="loading-animation" *ngFor="let _ of [].constructor(isLastPage ? 0 : itemCount - hotels.length)" shape="rectangle" size="300px">
-    </p-skeleton>
+    <app-hotel-card *ngFor="let hotel of hotels" [hotel]="hotel" class="loading-animation"></app-hotel-card>
 </div>

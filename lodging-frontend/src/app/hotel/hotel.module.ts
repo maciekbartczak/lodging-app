@@ -16,6 +16,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SkeletonModule } from 'primeng/skeleton';
+import { HotelCardComponent } from './hotel-list/table/card/hotel-card.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SkeletonModule } from 'primeng/skeleton';
         HotelComponent,
         HotelListComponent,
         HotelTableComponent,
-        AddHotelComponent
+        AddHotelComponent,
+        HotelCardComponent
     ],
     imports: [
         CommonModule,

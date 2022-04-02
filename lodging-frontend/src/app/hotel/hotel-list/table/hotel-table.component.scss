@@ -15,31 +15,6 @@
     grid-gap: 1rem;
     align-items: center;
     overflow: auto;
-
-    .hotel-card {
-        ::ng-deep .p-card-content {
-            padding: 0;
-        }
-
-        .card-header {
-            display: flex;
-            flex-direction: column;
-            padding: 0.5rem 1rem 0 1rem;
-
-            .header-row {
-                display: flex;
-                justify-content: space-between;
-            }
-        }
-
-
-        .main-image {
-            height: 100%;
-            width: 100%;
-            max-height: 300px;
-            object-fit: contain;
-        }
-    }
 }
 
 @keyframes loading-animation {

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Hotel } from '../../../core/model/hotel.model';
+import { HotelDto } from '../../../../core/openapi';
 
 @Component({
     selector: 'app-hotel-table',
@@ -9,7 +9,7 @@ import { Hotel } from '../../../core/model/hotel.model';
 export class HotelTableComponent {
 
     @Input()
-    hotels: Hotel[] = [];
+    hotels: HotelDto[] = [];
     @Input()
     itemCount = 0;
     @Input()
