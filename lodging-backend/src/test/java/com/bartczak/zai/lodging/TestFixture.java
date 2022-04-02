@@ -12,7 +12,7 @@ public class TestFixture {
     public static final int HOTELS_COUNT = 4;
     public static final LocalDate BOOKING_START_DATE = LocalDate.of(2022, 3, 26);
     public static final LocalDate BOOKING_END_DATE = LocalDate.of(2022, 3, 27);
-    public static final List<Long> AVAILABLE_HOTEL_IDS = List.of(1L, 2L, 4L);
+    public static final List<Long> AVAILABLE_HOTEL_IDS = List.of(1L, 2L);
     public static final String HOTEL_NAME = "Test hotel";
     public static final String TEST_UPLOAD_PATH = "target/test-classes/upload/";
     public static final String TEST_IMAGE_PATH = "src/test/resources/test.png";

@@ -12,7 +12,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
-public class AvailableHotelsRequest {
+public class HotelSearchRequest {
+    @NotNull
+    private final String city;
     @NotNull
     private final BookingDetails bookingDetails;
 }

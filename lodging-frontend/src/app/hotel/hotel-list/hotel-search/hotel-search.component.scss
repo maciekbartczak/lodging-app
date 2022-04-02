@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    gap: 0.5rem;
+
+    .p-input-icon-left {
+        width: 40%;
+
+        .search-input {
+            width: 100%;
+        }
+    }
+
+}

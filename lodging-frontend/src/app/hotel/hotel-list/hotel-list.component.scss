@@ -2,7 +2,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     .hotel-table {
         height: 80%;
@@ -11,9 +10,13 @@
     .row {
         height: 5%;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         padding: 0 2.5rem;
         margin-top: 1rem;
+
+        .search {
+            width: 70%;
+        }
     }
 }

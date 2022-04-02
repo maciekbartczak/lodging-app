@@ -1,0 +1,12 @@
+<div class="container">
+
+     <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" [placeholder]="'hotel.search' | translate" class="search-input" [(ngModel)]="cityQuery">
+    </span>
+    <p-calendar selectionMode="range" [showIcon]="true" class="date-input" [placeholder]="'hotel.search.date' | translate"
+                [minDate]="today" [(ngModel)]="dateRange">
+    </p-calendar>
+
+    <p-button [label]="'menu.search' | translate" icon="pi pi-search" iconPos="right" (click)="search()"></p-button>
+</div>

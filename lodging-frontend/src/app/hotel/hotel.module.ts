@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SkeletonModule } from 'primeng/skeleton';
 import { HotelCardComponent } from './hotel-list/table/card/hotel-card.component';
+import { HotelSearchComponent } from './hotel-list/hotel-search/hotel-search.component';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { HotelCardComponent } from './hotel-list/table/card/hotel-card.component
         HotelListComponent,
         HotelTableComponent,
         AddHotelComponent,
-        HotelCardComponent
+        HotelCardComponent,
+        HotelSearchComponent,
     ],
     imports: [
         CommonModule,
@@ -39,7 +42,8 @@ import { HotelCardComponent } from './hotel-list/table/card/hotel-card.component
         InputTextModule,
         ReactiveFormsModule,
         FileUploadModule,
-        SkeletonModule
+        SkeletonModule,
+        CalendarModule
     ]
 })
 export class HotelModule {
