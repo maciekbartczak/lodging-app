@@ -31,7 +31,7 @@ public class HotelController {
     }
 
     @PostMapping("/search")
-    public HotelSearchResponse search(@RequestBody @Valid HotelSearchRequest hotelSearchRequest) {
+    public HotelPageResponse search(@RequestBody @Valid HotelSearchRequest hotelSearchRequest) {
         return this.hotelService.search(hotelSearchRequest);
     }
 

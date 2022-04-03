@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class HotelSearchRequest {
     @NotNull
+    private final HotelPagesRequest page;
+    @NotNull
     private final String city;
     @NotNull
     private final BookingDetails bookingDetails;

@@ -8,11 +8,14 @@ import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import com.bartczak.zai.lodging.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -38,7 +41,7 @@ public class HotelService {
                 .build();
     }
 
-    public HotelSearchResponse search(HotelSearchRequest hotelSearchRequest) {
+    public HotelPageResponse search(HotelSearchRequest hotelSearchRequest) {
         val bookingDetails = hotelSearchRequest.getBookingDetails();
 
         val requestedBooking = Booking.builder()
@@ -48,8 +51,8 @@ public class HotelService {
                         .build())
                 .build();
 
-        val notBookedHotels = hotelRepository.findDistinctByBookingsIsNotNullAndAddress_City(hotelSearchRequest.getCity());
-        val bookedHotels = hotelRepository.findByBookingsIsNullAndAddress_City(hotelSearchRequest.getCity());
+        val notBookedHotels = hotelRepository.findByBookingsIsNullAndAddress_City(hotelSearchRequest.getCity());
+        val bookedHotels = hotelRepository.findDistinctByBookingsIsNotNullAndAddress_City(hotelSearchRequest.getCity());
 
         // TODO: I don't like this
         val bookingFitsHotels = bookedHotels.stream()
@@ -63,18 +66,27 @@ public class HotelService {
                         }
                     }
                     return fits;
-                })
-                .collect(Collectors.toList());
+                }).toList();
 
         val availableHotels = Stream.concat(notBookedHotels.stream(), bookingFitsHotels.stream())
+                .sorted(Comparator.comparingLong(Hotel::getId))
                 .collect(Collectors.toList());
 
-        return HotelSearchResponse.builder()
-                .hotels(
-                    availableHotels.stream()
-                            .map(HotelDto::from).
-                            toList()
-                ).build();
+        val pageRequest = PageRequest.of(
+                hotelSearchRequest.getPage().getPageNumber(), hotelSearchRequest.getPage().getPageSize());
+
+        val total = availableHotels.size();
+        val start = (int) pageRequest.getOffset();
+        val end = Math.min((start + pageRequest.getPageSize()), total);
+        final Page<Hotel> page = new PageImpl<>(availableHotels.subList(start, end), pageRequest, total);
+        val hotels = page.stream()
+                .map(HotelDto::from)
+                .toList();
+
+        return HotelPageResponse.builder()
+                .totalItems(total)
+                .hotels(hotels)
+                .build();
     }
 
     public HotelCreatedResponse addHotel(AddHotelRequest addHotelRequest, MultipartFile image) {

@@ -17,8 +17,8 @@ import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HotelControllerTest extends UserTestSuite {
 
@@ -58,6 +58,10 @@ class HotelControllerTest extends UserTestSuite {
         val response = RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(HotelSearchRequest.builder()
+                        .page(HotelPagesRequest.builder()
+                                .pageSize(5)
+                                .pageNumber(0)
+                                .build())
                         .bookingDetails(BookingDetails.builder()
                             .startDate(TestFixture.BOOKING_START_DATE)
                             .endDate(TestFixture.BOOKING_END_DATE)
@@ -70,9 +74,10 @@ class HotelControllerTest extends UserTestSuite {
 
                 .then()
                 .statusCode(200)
-                .body("hotels", hasSize(2))
-                .extract().as(HotelSearchResponse.class);
+                .body("hotels", hasSize(5))
+                .extract().as(HotelPageResponse.class);
 
+        assertEquals(TestFixture.HOTELS_SEARCH_COUNT, response.getTotalItems());
         val hotelIds = response.getHotels().stream().map(HotelDto::getId).collect(Collectors.toList());
 
         assertThat(hotelIds).containsExactlyInAnyOrderElementsOf(TestFixture.AVAILABLE_HOTEL_IDS);
