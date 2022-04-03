@@ -30,11 +30,6 @@ public class HotelController {
         return this.hotelService.getPage(hotelPagesRequest);
     }
 
-    @PostMapping("/search")
-    public HotelPageResponse search(@RequestBody @Valid HotelSearchRequest hotelSearchRequest) {
-        return this.hotelService.search(hotelSearchRequest);
-    }
-
     @PostMapping(value = "/add",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

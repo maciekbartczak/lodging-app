@@ -28,7 +28,8 @@ class HotelControllerTest extends UserTestSuite {
     @Autowired
     private HotelImageService hotelImageService;
 
-    @BeforeAll void setUp() {
+    @BeforeAll
+    void setUp() {
         ReflectionTestUtils.setField(hotelImageService, "hotelImageDir", TestFixture.TEST_UPLOAD_PATH);
     }
 
@@ -54,28 +55,28 @@ class HotelControllerTest extends UserTestSuite {
     }
 
     @Test
-    void shouldSearchHotels() {
+    void shouldGetCorrectFilteredHotelPage() {
         val response = RestAssured.given()
                 .contentType(ContentType.JSON)
-                .body(HotelSearchRequest.builder()
-                        .page(HotelPagesRequest.builder()
-                                .pageSize(5)
-                                .pageNumber(0)
-                                .build())
-                        .bookingDetails(BookingDetails.builder()
-                            .startDate(TestFixture.BOOKING_START_DATE)
-                            .endDate(TestFixture.BOOKING_END_DATE)
+                .body(HotelPagesRequest.builder()
+                        .pageSize(5)
+                        .pageNumber(0)
+                        .filter(HotelFilter.builder()
+                            .bookingDetails(BookingDetails.builder()
+                                    .startDate(TestFixture.BOOKING_START_DATE)
+                                    .endDate(TestFixture.BOOKING_END_DATE)
+                                    .build())
+                            .city("Warsaw")
                             .build())
-                        .city("Warsaw")
                         .build())
 
-                .when()
-                .post("/hotel/search")
+                    .when()
+                    .post("/hotel/pages")
 
-                .then()
-                .statusCode(200)
-                .body("hotels", hasSize(5))
-                .extract().as(HotelPageResponse.class);
+                    .then()
+                    .statusCode(200)
+                    .body("hotels", hasSize(5))
+                    .extract().as(HotelPageResponse.class);
 
         assertEquals(TestFixture.HOTELS_SEARCH_COUNT, response.getTotalItems());
         val hotelIds = response.getHotels().stream().map(HotelDto::getId).collect(Collectors.toList());

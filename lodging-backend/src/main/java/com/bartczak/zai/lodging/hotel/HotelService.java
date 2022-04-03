@@ -28,6 +28,10 @@ public class HotelService {
     private final HotelImageService hotelImageService;
 
     public HotelPageResponse getPage(HotelPagesRequest hotelPagesRequest) {
+        if (hotelPagesRequest.getFilter() != null) {
+            return search(hotelPagesRequest);
+        }
+
         val pageRequest = PageRequest.of(hotelPagesRequest.getPageNumber(), hotelPagesRequest.getPageSize());
 
         val hotelPage = hotelRepository.findAll(pageRequest);
@@ -41,8 +45,8 @@ public class HotelService {
                 .build();
     }
 
-    public HotelPageResponse search(HotelSearchRequest hotelSearchRequest) {
-        val bookingDetails = hotelSearchRequest.getBookingDetails();
+    private HotelPageResponse search(HotelPagesRequest hotelPagesRequest) {
+        val bookingDetails = hotelPagesRequest.getFilter().getBookingDetails();
 
         val requestedBooking = Booking.builder()
                 .bookingDetails(BookingDetails.builder()
@@ -51,8 +55,10 @@ public class HotelService {
                         .build())
                 .build();
 
-        val notBookedHotels = hotelRepository.findByBookingsIsNullAndAddress_City(hotelSearchRequest.getCity());
-        val bookedHotels = hotelRepository.findDistinctByBookingsIsNotNullAndAddress_City(hotelSearchRequest.getCity());
+        val notBookedHotels = hotelRepository.
+                findByBookingsIsNullAndAddress_City(hotelPagesRequest.getFilter().getCity());
+        val bookedHotels = hotelRepository.
+                findDistinctByBookingsIsNotNullAndAddress_City(hotelPagesRequest.getFilter().getCity());
 
         // TODO: I don't like this
         val bookingFitsHotels = bookedHotels.stream()
@@ -73,7 +79,7 @@ public class HotelService {
                 .collect(Collectors.toList());
 
         val pageRequest = PageRequest.of(
-                hotelSearchRequest.getPage().getPageNumber(), hotelSearchRequest.getPage().getPageSize());
+                hotelPagesRequest.getPageNumber(), hotelPagesRequest.getPageSize());
 
         val total = availableHotels.size();
         val start = (int) pageRequest.getOffset();
