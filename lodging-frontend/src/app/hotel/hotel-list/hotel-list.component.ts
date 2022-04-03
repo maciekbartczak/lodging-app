@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppStateService } from 'src/app/core/app-state.service';
-import { HotelDto, HotelSearchRequest, HotelService } from '../../../core/openapi';
+import { HotelDto, HotelFilter, HotelService } from '../../../core/openapi';
 import { HotelSearchQuery } from '../../core/model/hotelSearchData.model';
+import { Paginator } from 'primeng/paginator';
 
 @Component({
     selector: 'app-hotel-list',
@@ -14,7 +15,16 @@ export class HotelListComponent implements OnInit {
     pageNumber = 0;
     pageSize = 5;
     totalItems = 0;
-    isSearch = false;
+    filter: HotelFilter = {
+        city: '',
+        bookingDetails: {
+            startDate: '',
+            endDate: ''
+        }
+    };
+
+    @ViewChild('paginator', { static: true })
+    paginator?: Paginator
 
     constructor(private hotelService: HotelService,
                 private appState: AppStateService) {
@@ -31,11 +41,9 @@ export class HotelListComponent implements OnInit {
     }
 
     private fetchPage() {
-        this.hotels = [];
-        this.isSearch = false;
         this.appState.setLoading(true);
 
-        this.hotelService.getPage({pageSize: this.pageSize, pageNumber: this.pageNumber}).subscribe(
+        this.hotelService.getPage({pageSize: this.pageSize, pageNumber: this.pageNumber, filter: this.filter}).subscribe(
             response => {
                 this.hotels = response.hotels;
                 this.totalItems = response.totalItems;
@@ -44,21 +52,16 @@ export class HotelListComponent implements OnInit {
     }
 
     search(event: HotelSearchQuery) {
-        this.hotels = [];
-        this.isSearch = true;
-        this.appState.setLoading(true);
-
-        const searchRequest: HotelSearchRequest = {
+        this.filter = {
             city: event.city,
             bookingDetails: {
-                startDate: event.startDate.toISOString().substring(0, 10),
-                endDate: event.endDate.toISOString().substring(0, 10)
+                startDate: event.startDate ? event.startDate.toISOString().substring(0, 10) : '',
+                endDate: event.endDate ? event.endDate.toISOString().substring(0, 10) : ''
             }
         }
+        this.pageNumber = 0;
+        this.paginator?.changePage(this.pageNumber);
 
-        this.hotelService.search(searchRequest).subscribe(response => {
-            this.hotels = response.hotels;
-            this.appState.setLoading(false);
-        });
+        this.fetchPage();
     }
 }

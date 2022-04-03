@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,8 +29,10 @@ public class HotelService {
     private final HotelImageService hotelImageService;
 
     public HotelPageResponse getPage(HotelPagesRequest hotelPagesRequest) {
-        if (hotelPagesRequest.getFilter() != null) {
-            return search(hotelPagesRequest);
+        if (!hotelPagesRequest.getFilter().getCity().equals("") ||
+            hotelPagesRequest.getFilter().getBookingDetails().getStartDate() != null &&
+            hotelPagesRequest.getFilter().getBookingDetails().getEndDate() != null) {
+                return search(hotelPagesRequest);
         }
 
         val pageRequest = PageRequest.of(hotelPagesRequest.getPageNumber(), hotelPagesRequest.getPageSize());
@@ -54,11 +57,21 @@ public class HotelService {
                         .endDate(bookingDetails.getEndDate())
                         .build())
                 .build();
+        Collection<Hotel> notBookedHotels;
+        Collection<Hotel> bookedHotels;
 
-        val notBookedHotels = hotelRepository.
-                findByBookingsIsNullAndAddress_City(hotelPagesRequest.getFilter().getCity());
-        val bookedHotels = hotelRepository.
-                findDistinctByBookingsIsNotNullAndAddress_City(hotelPagesRequest.getFilter().getCity());
+        if (!hotelPagesRequest.getFilter().getCity().equals("")) {
+            notBookedHotels = hotelRepository.
+                    findByBookingsIsNullAndAddress_City(hotelPagesRequest.getFilter().getCity());
+            bookedHotels = hotelRepository.
+                    findDistinctByBookingsIsNotNullAndAddress_City(hotelPagesRequest.getFilter().getCity());
+        } else {
+            notBookedHotels = hotelRepository.
+                    findByBookingsIsNull();
+            bookedHotels = hotelRepository.
+                    findDistinctByBookingsIsNotNull();
+        }
+
 
         // TODO: I don't like this
         val bookingFitsHotels = bookedHotels.stream()

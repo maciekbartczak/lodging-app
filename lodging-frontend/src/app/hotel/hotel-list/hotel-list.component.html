@@ -4,5 +4,6 @@
         <button pButton routerLink="/hotel/add" type="button" [label]="'hotel.add' | translate" icon="pi pi-plus"></button>
     </div>
     <app-hotel-table [hotels]="hotels" [itemCount]="pageSize" class="hotel-table"></app-hotel-table>
-    <p-paginator *ngIf="!isSearch" [rows]="pageSize" [totalRecords]="totalItems" [rowsPerPageOptions]="[5, 10, 20]" (onPageChange)="pageChanged($event)"></p-paginator>
+    <p-paginator [rows]="pageSize" [totalRecords]="totalItems" [rowsPerPageOptions]="[5, 10, 20]" #paginator
+                 (onPageChange)="pageChanged($event)"></p-paginator>
 </div>

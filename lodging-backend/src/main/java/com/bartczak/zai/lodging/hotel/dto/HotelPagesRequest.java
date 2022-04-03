@@ -15,5 +15,6 @@ public class HotelPagesRequest {
     @NotNull
     @Min(1)
     private final int pageSize;
+    @NotNull
     private final HotelFilter filter;
 }
