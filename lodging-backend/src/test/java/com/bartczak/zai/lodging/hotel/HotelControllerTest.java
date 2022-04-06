@@ -54,25 +54,26 @@ class HotelControllerTest extends UserTestSuite {
     }
 
     @Test
-    void shouldGetAvailableHotels() {
+    void shouldSearchHotels() {
         val response = RestAssured.given()
                 .contentType(ContentType.JSON)
-                .body(AvailableHotelsRequest.builder()
+                .body(HotelSearchRequest.builder()
                         .bookingDetails(BookingDetails.builder()
                             .startDate(TestFixture.BOOKING_START_DATE)
                             .endDate(TestFixture.BOOKING_END_DATE)
                             .build())
+                        .city("Warsaw")
                         .build())
 
                 .when()
-                .post("/hotel/available")
+                .post("/hotel/search")
 
                 .then()
                 .statusCode(200)
-                .body("hotels", hasSize(3))
-                .extract().as(AvailableHotelsResponse.class);
+                .body("hotels", hasSize(2))
+                .extract().as(HotelSearchResponse.class);
 
-        val hotelIds = response.getHotels().stream().map(Hotel::getId).collect(Collectors.toList());
+        val hotelIds = response.getHotels().stream().map(HotelDto::getId).collect(Collectors.toList());
 
         assertThat(hotelIds).containsExactlyInAnyOrderElementsOf(TestFixture.AVAILABLE_HOTEL_IDS);
     }

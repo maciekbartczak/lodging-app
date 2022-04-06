@@ -38,16 +38,18 @@ public class HotelService {
                 .build();
     }
 
-    public AvailableHotelsResponse getAvailableHotels(AvailableHotelsRequest availableHotelsRequest) {
+    public HotelSearchResponse search(HotelSearchRequest hotelSearchRequest) {
+        val bookingDetails = hotelSearchRequest.getBookingDetails();
+
         val requestedBooking = Booking.builder()
                 .bookingDetails(BookingDetails.builder()
-                        .startDate(availableHotelsRequest.getBookingDetails().getStartDate())
-                        .endDate(availableHotelsRequest.getBookingDetails().getEndDate())
+                        .startDate(bookingDetails.getStartDate())
+                        .endDate(bookingDetails.getEndDate())
                         .build())
                 .build();
 
-        val notBookedHotels = hotelRepository.findByBookingsIsNull();
-        val bookedHotels = hotelRepository.findDistinctByBookingsIsNotNull();
+        val notBookedHotels = hotelRepository.findDistinctByBookingsIsNotNullAndAddress_City(hotelSearchRequest.getCity());
+        val bookedHotels = hotelRepository.findByBookingsIsNullAndAddress_City(hotelSearchRequest.getCity());
 
         // TODO: I don't like this
         val bookingFitsHotels = bookedHotels.stream()
@@ -67,9 +69,12 @@ public class HotelService {
         val availableHotels = Stream.concat(notBookedHotels.stream(), bookingFitsHotels.stream())
                 .collect(Collectors.toList());
 
-        return AvailableHotelsResponse.builder()
-                .hotels(availableHotels)
-                .build();
+        return HotelSearchResponse.builder()
+                .hotels(
+                    availableHotels.stream()
+                            .map(HotelDto::from).
+                            toList()
+                ).build();
     }
 
     public HotelCreatedResponse addHotel(AddHotelRequest addHotelRequest, MultipartFile image) {

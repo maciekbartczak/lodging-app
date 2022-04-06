@@ -17,14 +17,6 @@
         display: flex;
         gap: 0.5rem;
 
-        .p-input-icon-left {
-            width: 100%;
-
-            .search-input {
-                width: 100%;
-            }
-        }
-
         @include on-mobile {
            width: 80%;
         }

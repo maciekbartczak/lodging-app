@@ -30,9 +30,9 @@ public class HotelController {
         return this.hotelService.getPage(hotelPagesRequest);
     }
 
-    @PostMapping("/available")
-    public AvailableHotelsResponse getAvailable(@RequestBody @Valid AvailableHotelsRequest availableHotelsRequest) {
-        return this.hotelService.getAvailableHotels(availableHotelsRequest);
+    @PostMapping("/search")
+    public HotelSearchResponse search(@RequestBody @Valid HotelSearchRequest hotelSearchRequest) {
+        return this.hotelService.search(hotelSearchRequest);
     }
 
     @PostMapping(value = "/add",

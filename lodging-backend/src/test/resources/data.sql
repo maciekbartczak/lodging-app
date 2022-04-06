@@ -16,6 +16,8 @@ insert into hotel (max_guests, name, price_per_night, image_name, user_id) value
 insert into hotel (max_guests, name, price_per_night, image_name, user_id) values (1, 'foo', 600, '', 1);
 
 insert into address values (1, 'Warsaw', 'Poland', 'test street');
+insert into address values (2, 'Warsaw', 'Poland', 'test street');
+insert into address values (3, 'Lodz', 'Poland', 'test street');
 
 
 --test range 2022-03-26 2022-03-27 -> hotel.id [1, 2]

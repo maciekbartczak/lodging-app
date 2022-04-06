@@ -13,8 +13,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-public class AvailableHotelsResponse {
+public class HotelSearchResponse {
     @NotNull
-    private final List<Hotel> hotels;
+    private final List<HotelDto> hotels;
 }
 
