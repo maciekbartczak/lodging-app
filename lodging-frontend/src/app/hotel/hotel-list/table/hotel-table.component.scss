@@ -17,17 +17,4 @@
     overflow: auto;
 }
 
-@keyframes loading-animation {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 
-.loading-animation {
-    animation-duration: 300ms;
-    animation-fill-mode: both;
-    animation-name: loading-animation;
-}

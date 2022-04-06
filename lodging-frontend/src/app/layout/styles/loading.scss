@@ -1,10 +1,9 @@
-@keyframes router-load-indicator-animation {
-    from {
-        opacity: 0.0 ;
+@keyframes loading-animation {
+    0% {
+        opacity: 0;
     }
-
-    to {
-        opacity: 1.0 ;
+    100% {
+        opacity: 1;
     }
 }
 
@@ -20,5 +19,11 @@
     animation-delay: 100ms;
     animation-duration: 200ms;
     animation-fill-mode: both;
-    animation-name: router-load-indicator-animation;
+    animation-name: loading-animation;
+}
+
+.loading-animation {
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+    animation-name: loading-animation;
 }

@@ -8,7 +8,7 @@
             </div>
         </div>
     </ng-template>
-    <img class="main-image" [src]="image" alt="Hotel image" *ngIf="image; else skeleton">
+    <img class="main-image loading-animation" [src]="image" alt="Hotel image" *ngIf="image; else skeleton">
 
     <ng-template #skeleton>
         <div class="skeleton-container">
