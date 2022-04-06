@@ -5,9 +5,11 @@ import com.bartczak.zai.lodging.booking.BookingDetails;
 import com.bartczak.zai.lodging.hotel.dto.*;
 import com.bartczak.zai.lodging.hotel.entity.Address;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
+import com.bartczak.zai.lodging.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -71,6 +73,8 @@ public class HotelService {
     }
 
     public HotelCreatedResponse addHotel(AddHotelRequest addHotelRequest, MultipartFile image) {
+        val user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         val imageName = hotelImageService.save(image);
         val hotel = Hotel.builder()
                 .name(addHotelRequest.getName())
@@ -79,6 +83,7 @@ public class HotelService {
                 .pricePerNight(addHotelRequest.getPricePerNight())
                 .imageName(imageName)
                 .bookings(Set.of())
+                .createdBy(user)
                 .build();
         hotel.getAddress().setHotel(hotel);
         val created = hotelRepository.save(hotel);

@@ -1,11 +1,9 @@
 package com.bartczak.zai.lodging.hotel;
 
-import com.bartczak.zai.lodging.IntegrationTest;
 import com.bartczak.zai.lodging.TestFixture;
 import com.bartczak.zai.lodging.UserTestSuite;
 import com.bartczak.zai.lodging.booking.BookingDetails;
 import com.bartczak.zai.lodging.hotel.dto.*;
-import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import lombok.val;
@@ -19,9 +17,9 @@ import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 
-@IntegrationTest
 class HotelControllerTest extends UserTestSuite {
 
     @Autowired
@@ -114,5 +112,6 @@ class HotelControllerTest extends UserTestSuite {
         val created = hotelRepository.findById(response.getCreated().getId());
         assertThat(created).isPresent();
         assertThat(created.get().getName()).isEqualTo(TestFixture.HOTEL_NAME);
+        assertThat(created.get().getCreatedBy().getId()).isEqualTo(TestFixture.TEST_USER_ID);
     }
 }

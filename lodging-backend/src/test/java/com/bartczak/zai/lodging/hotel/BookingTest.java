@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class BookingTest {
 
     private final Booking first = Booking.builder()

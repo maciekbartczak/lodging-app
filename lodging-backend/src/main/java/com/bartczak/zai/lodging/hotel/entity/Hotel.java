@@ -2,6 +2,7 @@ package com.bartczak.zai.lodging.hotel.entity;
 
 import com.bartczak.zai.lodging.booking.Booking;
 import com.bartczak.zai.lodging.common.BaseEntity;
+import com.bartczak.zai.lodging.user.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,4 +27,8 @@ public class Hotel extends BaseEntity {
     @OneToOne(mappedBy = "hotel", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Address address;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User createdBy;
 }

@@ -16,4 +16,5 @@ public class TestFixture {
     public static final String HOTEL_NAME = "Test hotel";
     public static final String TEST_UPLOAD_PATH = "target/test-classes/upload/";
     public static final String TEST_IMAGE_PATH = "src/test/resources/test.png";
+    public static final Long TEST_USER_ID = 1L;
 }
