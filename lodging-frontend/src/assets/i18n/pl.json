@@ -55,9 +55,12 @@
         "add.image.label": "Dodaj zdjęcie",
         "add.submit": "Dodaj",
         "header.night": "noc",
-        "add.success": "Hotel dodany pomyślnie!"
+        "add.success": "Hotel dodany pomyślnie!",
+        "search": "Dokąd chcesz pojechać?",
+        "search.date": "Kiedy?"
     },
     "menu": {
-        "back": "Wróć"
+        "back": "Wróć",
+        "search": "Szukaj"
     }
 }
