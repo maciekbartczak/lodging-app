@@ -1,6 +1,6 @@
 package com.bartczak.zai.lodging.hotel.entity;
 
-import com.bartczak.zai.lodging.booking.Booking;
+import com.bartczak.zai.lodging.booking.entity.Booking;
 import com.bartczak.zai.lodging.common.BaseEntity;
 import com.bartczak.zai.lodging.user.User;
 import lombok.*;

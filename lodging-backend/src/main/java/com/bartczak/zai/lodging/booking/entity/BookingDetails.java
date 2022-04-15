@@ -1,4 +1,4 @@
-package com.bartczak.zai.lodging.booking;
+package com.bartczak.zai.lodging.booking.entity;
 
 import lombok.*;
 

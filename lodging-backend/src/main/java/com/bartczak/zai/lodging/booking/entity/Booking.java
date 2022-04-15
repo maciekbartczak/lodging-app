@@ -1,4 +1,4 @@
-package com.bartczak.zai.lodging.booking;
+package com.bartczak.zai.lodging.booking.entity;
 
 import com.bartczak.zai.lodging.common.BaseEntity;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;

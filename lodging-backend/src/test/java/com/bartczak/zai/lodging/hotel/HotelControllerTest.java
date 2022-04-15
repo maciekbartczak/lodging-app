@@ -2,7 +2,8 @@ package com.bartczak.zai.lodging.hotel;
 
 import com.bartczak.zai.lodging.TestFixture;
 import com.bartczak.zai.lodging.UserTestSuite;
-import com.bartczak.zai.lodging.booking.BookingDetails;
+import com.bartczak.zai.lodging.booking.dto.CreateBookingRequest;
+import com.bartczak.zai.lodging.booking.entity.BookingDetails;
 import com.bartczak.zai.lodging.hotel.dto.*;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -14,6 +15,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,6 +41,10 @@ class HotelControllerTest extends UserTestSuite {
         RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(HotelPagesRequest.builder()
+                        .filter(HotelFilter.builder()
+                                .city("")
+                                .bookingDetails(new BookingDetails())
+                                .build())
                         .pageSize(2)
                         .pageNumber(0)
                         .build())
@@ -120,5 +126,72 @@ class HotelControllerTest extends UserTestSuite {
         assertThat(created).isPresent();
         assertThat(created.get().getName()).isEqualTo(TestFixture.HOTEL_NAME);
         assertThat(created.get().getCreatedBy().getId()).isEqualTo(TestFixture.TEST_USER_ID);
+    }
+
+    @Test
+    void shouldCreateValidBooking() {
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .cookie(this.authCookie)
+                .body(bookingRequestValid())
+
+                .when()
+                .post("/hotel/1/booking")
+
+                .then()
+                .statusCode(201);
+    }
+
+    @Test
+    void shouldNotCreateBookingDateAlreadyBooked() {
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .cookie(this.authCookie)
+                .body(bookingRequestDateAlreadyBooked())
+
+                .when()
+                .post("/hotel/3/booking")
+
+                .then()
+                .statusCode(400);
+    }
+
+    @Test
+    void shouldNotCreateBookingTooMuchGuests() {
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .cookie(this.authCookie)
+                .body(bookingRequestTooMuchGuests())
+
+                .when()
+                .post("/hotel/1/booking")
+
+                .then()
+                .statusCode(400);
+    }
+
+
+    private CreateBookingRequest bookingRequestValid() {
+        return CreateBookingRequest.builder()
+                .startDate(LocalDate.of(2022, 3, 26))
+                .endDate(LocalDate.of(2022, 3, 27))
+                .guestCount(2)
+                .build();
+    }
+
+    private CreateBookingRequest bookingRequestDateAlreadyBooked() {
+        return CreateBookingRequest.builder()
+                .startDate(LocalDate.of(2022, 3, 26))
+                .endDate(LocalDate.of(2022, 3, 27))
+                .guestCount(2)
+                .build();
+    }
+
+    private CreateBookingRequest bookingRequestTooMuchGuests() {
+        return CreateBookingRequest.builder()
+                .startDate(LocalDate.of(2022, 3, 26))
+                .endDate(LocalDate.of(2022, 3, 27))
+                .guestCount(10)
+                .build();
     }
 }

@@ -1,5 +1,7 @@
 package com.bartczak.zai.lodging.hotel;
 
+import com.bartczak.zai.lodging.booking.BookingService;
+import com.bartczak.zai.lodging.booking.dto.CreateBookingRequest;
 import com.bartczak.zai.lodging.hotel.dto.*;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -24,6 +26,7 @@ public class HotelController {
 
     private final HotelService hotelService;
     private final HotelImageService hotelImageService;
+    private final BookingService bookingService;
 
     @PostMapping("/pages")
     public HotelPageResponse getPage(@RequestBody @Valid HotelPagesRequest hotelPagesRequest) {
@@ -52,5 +55,12 @@ public class HotelController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                 .contentType(MediaType.IMAGE_PNG)
                 .body(file);
+    }
+
+    @PostMapping("/{id}/booking")
+    @PreAuthorize("hasAuthority('USER')")
+    public ResponseEntity<Void> createBooking(@PathVariable Long id,@RequestBody CreateBookingRequest createBookingRequest) {
+        bookingService.createBooking(id, createBookingRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

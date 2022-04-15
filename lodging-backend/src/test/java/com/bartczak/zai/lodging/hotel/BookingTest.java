@@ -1,7 +1,7 @@
 package com.bartczak.zai.lodging.hotel;
 
-import com.bartczak.zai.lodging.booking.Booking;
-import com.bartczak.zai.lodging.booking.BookingDetails;
+import com.bartczak.zai.lodging.booking.entity.Booking;
+import com.bartczak.zai.lodging.booking.entity.BookingDetails;
 import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

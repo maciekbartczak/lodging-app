@@ -1,6 +1,6 @@
 package com.bartczak.zai.lodging.hotel.dto;
 
-import com.bartczak.zai.lodging.booking.Booking;
+import com.bartczak.zai.lodging.booking.entity.Booking;
 import com.bartczak.zai.lodging.hotel.entity.Address;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import lombok.Builder;
