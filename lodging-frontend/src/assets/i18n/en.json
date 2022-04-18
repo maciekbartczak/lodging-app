@@ -56,7 +56,9 @@
         "header.night": "night",
         "add.success": "Hotel added successfully!",
         "search": "Where do you want to go?",
-        "search.date": "When?"
+        "search.date": "When?",
+        "booking.button": "Book",
+        "booking.title": "Add booking"
     },
     "menu": {
         "back": "Back",

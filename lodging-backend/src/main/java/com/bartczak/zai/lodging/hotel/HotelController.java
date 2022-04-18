@@ -2,6 +2,7 @@ package com.bartczak.zai.lodging.hotel;
 
 import com.bartczak.zai.lodging.booking.BookingService;
 import com.bartczak.zai.lodging.booking.dto.CreateBookingRequest;
+import com.bartczak.zai.lodging.booking.entity.Booking;
 import com.bartczak.zai.lodging.hotel.dto.*;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -59,8 +61,13 @@ public class HotelController {
 
     @PostMapping("/{id}/booking")
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<Void> createBooking(@PathVariable Long id,@RequestBody CreateBookingRequest createBookingRequest) {
+    public ResponseEntity<Void> createBooking(@PathVariable Long id, @RequestBody CreateBookingRequest createBookingRequest) {
         bookingService.createBooking(id, createBookingRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/{id}/booking")
+    public List<Booking> getBookings(@PathVariable Long id) {
+        return bookingService.getBookingsByHotelId(id);
     }
 }

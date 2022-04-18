@@ -18,6 +18,7 @@ export class HotelListComponent implements OnInit {
     filter: HotelFilter = {
         city: '',
         bookingDetails: {
+            guestCount: 0,
             startDate: '',
             endDate: ''
         }
@@ -55,6 +56,7 @@ export class HotelListComponent implements OnInit {
         this.filter = {
             city: event.city,
             bookingDetails: {
+                guestCount: 0,
                 startDate: event.startDate ? event.startDate.toISOString().substring(0, 10) : '',
                 endDate: event.endDate ? event.endDate.toISOString().substring(0, 10) : ''
             }

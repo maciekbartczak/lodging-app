@@ -8,13 +8,16 @@
             </div>
         </div>
     </ng-template>
-    <img class="main-image loading-animation" [src]="image" alt="Hotel image" *ngIf="image; else skeleton">
+    <div class="card-body">
+        <img class="main-image loading-animation" [src]="image" alt="Hotel image" *ngIf="image; else skeleton">
 
-    <ng-template #skeleton>
-        <div class="skeleton-container">
-            <p-skeleton size="250px" ></p-skeleton>
-        </div>
-    </ng-template>
+        <ng-template #skeleton>
+            <div class="skeleton-container">
+                <p-skeleton size="250px" ></p-skeleton>
+            </div>
+        </ng-template>
 
-    <div class="price"></div>
+        <button pButton class="book-button" [label]="'hotel.booking.button' | translate" [routerLink]="'/hotel/' + hotel.id + '/booking'"></button>
+    </div>
+
 </p-card>

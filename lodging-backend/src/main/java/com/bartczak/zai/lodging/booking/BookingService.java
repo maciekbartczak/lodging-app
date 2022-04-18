@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BookingService {
@@ -46,4 +48,7 @@ public class BookingService {
         }
     }
 
+    public List<Booking> getBookingsByHotelId(Long id) {
+        return bookingRepository.getAllByHotel_Id(id);
+    }
 }

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Builder
@@ -17,6 +18,7 @@ import javax.persistence.*;
 public class Booking extends BaseEntity {
 
     @Embedded
+    @NotNull
     private BookingDetails bookingDetails;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

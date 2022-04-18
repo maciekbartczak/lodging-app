@@ -19,6 +19,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { HotelCardComponent } from './hotel-list/table/card/hotel-card.component';
 import { HotelSearchComponent } from './hotel-list/hotel-search/hotel-search.component';
 import { CalendarModule } from 'primeng/calendar';
+import { AddBookingComponent } from './add-booking/add-booking.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CalendarModule } from 'primeng/calendar';
         AddHotelComponent,
         HotelCardComponent,
         HotelSearchComponent,
+        AddBookingComponent,
     ],
     imports: [
         CommonModule,

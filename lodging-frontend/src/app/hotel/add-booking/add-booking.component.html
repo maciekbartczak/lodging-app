@@ -1,0 +1,17 @@
+<div class="container">
+    <p-card class="add-booking-card">
+
+        <ng-template pTemplate="header">
+            <header class="view-header">
+                <h1>{{'hotel.booking.title' | translate}}</h1>
+                <app-router-back [backRoute]="'/hotel/list'"></app-router-back>
+            </header>
+        </ng-template>
+
+        <p-calendar selectionMode="range" [showIcon]="true" class="date-input" [placeholder]="'hotel.search.date' | translate"
+                    [minDate]="today" [(ngModel)]="dateRange" [inline]="true" [disabledDates]="bookedDates" *ngIf="!(appState.loading | async)">
+        </p-calendar>
+    </p-card>
+
+
+</div>

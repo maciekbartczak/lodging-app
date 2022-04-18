@@ -170,6 +170,20 @@ class HotelControllerTest extends UserTestSuite {
                 .statusCode(400);
     }
 
+    @Test
+    void shouldGetCorrectBookings() {
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .cookie(this.authCookie)
+
+                .when()
+                .get("/hotel/1/booking")
+
+                .then()
+                .statusCode(200)
+                .body("size()", is(2));
+    }
+
 
     private CreateBookingRequest bookingRequestValid() {
         return CreateBookingRequest.builder()
