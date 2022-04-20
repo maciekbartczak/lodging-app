@@ -17,7 +17,8 @@
             </div>
         </ng-template>
 
-        <button pButton class="book-button" [label]="'hotel.booking.button' | translate" [routerLink]="'/hotel/' + hotel.id + '/booking'"></button>
+        <button pButton *ngIf="showBookingButton"
+                class="book-button" [label]="'hotel.booking.button' | translate" (click)="navigateToBooking(hotel)"></button>
     </div>
 
 </p-card>

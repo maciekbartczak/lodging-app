@@ -20,5 +20,27 @@
             padding: 1rem;
         }
 
+        .booking-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            place-items: center;
+
+            .hotel-card {
+                align-self: start;
+            }
+        }
+
+        .form-layout {
+            width: 50%;
+            align-items: flex-start;
+
+            .form-input {
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+
+
     }
 }

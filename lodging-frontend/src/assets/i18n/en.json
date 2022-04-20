@@ -58,7 +58,12 @@
         "search": "Where do you want to go?",
         "search.date": "When?",
         "booking.button": "Book",
-        "booking.title": "Add booking"
+        "booking.title": "Add booking",
+        "booking.date.label": "Pick a date",
+        "booking.guests.label": "How many guests?",
+        "booking.toast.success.header": "Success!",
+        "booking.toast.success.content": "Booking created successfully.",
+        "booking.toast.error.content": "Booking could not be created, please try again"
     },
     "menu": {
         "back": "Back",
