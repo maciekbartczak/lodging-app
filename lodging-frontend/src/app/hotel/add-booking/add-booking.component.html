@@ -1,0 +1,42 @@
+<div class="container">
+    <p-card class="add-booking-card">
+
+        <ng-template pTemplate="header">
+            <header class="view-header">
+                <h1>{{'hotel.booking.title' | translate}}</h1>
+                <app-router-back [backRoute]="'/hotel/list'"></app-router-back>
+            </header>
+        </ng-template>
+        <div class="booking-wrapper" *ngIf="hotel">
+            <form class="form-layout" #bookingForm="ngForm" (ngSubmit)="createBooking()">
+                <div class="form-input">
+                    <label for="date">
+                        {{'hotel.booking.date.label' | translate}}
+                    </label>
+                    <p-calendar id="date" selectionMode="range" [showIcon]="true" class="date-input"
+                                [placeholder]="'hotel.search.date' | translate" name="date" [minDate]="today"
+                                [(ngModel)]="dateRange" [inline]="true" [disabledDates]="bookedDates"
+                                *ngIf="!(appState.loading | async)" >
+                    </p-calendar>
+                    <small *ngIf="bookingForm.submitted && dateRange.length < 1" class="p-error">{{ 'error.required' | translate }}</small>
+                </div>
+                <div class="form-input">
+                    <label for="guests">
+                        {{'hotel.booking.guests.label' | translate}}
+                    </label>
+                    <p-inputNumber id="guests" [min]="1" [max]="hotel.maxGuests" [showButtons]="true" name="guestCount"
+                                   [(ngModel)]="guestCount">
+                    </p-inputNumber >
+                </div>
+
+                <button pButton type="submit" [label]="'hotel.booking.button' | translate"></button>
+            </form>
+
+            <app-hotel-card [hotel]="hotel" class="hotel-card" [showBookingButton]="false"></app-hotel-card>
+        </div>
+
+
+    </p-card>
+
+
+</div>

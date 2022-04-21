@@ -1,0 +1,58 @@
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    overflow: hidden;
+
+
+
+    .add-booking-card {
+        width: 100%;
+        height: 100%;
+
+        ::ng-deep .p-component {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .view-header {
+            padding: 1rem;
+        }
+
+        .booking-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            place-items: center;
+
+            @media (max-width: 1200px) {
+                grid-template-columns: 1fr;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            .hotel-card {
+                align-self: start;
+
+                @media (max-width: 1200px) {
+                    grid-row: 1;
+                }
+            }
+        }
+
+        .form-layout {
+            width: 50%;
+            align-items: flex-start;
+
+            .form-input {
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+
+
+    }
+}

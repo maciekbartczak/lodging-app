@@ -26,7 +26,13 @@ import { NgHttpCachingConfig, NgHttpCachingModule, NgHttpCachingStrategy } from 
 const cacheConfig: NgHttpCachingConfig = {
     lifetime: 1000 * 60 * 5,
     allowedMethod: ['GET', 'HEAD'],
-    cacheStrategy: NgHttpCachingStrategy.ALLOW_ALL
+    cacheStrategy: NgHttpCachingStrategy.ALLOW_ALL,
+    isCacheable: req => {
+        if (req.urlWithParams.indexOf('/booking') !== -1) {
+            return false;
+        }
+        return undefined;
+    }
 }
 
 export function HttpLoaderFactory(http: HttpClient) {

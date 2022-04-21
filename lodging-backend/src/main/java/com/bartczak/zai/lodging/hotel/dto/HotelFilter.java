@@ -1,6 +1,6 @@
 package com.bartczak.zai.lodging.hotel.dto;
 
-import com.bartczak.zai.lodging.booking.BookingDetails;
+import com.bartczak.zai.lodging.booking.entity.BookingDetails;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

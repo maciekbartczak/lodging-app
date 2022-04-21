@@ -1,7 +1,8 @@
 package com.bartczak.zai.lodging.hotel;
 
-import com.bartczak.zai.lodging.booking.Booking;
-import com.bartczak.zai.lodging.booking.BookingDetails;
+import com.bartczak.zai.lodging.booking.entity.Booking;
+import com.bartczak.zai.lodging.booking.entity.BookingDetails;
+import com.bartczak.zai.lodging.common.InvalidRequestException;
 import com.bartczak.zai.lodging.hotel.dto.*;
 import com.bartczak.zai.lodging.hotel.entity.Address;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -124,5 +126,12 @@ public class HotelService {
         hotel.getAddress().setHotel(hotel);
         val created = hotelRepository.save(hotel);
         return new HotelCreatedResponse(HotelDto.from(created));
+    }
+
+    public HotelDto getHotelById(Long id) {
+        return this.hotelRepository
+                .findById(id)
+                .map(HotelDto::from)
+                .orElseThrow(() -> new InvalidRequestException("Hotel with id " + id + " does not exist"));
     }
 }

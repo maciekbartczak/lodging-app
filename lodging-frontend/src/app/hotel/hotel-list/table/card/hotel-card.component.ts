@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HotelDto, HotelService } from '../../../../../core/openapi';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-hotel-card',
@@ -11,11 +12,15 @@ export class HotelCardComponent implements OnInit {
 
     @Input()
     hotel?: HotelDto;
+    @Input()
+    showBookingButton = true;
     image?: SafeUrl;
     loading = false;
 
+
     constructor(private hotelService: HotelService,
-                private sanitizer: DomSanitizer) {
+                private sanitizer: DomSanitizer,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -31,5 +36,9 @@ export class HotelCardComponent implements OnInit {
                 this.image = this.sanitizer.bypassSecurityTrustUrl(unsafeImage);
                 this.loading = false;
             });
+    }
+
+    navigateToBooking(hotel: HotelDto): void {
+        this.router.navigate([`/hotel/${hotel.id}/booking`], { state: { hotel: hotel } });
     }
 }

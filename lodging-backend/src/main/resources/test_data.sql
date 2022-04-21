@@ -28,3 +28,7 @@ insert into address values (10, 'Cracow', 'Poland', 'test street');
 insert into address values (11, 'Lodz', 'Poland', 'test street');
 insert into address values (12, 'Wroclaw', 'Poland', 'test street');
 
+insert into booking (start_date, end_date, guest_count, hotel_id) values (date '2022-04-16', date '2022-04-25', 3, 1),
+                                                                         (date '2022-04-27', date '2022-04-30', 2, 1),
+                                                                         (date '2022-04-26', date '2022-04-30', 2, 2);
+
