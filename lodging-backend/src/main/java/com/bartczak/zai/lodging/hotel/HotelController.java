@@ -70,4 +70,10 @@ public class HotelController {
     public List<Booking> getBookings(@PathVariable Long id) {
         return bookingService.getBookingsByHotelId(id);
     }
+
+    @GetMapping("/{id}")
+    public HotelDto getHotelById(@PathVariable Long id) {
+        return hotelService.getHotelById(id);
+    }
+
 }

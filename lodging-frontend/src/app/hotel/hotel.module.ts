@@ -20,6 +20,7 @@ import { HotelCardComponent } from './hotel-list/table/card/hotel-card.component
 import { HotelSearchComponent } from './hotel-list/hotel-search/hotel-search.component';
 import { CalendarModule } from 'primeng/calendar';
 import { AddBookingComponent } from './add-booking/add-booking.component';
+import { HotelResolver } from '../core/hotel.resolver';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { AddBookingComponent } from './add-booking/add-booking.component';
         FileUploadModule,
         SkeletonModule,
         CalendarModule
-    ]
+    ],
+    providers: [HotelResolver]
 })
 export class HotelModule {
 }

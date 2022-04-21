@@ -2,6 +2,7 @@ package com.bartczak.zai.lodging.hotel;
 
 import com.bartczak.zai.lodging.booking.entity.Booking;
 import com.bartczak.zai.lodging.booking.entity.BookingDetails;
+import com.bartczak.zai.lodging.common.InvalidRequestException;
 import com.bartczak.zai.lodging.hotel.dto.*;
 import com.bartczak.zai.lodging.hotel.entity.Address;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
@@ -125,5 +126,12 @@ public class HotelService {
         hotel.getAddress().setHotel(hotel);
         val created = hotelRepository.save(hotel);
         return new HotelCreatedResponse(HotelDto.from(created));
+    }
+
+    public HotelDto getHotelById(Long id) {
+        return this.hotelRepository
+                .findById(id)
+                .map(HotelDto::from)
+                .orElseThrow(() -> new InvalidRequestException("Hotel with id " + id + " does not exist"));
     }
 }

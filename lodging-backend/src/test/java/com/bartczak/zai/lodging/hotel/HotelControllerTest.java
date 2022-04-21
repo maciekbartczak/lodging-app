@@ -184,6 +184,20 @@ class HotelControllerTest extends UserTestSuite {
                 .body("size()", is(2));
     }
 
+    @Test
+    void shouldGetCorrectHotelById() {
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+
+                .when()
+                .get("/hotel/1")
+
+                .then()
+                .statusCode(200)
+                .body("id", is(1),
+                        "name", is("hotel 1"));
+    }
+
 
     private CreateBookingRequest bookingRequestValid() {
         return CreateBookingRequest.builder()

@@ -16,7 +16,7 @@
                     <p-calendar id="date" selectionMode="range" [showIcon]="true" class="date-input"
                                 [placeholder]="'hotel.search.date' | translate" name="date" [minDate]="today"
                                 [(ngModel)]="dateRange" [inline]="true" [disabledDates]="bookedDates"
-                                *ngIf="!(appState.loading | async)" #calendar>
+                                *ngIf="!(appState.loading | async)" >
                     </p-calendar>
                     <small *ngIf="bookingForm.submitted && dateRange.length < 1" class="p-error">{{ 'error.required' | translate }}</small>
                 </div>
@@ -28,7 +28,7 @@
                                    [(ngModel)]="guestCount">
                     </p-inputNumber >
                 </div>
-                {{bookingForm.submitted}}
+
                 <button pButton type="submit" [label]="'hotel.booking.button' | translate"></button>
             </form>
 
