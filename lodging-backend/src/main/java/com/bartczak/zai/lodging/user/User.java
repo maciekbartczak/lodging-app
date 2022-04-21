@@ -1,6 +1,7 @@
 package com.bartczak.zai.lodging.user;
 
 import com.bartczak.zai.lodging.auth.session.Session;
+import com.bartczak.zai.lodging.booking.entity.Booking;
 import com.bartczak.zai.lodging.common.BaseEntity;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import lombok.*;
@@ -27,8 +28,10 @@ public class User extends BaseEntity implements UserDetails {
     private String lastName;
     @OneToMany(mappedBy = "user")
     private List<Session> sessions;
-    @OneToMany
-    private List<Hotel> createdHotels;
+    @OneToMany(mappedBy = "createdBy")
+    private List<Hotel> hotels;
+    @OneToMany(mappedBy = "createdBy")
+    private List<Booking> bookings;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(

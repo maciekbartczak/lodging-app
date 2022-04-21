@@ -2,6 +2,7 @@ package com.bartczak.zai.lodging.booking.entity;
 
 import com.bartczak.zai.lodging.common.BaseEntity;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
+import com.bartczak.zai.lodging.user.User;
 import com.bartczak.zai.lodging.util.DateUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -24,6 +25,11 @@ public class Booking extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User createdBy;
 
     public boolean isDateRangeBetween(Booking other) {
         return DateUtil.isDateBetweenRange(other.bookingDetails.getStartDate(),

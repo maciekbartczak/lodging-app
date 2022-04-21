@@ -6,8 +6,10 @@ import com.bartczak.zai.lodging.booking.entity.BookingDetails;
 import com.bartczak.zai.lodging.common.InvalidRequestException;
 import com.bartczak.zai.lodging.hotel.HotelRepository;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
+import com.bartczak.zai.lodging.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +22,11 @@ public class BookingService {
     private final HotelRepository hotelRepository;
 
     public void createBooking(Long hotelId, CreateBookingRequest createBookingRequest) {
+        val user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         val hotel = hotelRepository
                 .findById(hotelId)
                 .orElseThrow(IllegalArgumentException::new);
+
         val requestedBooking = Booking.builder()
                         .bookingDetails(BookingDetails.builder()
                                 .startDate(createBookingRequest.getStartDate())
@@ -30,6 +34,7 @@ public class BookingService {
                                 .guestCount(createBookingRequest.getGuestCount())
                                 .build())
                         .hotel(hotel)
+                        .createdBy(user)
                         .build();
 
         validateBooking(requestedBooking, hotel);
