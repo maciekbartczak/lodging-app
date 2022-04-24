@@ -16,10 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -133,5 +130,23 @@ public class HotelService {
                 .findById(id)
                 .map(HotelDto::from)
                 .orElseThrow(() -> new InvalidRequestException("Hotel with id " + id + " does not exist"));
+    }
+
+    public List<HotelDto> getOwnedHotels() {
+        val user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        return hotelRepository
+                .findAllByCreatedBy_Id(user.getId())
+                .stream()
+                .map(HotelDto::from)
+                .toList();
+    }
+
+    public List<HotelDto> getAll() {
+        return hotelRepository
+                .findAll()
+                .stream()
+                .map(HotelDto::from)
+                .toList();
     }
 }

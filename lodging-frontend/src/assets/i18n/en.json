@@ -65,8 +65,14 @@
         "booking.toast.success.content": "Booking created successfully.",
         "booking.toast.error.content": "Booking could not be created, please try again"
     },
+    "user": {
+        "hotels.title": "My hotels",
+        "profile.title": "Profile"
+    },
     "menu": {
         "back": "Back",
-        "search": "Search"
+        "search": "Search",
+        "delete": "Delete",
+        "edit": "Edit"
     }
 }

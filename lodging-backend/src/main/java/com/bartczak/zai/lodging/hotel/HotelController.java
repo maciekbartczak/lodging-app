@@ -76,4 +76,16 @@ public class HotelController {
         return hotelService.getHotelById(id);
     }
 
+    @GetMapping("/owned")
+    @PreAuthorize("hasAuthority('USER')")
+    public List<HotelDto> getOwnedHotels() {
+        return hotelService.getOwnedHotels();
+    }
+
+    @GetMapping("/admin/all")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<HotelDto> getAll() {
+        return hotelService.getAll();
+    }
+
 }

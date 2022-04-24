@@ -25,6 +25,10 @@ const routes: Routes = [
                 path: 'hotel',
                 loadChildren: () => import('./hotel/hotel.module').then(m => m.HotelModule)
             },
+            {
+                path: 'user',
+                loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+            },
             { path: '404', component: RouteNotFoundComponent },
         ]
     },

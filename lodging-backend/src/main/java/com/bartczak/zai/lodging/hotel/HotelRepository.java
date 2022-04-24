@@ -10,5 +10,5 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
     Collection<Hotel> findDistinctByBookingsIsNotNull();
     Collection<Hotel> findByBookingsIsNullAndAddress_City(String city);
     Collection<Hotel> findDistinctByBookingsIsNotNullAndAddress_City(String city);
-
+    Collection<Hotel> findAllByCreatedBy_Id(Long id);
 }
