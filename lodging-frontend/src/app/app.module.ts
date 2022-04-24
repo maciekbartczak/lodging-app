@@ -28,7 +28,7 @@ const cacheConfig: NgHttpCachingConfig = {
     allowedMethod: ['GET', 'HEAD'],
     cacheStrategy: NgHttpCachingStrategy.ALLOW_ALL,
     isCacheable: req => {
-        if (req.urlWithParams.indexOf('/booking') !== -1) {
+        if (req.urlWithParams.indexOf('/hotel') !== -1) {
             return false;
         }
         return undefined;

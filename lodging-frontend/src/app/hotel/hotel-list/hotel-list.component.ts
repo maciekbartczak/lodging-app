@@ -57,8 +57,8 @@ export class HotelListComponent implements OnInit {
             city: event.city,
             bookingDetails: {
                 guestCount: 0,
-                startDate: event.startDate ? event.startDate.toISOString().substring(0, 10) : '',
-                endDate: event.endDate ? event.endDate.toISOString().substring(0, 10) : ''
+                startDate: event.startDate ? event.startDate.toLocaleDateString('sv') : '',
+                endDate: event.endDate ? event.endDate.toLocaleDateString('sv') : ''
             }
         }
         this.pageNumber = 0;

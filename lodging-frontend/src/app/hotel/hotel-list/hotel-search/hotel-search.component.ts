@@ -19,8 +19,8 @@ export class HotelSearchComponent {
     search() {
         const searchQuery: HotelSearchQuery = {
             city: this.cityQuery,
-            endDate: this.dateRange?.length == 2 ? this.dateRange[0] : undefined,
-            startDate: this.dateRange?.length == 2 ? this.dateRange[1] : undefined
+            startDate: this.dateRange?.length == 2 ? this.dateRange[0] : undefined,
+            endDate: this.dateRange?.length == 2 ? this.dateRange[1] : undefined
         }
 
         this.searchAction.emit(searchQuery);

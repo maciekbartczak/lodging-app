@@ -81,7 +81,7 @@ public class HotelService {
                     val bookings = hotel.getBookings();
                     var fits = true;
                     for (val booking : bookings) {
-                        if (booking.isDateRangeBetween(requestedBooking)) {
+                        if (requestedBooking.isDateRangeBetween(booking) || booking.isDateRangeBetween(requestedBooking)) {
                             fits = false;
                             break;
                         }
