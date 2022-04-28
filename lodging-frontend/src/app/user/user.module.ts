@@ -9,12 +9,14 @@ import { CoreModule } from '../core/core.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { TableModule } from 'primeng/table';
 import { ContextMenuModule } from 'primeng/contextmenu';
+import { UserDashboardComponent } from './dashboard/user-dashboard.component';
 
 
 @NgModule({
   declarations: [
       UserComponent,
-      MyHotelsListComponent
+      MyHotelsListComponent,
+      UserDashboardComponent
   ],
     imports: [
         CommonModule,

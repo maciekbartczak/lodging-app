@@ -51,7 +51,6 @@ export class MyHotelsListComponent implements OnInit {
                     detail: this.translateService.instant('user.hotels.delete.toast.success.content')
                 });
                 this.fetchHotels();
-                this.appState.setLoading(false);
             },
             error: _ => {
                 this.messageService.add(

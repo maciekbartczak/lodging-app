@@ -69,7 +69,8 @@
     "user": {
         "hotels.title": "My hotels",
         "profile.title": "Profile",
-        "hotels.delete.toast.success.content": "Hotel deleted successfully!"
+        "hotels.delete.toast.success.content": "Hotel deleted successfully!",
+        "welcome": "Welcome, "
     },
     "menu": {
         "back": "Back",

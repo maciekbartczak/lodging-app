@@ -1,0 +1,18 @@
+<div class="container" *ngIf="currentUser">
+
+    <p-card class="card">
+        <ng-template pTemplate="header">
+            <header class="view-header">
+                <h1>{{'user.welcome' | translate}}{{currentUser.username}}</h1>
+            </header>
+        </ng-template>
+
+        <div class="card-body">
+
+            <div class="action-card" routerLink="/user/hotels">
+                <h1 class="action-title">Foo action</h1>
+                <i class="pi pi-home action-icon"></i>
+            </div>
+        </div>
+    </p-card>
+</div>
