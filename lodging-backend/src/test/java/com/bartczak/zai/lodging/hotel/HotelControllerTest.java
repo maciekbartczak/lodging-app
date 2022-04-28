@@ -5,6 +5,9 @@ import com.bartczak.zai.lodging.UserTestSuite;
 import com.bartczak.zai.lodging.booking.dto.CreateBookingRequest;
 import com.bartczak.zai.lodging.booking.entity.BookingDetails;
 import com.bartczak.zai.lodging.hotel.dto.*;
+import com.bartczak.zai.lodging.hotel.entity.Address;
+import com.bartczak.zai.lodging.hotel.entity.Hotel;
+import com.bartczak.zai.lodging.user.UserRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import lombok.val;
@@ -16,6 +19,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,6 +30,9 @@ class HotelControllerTest extends UserTestSuite {
 
     @Autowired
     private HotelRepository hotelRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private HotelImageService hotelImageService;
@@ -198,6 +205,38 @@ class HotelControllerTest extends UserTestSuite {
                         "name", is("hotel 1"));
     }
 
+    @Test
+    void shouldDeleteHotelById() {
+        val toBeDeleted = insertToBeDeletedHotel();
+
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .cookie(authCookie)
+
+                .when()
+                .delete("/hotel/" + toBeDeleted.getId())
+
+                .then()
+                .statusCode(200);
+
+        assertThat(hotelRepository.findById(toBeDeleted.getId())).isNotPresent();
+    }
+
+    @Test
+    void shouldNotDeleteHotelNotOwnedByCurrentUser() {
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .cookie(authCookie)
+
+                .when()
+                .delete("/hotel/8")
+
+                .then()
+                .statusCode(403);
+
+        assertThat(hotelRepository.findById(8L)).isPresent();
+    }
+
 
     private CreateBookingRequest bookingRequestValid() {
         return CreateBookingRequest.builder()
@@ -221,5 +260,19 @@ class HotelControllerTest extends UserTestSuite {
                 .endDate(LocalDate.of(2022, 3, 27))
                 .guestCount(10)
                 .build();
+    }
+
+    private Hotel insertToBeDeletedHotel() {
+        val user = userRepository
+                .findById(1L)
+                .orElseThrow(IllegalStateException::new);
+
+        return this.hotelRepository.save(Hotel.builder()
+                .imageName("image.png")
+                .bookings(Set.of())
+                .createdBy(user)
+                .maxGuests(3)
+                .pricePerNight(BigDecimal.valueOf(100))
+                .build());
     }
 }

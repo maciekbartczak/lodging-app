@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -86,6 +87,12 @@ public class HotelController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<HotelDto> getAll() {
         return hotelService.getAll();
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('USER')")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        return hotelService.deleteById(id);
     }
 
 }

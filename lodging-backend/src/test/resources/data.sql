@@ -18,7 +18,7 @@ insert into hotel (id, max_guests, name, price_per_night, image_name, user_id) v
 insert into hotel (id, max_guests, name, price_per_night, image_name, user_id) values (5, 1, 'hotel 4', 600, '', 1);
 insert into hotel (id, max_guests, name, price_per_night, image_name, user_id) values (6, 1, 'hotel 5', 600, '', 1);
 insert into hotel (id, max_guests, name, price_per_night, image_name, user_id) values (7, 1, 'hotel 6', 600, '', 1);
-insert into hotel (id, max_guests, name, price_per_night, image_name, user_id) values (8, 1, 'hotel 7', 600, '', 1);
+insert into hotel (id, max_guests, name, price_per_night, image_name, user_id) values (8, 1, 'hotel 7', 600, '', 2);
 insert into hotel (id, max_guests, name, price_per_night, image_name, user_id) values (9, 1, 'hotel 8', 600, '', 1);
 
 insert into address values (1, 'Warsaw', 'Poland', 'test street');
@@ -33,6 +33,6 @@ insert into address values (9, 'Berlin', 'Germany', 'test street');
 
 
 --test range 2022-03-26 2022-03-27 -> hotel.id [1, 2]
-insert into booking (start_date, end_date, guest_count, hotel_id) values (date '2022-03-22', date '2022-03-25', 3, 1),
-                                                                         (date '2022-03-28', date '2022-03-30', 2, 1),
-                                                                         (date '2022-03-26', date '2022-03-30', 2, 3);
+insert into booking (start_date, end_date, guest_count, hotel_id, user_id) values (date '2022-03-22', date '2022-03-25', 3, 1, 1),
+                                                                         (date '2022-03-28', date '2022-03-30', 2, 1, 1),
+                                                                         (date '2022-03-26', date '2022-03-30', 2, 3, 1);

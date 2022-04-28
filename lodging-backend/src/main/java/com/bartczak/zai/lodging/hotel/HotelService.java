@@ -12,6 +12,8 @@ import lombok.val;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -148,5 +150,19 @@ public class HotelService {
                 .stream()
                 .map(HotelDto::from)
                 .toList();
+    }
+
+    public ResponseEntity<Void> deleteById(Long id) {
+        val user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        val toDelete = hotelRepository
+                .findById(id)
+                .orElseThrow(() -> new InvalidRequestException("Hotel with id " + id + " does not exist"));
+        if (toDelete.getCreatedBy().getId() != user.getId()) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        hotelRepository.deleteById(id);
+
+        return ResponseEntity.ok().build();
     }
 }

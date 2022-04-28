@@ -2,6 +2,7 @@
     "error": {
         "required": "Field is required",
         "generic": "Something went wrong",
+        "try-again": "Please try again later",
         "not-logged-in": "Please log in to continue",
         "not-logged-in-details": "You need to be logged in to perform this action"
     },
@@ -67,7 +68,8 @@
     },
     "user": {
         "hotels.title": "My hotels",
-        "profile.title": "Profile"
+        "profile.title": "Profile",
+        "hotels.delete.toast.success.content": "Hotel deleted successfully!"
     },
     "menu": {
         "back": "Back",
