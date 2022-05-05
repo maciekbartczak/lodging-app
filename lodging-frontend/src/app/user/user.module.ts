@@ -10,6 +10,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TableModule } from 'primeng/table';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { UserDashboardComponent } from './dashboard/user-dashboard.component';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { UserDashboardComponent } from './dashboard/user-dashboard.component';
         CoreModule,
         TranslateModule,
         TableModule,
-        ContextMenuModule
+        ContextMenuModule,
+        ButtonModule,
+        RippleModule
     ]
 })
 export class UserModule { }

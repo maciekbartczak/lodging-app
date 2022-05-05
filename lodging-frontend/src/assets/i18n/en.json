@@ -70,7 +70,11 @@
         "hotels.title": "My hotels",
         "profile.title": "Profile",
         "hotels.delete.toast.success.content": "Hotel deleted successfully!",
-        "welcome": "Welcome, "
+        "welcome": "Welcome, ",
+        "hotels.startDate": "Start date",
+        "hotels.endDate": "End date",
+        "hotels.guestCount": "Guest count",
+        "hotels.noBookings": "There are no bookings for this hotel"
     },
     "menu": {
         "back": "Back",
