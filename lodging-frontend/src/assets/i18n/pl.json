@@ -3,7 +3,7 @@
         "required": "Pole jest wymagane",
         "generic": "Coś poszło nie tak",
         "not-logged-in": "Zaloguj się, by kontynuować",
-        "not-logged-in-detail": "Musisz być zalogowany, by korzystać z tej funkcji"
+        "not-logged-in-details": "Musisz być zalogowany, by korzystać z tej funkcji"
     },
     "topBar": {
         "menu": {
@@ -57,10 +57,29 @@
         "header.night": "noc",
         "add.success": "Hotel dodany pomyślnie!",
         "search": "Dokąd chcesz pojechać?",
-        "search.date": "Kiedy?"
+        "search.date": "Kiedy?",
+        "booking.button": "Zarezerwuj",
+        "booking.header": "Utwórz rezerwację",
+        "booking.date.label": "Wybierz datę",
+        "booking.guests.label": "Ilu gości?",
+        "booking.toast.success.header": "Sukces!",
+        "booking.toast.success.content": "Rezerwacja została utworzona.",
+        "booking.toast.error.content ": "Nie mogliśmy utworzyć rezerwacji, spróbuj ponownie później."
+    },
+    "user": {
+        "hotels.title": "Moje hotele",
+        "profile.title": "Profil",
+        "hotels.delete.toast.success.content": "Hotel usunięty!",
+        "welcome": "Witaj, ",
+        "hotels.startDate": "Data początkowa",
+        "hotels.endDate": "Data końcowa",
+        "hotels.guestCount": "Liczba gości",
+        "hotels.noBookings": "Ten hotel nie ma jeszcze rezerwacji"
     },
     "menu": {
         "back": "Wróć",
-        "search": "Szukaj"
+        "search": "Szukaj",
+        "delete": "Usuń",
+        "edit": "Edytuj"
     }
 }
