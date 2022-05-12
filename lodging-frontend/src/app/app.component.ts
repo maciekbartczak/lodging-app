@@ -1,7 +1,7 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, } from '@angular/router';
 import { filter, map } from 'rxjs';
-import { AppStateService } from './core/app-state.service';
+import { AppStateService } from './common/app-state.service';
 
 @Component({
     selector: 'app-root',

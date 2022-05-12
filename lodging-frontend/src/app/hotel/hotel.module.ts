@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { HotelComponent } from './hotel.component';
-import { CoreModule } from '../core/core.module';
+import { CoreModule } from '../common/core.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -20,7 +20,7 @@ import { HotelCardComponent } from './hotel-list/table/card/hotel-card.component
 import { HotelSearchComponent } from './hotel-list/hotel-search/hotel-search.component';
 import { CalendarModule } from 'primeng/calendar';
 import { AddBookingComponent } from './add-booking/add-booking.component';
-import { HotelResolver } from '../core/hotel.resolver';
+import { HotelResolver } from '../common/hotel.resolver';
 
 
 @NgModule({

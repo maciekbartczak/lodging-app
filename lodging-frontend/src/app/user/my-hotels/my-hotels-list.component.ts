@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HotelDto, HotelService } from '../../../core/openapi';
 import { MenuItem, MessageService, PrimeIcons } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
-import { AppStateService } from '../../core/app-state.service';
+import { AppStateService } from '../../common/app-state.service';
 
 @Component({
     selector: 'app-my-hotels-list',
@@ -60,6 +60,6 @@ export class MyHotelsListComponent implements OnInit {
                         detail: this.translateService.instant('error.try-again')
                     });
             }
-        })
+        });
     }
 }

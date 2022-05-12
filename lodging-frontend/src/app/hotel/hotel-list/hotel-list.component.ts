@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AppStateService } from 'src/app/core/app-state.service';
+import { AppStateService } from 'src/app/common/app-state.service';
 import { HotelDto, HotelFilter, HotelService } from '../../../core/openapi';
-import { HotelSearchQuery } from '../../core/model/hotelSearchData.model';
+import { HotelSearchQuery } from '../../common/model/hotelSearchData.model';
 import { Paginator } from 'primeng/paginator';
 
 @Component({

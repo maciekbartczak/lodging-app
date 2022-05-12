@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppStateService } from '../../core/app-state.service';
+import { AppStateService } from '../../common/app-state.service';
 import { UserDto } from '../../../core/openapi';
 
 @Component({

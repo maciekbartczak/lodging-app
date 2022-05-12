@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserGuard } from '../core/user.guard';
+import { UserGuard } from '../common/user.guard';
 import { MyHotelsListComponent } from './my-hotels/my-hotels-list.component';
 import { UserDashboardComponent } from './dashboard/user-dashboard.component';
 

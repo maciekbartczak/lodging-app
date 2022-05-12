@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { HotelSearchQuery } from '../../../core/model/hotelSearchData.model';
+import { HotelSearchQuery } from '../../../common/model/hotelSearchData.model';
 
 @Component({
     selector: 'app-hotel-search',

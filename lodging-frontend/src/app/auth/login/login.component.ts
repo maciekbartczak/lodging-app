@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService, LoginRequest, UserService } from '../../../core/openapi';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppStateService } from '../../core/app-state.service';
+import { AppStateService } from '../../common/app-state.service';
 
 @Component({
     selector: 'app-login',

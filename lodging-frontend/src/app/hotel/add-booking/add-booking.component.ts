@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Booking, CreateBookingRequest, HotelDto, HotelService } from '../../../core/openapi';
-import { AppStateService } from '../../core/app-state.service';
+import { AppStateService } from '../../common/app-state.service';
 import { MessageService } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 

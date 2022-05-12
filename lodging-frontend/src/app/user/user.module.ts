@@ -5,7 +5,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { MyHotelsListComponent } from './my-hotels/my-hotels-list.component';
 import { CardModule } from 'primeng/card';
-import { CoreModule } from '../core/core.module';
+import { CoreModule } from '../common/core.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { TableModule } from 'primeng/table';
 import { ContextMenuModule } from 'primeng/contextmenu';
