@@ -1,5 +1,6 @@
 package com.bartczak.zai.lodging.hotel;
 
+import com.bartczak.zai.lodging.booking.BookingRepository;
 import com.bartczak.zai.lodging.booking.entity.Booking;
 import com.bartczak.zai.lodging.booking.entity.BookingDetails;
 import com.bartczak.zai.lodging.common.InvalidRequestException;
@@ -18,15 +19,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class HotelService {
 
     private final HotelRepository hotelRepository;
+    private final BookingRepository bookingRepository;
     private final HotelImageService hotelImageService;
 
     public HotelPageResponse getPage(HotelPagesRequest hotelPagesRequest) {
@@ -109,10 +113,10 @@ public class HotelService {
                 .build();
     }
 
-    public HotelCreatedResponse addHotel(AddHotelRequest addHotelRequest, MultipartFile image) {
+    public HotelCreatedResponse addHotel(AddHotelRequest addHotelRequest) {
         val user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        val imageName = hotelImageService.save(image);
+        val imageName = hotelImageService.save(addHotelRequest.getImage());
         val hotel = Hotel.builder()
                 .name(addHotelRequest.getName())
                 .address(Address.of(addHotelRequest.getAddress()))
@@ -158,11 +162,39 @@ public class HotelService {
         val toDelete = hotelRepository
                 .findById(id)
                 .orElseThrow(() -> new InvalidRequestException("Hotel with id " + id + " does not exist"));
-        if (toDelete.getCreatedBy().getId() != user.getId()) {
+        if (!Objects.equals(toDelete.getCreatedBy().getId(), user.getId())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
+        bookingRepository.deleteAll(toDelete.getBookings());
         hotelRepository.deleteById(id);
 
+        return ResponseEntity.ok().build();
+    }
+
+    public ResponseEntity<Void> editHotel(Long id, AddHotelRequest editHotelRequest) {
+        val user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        val toEdit = hotelRepository
+                .findById(id)
+                .orElseThrow(() -> new InvalidRequestException("Hotel with id " + id + " does not exist"));
+        if (!Objects.equals(toEdit.getCreatedBy().getId(), user.getId())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        toEdit.setName(editHotelRequest.getName());
+        toEdit.getAddress().setStreet(editHotelRequest.getAddress().getStreet());
+        toEdit.getAddress().setCity(editHotelRequest.getAddress().getCity());
+        toEdit.getAddress().setCountry(editHotelRequest.getAddress().getCountry());
+        toEdit.setMaxGuests(editHotelRequest.getMaxGuests());
+        toEdit.setPricePerNight(editHotelRequest.getPricePerNight());
+
+        if (editHotelRequest.getImage() != null && !editHotelRequest.getImage().isEmpty()) {
+            hotelImageService.delete(toEdit.getImageName());
+            val imageName = hotelImageService.save(editHotelRequest.getImage());
+            toEdit.setImageName(imageName);
+        }
+
+        hotelRepository.save(toEdit);
         return ResponseEntity.ok().build();
     }
 }

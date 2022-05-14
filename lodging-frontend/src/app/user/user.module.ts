@@ -12,13 +12,19 @@ import { ContextMenuModule } from 'primeng/contextmenu';
 import { UserDashboardComponent } from './dashboard/user-dashboard.component';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { EditHotelComponent } from './my-hotels/edit-hotel/edit-hotel.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FileUploadModule } from 'primeng/fileupload';
+import { InputTextModule } from 'primeng/inputtext';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
       UserComponent,
       MyHotelsListComponent,
-      UserDashboardComponent
+      UserDashboardComponent,
+      EditHotelComponent
   ],
     imports: [
         CommonModule,
@@ -29,7 +35,11 @@ import { RippleModule } from 'primeng/ripple';
         TableModule,
         ContextMenuModule,
         ButtonModule,
-        RippleModule
+        RippleModule,
+        InputNumberModule,
+        FileUploadModule,
+        InputTextModule,
+        ReactiveFormsModule
     ]
 })
 export class UserModule { }

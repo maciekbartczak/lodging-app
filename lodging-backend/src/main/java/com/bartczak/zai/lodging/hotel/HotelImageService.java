@@ -12,10 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.UUID;
 
 @Service
@@ -26,23 +29,21 @@ public class HotelImageService {
     @Value("${hotel.image.size:300}")
     private int imageSize;
 
-    public String save(MultipartFile image) {
-        try {
+    public String save(String image) {
+        try
+        {
+            val base64Image = image.split(",")[1];
+            val imageBytes = Base64.getDecoder().decode(base64Image);
             val root = Path.of(hotelImageDir);
             createDirIfNotExists(root);
 
-            var filename = image.getOriginalFilename();
-            val extension = filename.substring(filename.lastIndexOf('.'));
-            filename = UUID.randomUUID() + extension;
-
-            val bufferedImage = ImageIO.read(image.getInputStream());
-            val outputImage = Scalr.resize(bufferedImage, Scalr.Mode.FIT_TO_HEIGHT, imageSize);
-            val outputFile = root.resolve(filename).toFile();
-
-            ImageIO.write(outputImage, "png", outputFile);
+            val filename = UUID.randomUUID() + ".jpg";
+            new FileOutputStream(root.resolve(filename).toString()).write(imageBytes);
             return filename;
-        } catch (Exception e) {
-            throw new RuntimeException("Could not save the file. " + e.getMessage());
+        }
+        catch (IOException e)
+        {
+            throw new IllegalStateException("Failed to save image");
         }
     }
 
@@ -63,6 +64,17 @@ public class HotelImageService {
     private void createDirIfNotExists(Path root) {
         if (!root.toFile().exists()) {
             root.toFile().mkdirs();
+        }
+    }
+
+    public void delete(String imageName) {
+        val file = Paths.get(hotelImageDir).resolve(imageName);
+        if (file.toFile().exists()) {
+            try {
+                Files.delete(file);
+            } catch (Exception e) {
+                throw new RuntimeException("Could not delete the file: " + imageName);
+            }
         }
     }
 }

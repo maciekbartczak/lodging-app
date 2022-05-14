@@ -3,6 +3,7 @@ import { HotelDto, HotelService } from '../../../core/openapi';
 import { MenuItem, MessageService, PrimeIcons } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 import { AppStateService } from '../../common/app-state.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-my-hotels-list',
@@ -15,14 +16,15 @@ export class MyHotelsListComponent implements OnInit {
     selected?: HotelDto;
 
     items: MenuItem[] = [
-        { label: this.translateService.instant('menu.edit'), icon: PrimeIcons.PENCIL },
+        { label: this.translateService.instant('menu.edit'), icon: PrimeIcons.PENCIL, command: () => this.navigateToEdit(this.selected) },
         { label: this.translateService.instant('menu.delete'), icon: PrimeIcons.TIMES, command: () => this.deleteHotel(this.selected) },
     ]
 
     constructor(private hotelService: HotelService,
                 private translateService: TranslateService,
                 private messageService: MessageService,
-                private appState: AppStateService) {
+                private appState: AppStateService,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -61,5 +63,13 @@ export class MyHotelsListComponent implements OnInit {
                     });
             }
         });
+    }
+
+    private navigateToEdit(selected: HotelDto | undefined) {
+        if (!selected) {
+            return ;
+        }
+
+        this.router.navigate([`user/hotels/${selected.id}`]);
     }
 }

@@ -36,18 +36,11 @@ public class HotelController {
         return this.hotelService.getPage(hotelPagesRequest);
     }
 
-    @PostMapping(value = "/add",
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add")
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('USER')")
-    public HotelCreatedResponse addHotel(@RequestPart("hotel")  @Valid
-                                             @Parameter(content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
-                                                 AddHotelRequest addHotelRequest,
-                                         @RequestPart("image")
-                                             @Parameter(content = @Content(mediaType = MediaType.IMAGE_PNG_VALUE))
-                                                 MultipartFile image) {
-        return this.hotelService.addHotel(addHotelRequest, image);
+    public HotelCreatedResponse addHotel(@RequestBody @Valid AddHotelRequest addHotelRequest) {
+        return this.hotelService.addHotel(addHotelRequest);
     }
 
     @GetMapping("/image/{filename}")
@@ -93,6 +86,12 @@ public class HotelController {
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         return hotelService.deleteById(id);
+    }
+
+    @PostMapping("/{id}/edit")
+    @PreAuthorize("hasAuthority('USER')")
+    public ResponseEntity<Void> editHotel(@PathVariable Long id, @RequestBody AddHotelRequest editHotelRequest) {
+        return hotelService.editHotel(id, editHotelRequest);
     }
 
 }

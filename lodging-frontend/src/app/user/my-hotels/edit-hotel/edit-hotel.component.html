@@ -89,11 +89,9 @@
                 <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="500000" [auto]="false"
                               chooseLabel="{{ 'hotel.add.image.label' | translate }}"
                               (onSelect)="imageSelected($event)" ></p-fileUpload>
-                <small *ngIf="submitted && hotelForm.get('image')?.errors"
-                       class="p-error">{{ 'error.required' | translate }}</small>
             </div>
 
-            <button pButton type="submit" [label]="'hotel.add.submit' | translate" [loading]="loading"
+            <button pButton type="submit" [label]="'menu.edit' | translate" [loading]="loading"
                     class="form-submit p-button-success"></button>
         </form>
     </p-card>
