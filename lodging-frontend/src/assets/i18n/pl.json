@@ -64,7 +64,8 @@
         "booking.guests.label": "Ilu gości?",
         "booking.toast.success.header": "Sukces!",
         "booking.toast.success.content": "Rezerwacja została utworzona.",
-        "booking.toast.error.content ": "Nie mogliśmy utworzyć rezerwacji, spróbuj ponownie później."
+        "booking.toast.error.content ": "Nie mogliśmy utworzyć rezerwacji, spróbuj ponownie później.",
+        "edit.title": "Edytuj hotel"
     },
     "user": {
         "hotels.title": "Moje hotele",
@@ -74,7 +75,9 @@
         "hotels.startDate": "Data początkowa",
         "hotels.endDate": "Data końcowa",
         "hotels.guestCount": "Liczba gości",
-        "hotels.noBookings": "Ten hotel nie ma jeszcze rezerwacji"
+        "hotels.noBookings": "Ten hotel nie ma jeszcze rezerwacji",
+        "bookings.title": "Moje rezerwacje",
+        "booking.delete.success": "Rezerwacja usunięta!"
     },
     "menu": {
         "back": "Wróć",

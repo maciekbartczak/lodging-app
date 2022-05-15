@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Booking, CreateBookingRequest, HotelDto, HotelService } from '../../../core/openapi';
+import { Booking, BookingService, CreateBookingRequest, HotelDto, HotelService } from '../../../core/openapi';
 import { AppStateService } from '../../common/app-state.service';
 import { MessageService } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,7 +25,8 @@ export class AddBookingComponent {
                 public appState: AppStateService,
                 private router: Router,
                 private messageService: MessageService,
-                private translateService: TranslateService) {
+                private translateService: TranslateService,
+                private bookingsService: BookingService) {
         this.hotel = this.route.snapshot.data['hotel'];
         this.getBookedDates([...this.hotel.bookings]);
     }
@@ -33,7 +34,7 @@ export class AddBookingComponent {
     private fetchBookings(): void {
         if (this.hotel?.id) {
             this.appState.setLoading(true);
-            this.hotelService.getBookings(this.hotel.id).subscribe(bookings => {
+            this.bookingsService.getHotelBookings(this.hotel.id).subscribe(bookings => {
                 this.getBookedDates(bookings);
                 this.appState.setLoading(false)
             });
@@ -67,7 +68,7 @@ export class AddBookingComponent {
                 this.dateRange[0].toLocaleDateString('sv')
         };
 
-        this.hotelService.createBooking(this.hotel.id, createBookingRequest).subscribe({
+        this.bookingsService.createBooking(this.hotel.id, createBookingRequest).subscribe({
             next: _ => {
                 this.fetchBookings();
                 this.dateRange = [];

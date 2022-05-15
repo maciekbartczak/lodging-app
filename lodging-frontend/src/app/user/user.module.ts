@@ -17,6 +17,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MyBookingsListComponent } from './my-bookings/my-bookings-list.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
       UserComponent,
       MyHotelsListComponent,
       UserDashboardComponent,
-      EditHotelComponent
+      EditHotelComponent,
+      MyBookingsListComponent
   ],
     imports: [
         CommonModule,

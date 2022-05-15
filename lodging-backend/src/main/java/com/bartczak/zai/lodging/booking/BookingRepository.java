@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BookingRepository extends CrudRepository<Booking, Long> {
     List<Booking> getAllByHotel_Id(Long id);
+    List<Booking> getAllByCreatedBy_Id(Long id);
 }

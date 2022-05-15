@@ -21,19 +21,7 @@ import { SlideMenuModule } from 'primeng/slidemenu';
 import { MainComponent } from './main/main.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CookieService } from 'ngx-cookie-service';
-import { NgHttpCachingConfig, NgHttpCachingModule, NgHttpCachingStrategy } from 'ng-http-caching';
 
-const cacheConfig: NgHttpCachingConfig = {
-    lifetime: 1000 * 60 * 5,
-    allowedMethod: ['GET', 'HEAD'],
-    cacheStrategy: NgHttpCachingStrategy.ALLOW_ALL,
-    isCacheable: req => {
-        if (req.urlWithParams.indexOf('/hotel') !== -1) {
-            return false;
-        }
-        return undefined;
-    }
-}
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -58,7 +46,6 @@ export function HttpLoaderFactory(http: HttpClient) {
             },
             defaultLanguage: 'en'
         }),
-        NgHttpCachingModule.forRoot(cacheConfig),
         BrowserAnimationsModule,
         ButtonModule,
         MenubarModule,

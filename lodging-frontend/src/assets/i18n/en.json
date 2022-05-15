@@ -64,7 +64,8 @@
         "booking.guests.label": "How many guests?",
         "booking.toast.success.header": "Success!",
         "booking.toast.success.content": "Booking created successfully.",
-        "booking.toast.error.content": "Booking could not be created, please try again"
+        "booking.toast.error.content": "Booking could not be created, please try again",
+        "edit.title": "Edit hotel"
     },
     "user": {
         "hotels.title": "My hotels",
@@ -74,7 +75,9 @@
         "hotels.startDate": "Start date",
         "hotels.endDate": "End date",
         "hotels.guestCount": "Guest count",
-        "hotels.noBookings": "There are no bookings for this hotel"
+        "hotels.noBookings": "There are no bookings for this hotel",
+        "bookings.title": "My bookings",
+        "booking.delete.success": "Booking deleted successfully!"
     },
     "menu": {
         "back": "Back",
