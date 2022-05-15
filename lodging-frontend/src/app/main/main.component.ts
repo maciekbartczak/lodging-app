@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, UserDto } from '../../core/openapi';
 import { TranslateService } from '@ngx-translate/core';
-import { AppStateService } from '../core/app-state.service';
+import { AppStateService } from '../common/app-state.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
@@ -44,7 +44,7 @@ export class MainComponent implements OnInit {
     changeLanguage(language: Language): void {
         if (this.cookieService.get('app-lang') != language) {
             this.cookieService.set('app-lang', language, new Date(9999, 11));
-            window.location.reload();
+            this.router.navigate(['/']).then(_ =>  window.location.reload());
         }
     }
 

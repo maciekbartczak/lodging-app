@@ -1,0 +1,36 @@
+<div class="container">
+
+    <p-contextMenu #cm [model]="items"></p-contextMenu>
+
+    <p-card class="card">
+        <ng-template pTemplate="header">
+            <header class="view-header">
+                <h1>{{'user.bookings.title' | translate}}</h1>
+                <app-router-back [backRoute]="'/user'"></app-router-back>
+            </header>
+        </ng-template>
+
+        <div class="card-body">
+            <p-table [value]="bookings" [(contextMenuSelection)]="selected" [contextMenu]="cm" dataKey="id"
+                     responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>{{'user.hotels.startDate' | translate}}</th>
+                        <th>{{'user.hotels.endDate' | translate}}</th>
+                        <th>{{'user.hotels.guestCount' | translate}}</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-booking>
+                    <tr [pContextMenuRow]="booking">
+                        <td>{{booking.bookingDetails.startDate}}</td>
+                        <td>{{booking.bookingDetails.endDate}}</td>
+                        <td>{{booking.bookingDetails.guestCount}}</td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+        </div>
+    </p-card>
+
+</div>
+

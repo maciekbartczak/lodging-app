@@ -16,7 +16,7 @@ export class TopBarComponent {
         { label: 'English', command: () => this.changeLanguage('en') },
     ]
     userItems: MenuItem[] = [
-        { label: this.translateService.instant('topBar.menu.user.profile'), icon: PrimeIcons.USER },
+        { label: this.translateService.instant('topBar.menu.user.profile'), icon: PrimeIcons.USER, routerLink: '/user' },
         { label: this.translateService.instant('topBar.language'), icon: PrimeIcons.FLAG, items: this.languageItems },
         {
             label: this.translateService.instant('topBar.menu.user.logout'),

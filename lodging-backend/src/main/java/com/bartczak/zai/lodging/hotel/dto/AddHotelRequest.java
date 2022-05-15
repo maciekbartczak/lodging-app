@@ -17,4 +17,5 @@ public class AddHotelRequest {
     private final int maxGuests;
     @NotNull
     private final BigDecimal pricePerNight;
+    private final String image;
 }

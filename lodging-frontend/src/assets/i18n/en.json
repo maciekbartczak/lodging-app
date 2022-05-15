@@ -2,6 +2,7 @@
     "error": {
         "required": "Field is required",
         "generic": "Something went wrong",
+        "try-again": "Please try again later",
         "not-logged-in": "Please log in to continue",
         "not-logged-in-details": "You need to be logged in to perform this action"
     },
@@ -63,10 +64,25 @@
         "booking.guests.label": "How many guests?",
         "booking.toast.success.header": "Success!",
         "booking.toast.success.content": "Booking created successfully.",
-        "booking.toast.error.content": "Booking could not be created, please try again"
+        "booking.toast.error.content": "Booking could not be created, please try again",
+        "edit.title": "Edit hotel"
+    },
+    "user": {
+        "hotels.title": "My hotels",
+        "profile.title": "Profile",
+        "hotels.delete.toast.success.content": "Hotel deleted successfully!",
+        "welcome": "Welcome, ",
+        "hotels.startDate": "Start date",
+        "hotels.endDate": "End date",
+        "hotels.guestCount": "Guest count",
+        "hotels.noBookings": "There are no bookings for this hotel",
+        "bookings.title": "My bookings",
+        "booking.delete.success": "Booking deleted successfully!"
     },
     "menu": {
         "back": "Back",
-        "search": "Search"
+        "search": "Search",
+        "delete": "Delete",
+        "edit": "Edit"
     }
 }

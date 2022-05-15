@@ -1,0 +1,73 @@
+<div class="container">
+
+    <p-contextMenu #cm [model]="items"></p-contextMenu>
+
+    <p-card class="card">
+        <ng-template pTemplate="header">
+            <header class="view-header">
+                <h1>{{'user.hotels.title' | translate}}</h1>
+                <app-router-back [backRoute]="'/user'"></app-router-back>
+            </header>
+        </ng-template>
+
+        <div class="card-body">
+            <p-table [value]="hotels" [(contextMenuSelection)]="selected" [contextMenu]="cm"  dataKey="id" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem"></th>
+                        <th>{{'hotel.add.name.label' | translate}}</th>
+                        <th>{{'hotel.add.country.label' | translate}}</th>
+                        <th>{{'hotel.add.city.label' | translate}}</th>
+                        <th>{{'hotel.add.street.label' | translate}}</th>
+                        <th>{{'hotel.add.maxGuests.label' | translate}}</th>
+                        <th>{{'hotel.add.pricePerNight.label' | translate}}</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-hotel let-expanded="expanded">
+                    <tr [pContextMenuRow]="hotel">
+                        <td>
+                            <button type="button" pButton pRipple [pRowToggler]="hotel" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                        </td>
+                        <td>{{hotel.name}}</td>
+                        <td>{{hotel.address.country}}</td>
+                        <td>{{hotel.address.city}}</td>
+                        <td>{{hotel.address.street}}</td>
+                        <td>{{hotel.maxGuests}}</td>
+                        <td>{{hotel.pricePerNight}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="rowexpansion" let-hotel>
+                    <tr>
+                        <td colspan="7">
+                            <div class="p-3">
+                                <p-table [value]="hotel.bookings" dataKey="id">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th>{{'user.hotels.startDate' | translate}}</th>
+                                            <th>{{'user.hotels.endDate' | translate}}</th>
+                                            <th>{{'user.hotels.guestCount' | translate}}</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-booking>
+                                        <tr>
+                                            <td>{{booking.bookingDetails.startDate}}</td>
+                                            <td>{{booking.bookingDetails.endDate}}</td>
+                                            <td>{{booking.bookingDetails.guestCount}}</td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="6">{{'user.hotels.noBookings' | translate}}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-card>
+
+</div>
+

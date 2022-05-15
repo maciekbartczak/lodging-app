@@ -9,12 +9,17 @@ import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import com.bartczak.zai.lodging.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class BookingService {
 
@@ -55,5 +60,21 @@ public class BookingService {
 
     public List<Booking> getBookingsByHotelId(Long id) {
         return bookingRepository.getAllByHotel_Id(id);
+    }
+
+    public List<Booking> getMyBookings() {
+        val user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return bookingRepository.getAllByCreatedBy_Id(user.getId());
+    }
+
+    public ResponseEntity<Void> deleteBookingById(Long id) {
+        val user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        val booking = bookingRepository.findById(id)
+                .orElseThrow(IllegalArgumentException::new);
+        if (!Objects.equals(booking.getCreatedBy().getId(), user.getId())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        bookingRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }

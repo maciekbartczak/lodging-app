@@ -1,0 +1,58 @@
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    overflow: hidden;
+
+
+
+    .card {
+        width: 100%;
+        height: 100%;
+        ::ng-deep .p-component {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .view-header {
+            padding: 2rem;
+        }
+
+        .card-body {
+            padding: 0 2rem;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            gap: 2.5rem;
+
+            .action-card {
+                background-color: #f6f6f6;
+                padding: 2rem;
+                border-radius: 2rem;
+                border: 1px solid gray;
+                box-shadow: 0;
+                cursor: pointer;
+                transition: all 300ms ease-in-out;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-width: 320px;
+
+
+                &:hover {
+                    transform: scale(105%);
+                    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+                }
+
+                .action-icon {
+                    font-size: 10rem;
+                }
+            }
+        }
+
+    }
+}
