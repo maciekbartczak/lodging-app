@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Set;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AuthService {
 

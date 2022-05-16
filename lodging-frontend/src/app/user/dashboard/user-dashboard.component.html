@@ -8,16 +8,27 @@
         </ng-template>
 
         <div class="card-body">
+            <ng-container *ngIf="currentUser.roles.includes('ADMIN'); else userActions">
+                <div class="action-card" routerLink="/user/admin/hotels">
+                    <h1 class="action-title">{{'admin.hotels.all' | translate}}</h1>
+                    <i class="pi pi-list action-icon"></i>
+                </div>
+            </ng-container>
 
-            <div class="action-card" routerLink="/user/hotels">
-                <h1 class="action-title">{{'user.hotels.title' | translate}}</h1>
-                <i class="pi pi-home action-icon"></i>
-            </div>
+            <ng-template #userActions>
+                <div class="action-card" routerLink="/user/hotels">
+                    <h1 class="action-title">{{'user.hotels.title' | translate}}</h1>
+                    <i class="pi pi-home action-icon"></i>
+                </div>
 
-            <div class="action-card" routerLink="/user/bookings">
-                <h1 class="action-title">{{'user.bookings.title' | translate}}</h1>
-                <i class="pi pi-list action-icon"></i>
-            </div>
+                <div class="action-card" routerLink="/user/bookings">
+                    <h1 class="action-title">{{'ad.bookings.title' | translate}}</h1>
+                    <i class="pi pi-list action-icon"></i>
+                </div>
+            </ng-template>
+
+
+
         </div>
     </p-card>
 </div>

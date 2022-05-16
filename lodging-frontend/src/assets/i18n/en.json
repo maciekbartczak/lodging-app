@@ -79,6 +79,10 @@
         "bookings.title": "My bookings",
         "booking.delete.success": "Booking deleted successfully!"
     },
+    "admin": {
+        "panel": "Admin panel",
+        "hotels.all": "All hotels"
+    },
     "menu": {
         "back": "Back",
         "search": "Search",

@@ -79,6 +79,10 @@
         "bookings.title": "Moje rezerwacje",
         "booking.delete.success": "Rezerwacja usunięta!"
     },
+    "admin": {
+        "panel": "Panel",
+        "hotels.all": "Wszystkie hotele"
+    },
     "menu": {
         "back": "Wróć",
         "search": "Szukaj",
