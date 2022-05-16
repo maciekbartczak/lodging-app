@@ -11,12 +11,22 @@ import { Language } from '../../main/main.component';
 })
 export class TopBarComponent {
 
+
     languageItems: MenuItem[] = [
         { label: 'Polski', command: () => this.changeLanguage('pl') },
         { label: 'English', command: () => this.changeLanguage('en') },
     ]
     userItems: MenuItem[] = [
         { label: this.translateService.instant('topBar.menu.user.profile'), icon: PrimeIcons.USER, routerLink: '/user' },
+        { label: this.translateService.instant('topBar.language'), icon: PrimeIcons.FLAG, items: this.languageItems },
+        {
+            label: this.translateService.instant('topBar.menu.user.logout'),
+            icon: PrimeIcons.POWER_OFF,
+            command: _ => this.onLogout.emit()
+        }
+    ];
+    adminItems: MenuItem[] = [
+        { label: this.translateService.instant('admin.panel'), icon: PrimeIcons.SERVER, routerLink: '/user' },
         { label: this.translateService.instant('topBar.language'), icon: PrimeIcons.FLAG, items: this.languageItems },
         {
             label: this.translateService.instant('topBar.menu.user.logout'),

@@ -56,14 +56,8 @@ public class HotelController {
         return hotelService.getOwnedHotels();
     }
 
-    @GetMapping("/admin/all")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public List<HotelDto> getAll() {
-        return hotelService.getAll();
-    }
-
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         return hotelService.deleteById(id);
     }
@@ -72,6 +66,12 @@ public class HotelController {
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<Void> editHotel(@PathVariable Long id, @RequestBody AddHotelRequest editHotelRequest) {
         return hotelService.editHotel(id, editHotelRequest);
+    }
+
+    @GetMapping("/admin/all")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<HotelDto> getAll() {
+        return hotelService.getAll();
     }
 
 }

@@ -7,6 +7,7 @@ import com.bartczak.zai.lodging.common.InvalidRequestException;
 import com.bartczak.zai.lodging.hotel.dto.*;
 import com.bartczak.zai.lodging.hotel.entity.Address;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
+import com.bartczak.zai.lodging.user.Role;
 import com.bartczak.zai.lodging.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -162,13 +163,17 @@ public class HotelService {
         val toDelete = hotelRepository
                 .findById(id)
                 .orElseThrow(() -> new InvalidRequestException("Hotel with id " + id + " does not exist"));
-        if (!Objects.equals(toDelete.getCreatedBy().getId(), user.getId())) {
+        if (!isAdmin(user) && !Objects.equals(toDelete.getCreatedBy().getId(), user.getId())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         bookingRepository.deleteAll(toDelete.getBookings());
         hotelRepository.deleteById(id);
 
         return ResponseEntity.ok().build();
+    }
+
+    private boolean isAdmin(User user) {
+        return user.getAuthorities().stream().anyMatch(role -> Role.ADMIN.equals(role.getAuthority()));
     }
 
     public ResponseEntity<Void> editHotel(Long id, AddHotelRequest editHotelRequest) {
