@@ -3,6 +3,7 @@ package com.bartczak.zai.lodging.auth;
 import com.bartczak.zai.lodging.auth.session.Session;
 import com.bartczak.zai.lodging.auth.session.SessionRepository;
 import com.bartczak.zai.lodging.auth.session.TokenUtil;
+import com.bartczak.zai.lodging.common.InvalidRequestException;
 import com.bartczak.zai.lodging.user.Role;
 import com.bartczak.zai.lodging.user.User;
 import com.bartczak.zai.lodging.user.UserRepository;
@@ -27,13 +28,21 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
     public void registerUser(RegisterRequest registerRequest) {
+        val userRole = roleRepository.findByAuthority(Role.USER)
+                .orElse(Role.builder().authority(Role.USER).build());
+        val existingUser = userRepository.findByUsername(registerRequest.getUsername());
+        if (existingUser.isPresent()) {
+            throw new InvalidRequestException("User exists");
+        }
+
         val user = User.builder()
                 .username(registerRequest.getUsername())
                 .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
-                .authorities(Set.of(Role.builder().authority(Role.USER).build()))
+                .authorities(Set.of(userRole))
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .build();
         userRepository.save(user);
