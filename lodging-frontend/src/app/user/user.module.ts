@@ -19,6 +19,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MyBookingsListComponent } from './my-bookings/my-bookings-list.component';
 import { AllHotelsComponent } from './all-hotels/all-hotels.component';
+import { AllUsersComponent } from './all-users/all-users.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AllHotelsComponent } from './all-hotels/all-hotels.component';
       EditHotelComponent,
       MyBookingsListComponent,
       AllHotelsComponent,
+      AllUsersComponent,
   ],
     imports: [
         CommonModule,

@@ -77,16 +77,23 @@
         "hotels.guestCount": "Guest count",
         "hotels.noBookings": "There are no bookings for this hotel",
         "bookings.title": "My bookings",
-        "booking.delete.success": "Booking deleted successfully!"
+        "booking.delete.success": "Booking deleted successfully!",
+        "id": "ID",
+        "username": "Username",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "promote.success": "User has been promoted to administrator role!"
     },
     "admin": {
         "panel": "Admin panel",
-        "hotels.all": "All hotels"
+        "hotels.all": "All hotels",
+        "users.all": "All users"
     },
     "menu": {
         "back": "Back",
         "search": "Search",
         "delete": "Delete",
-        "edit": "Edit"
+        "edit": "Edit",
+        "promote": "Promote to admin"
     }
 }

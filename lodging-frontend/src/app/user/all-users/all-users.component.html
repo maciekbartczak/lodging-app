@@ -1,0 +1,34 @@
+<div class="container">
+
+    <p-contextMenu #cm [model]="items"></p-contextMenu>
+
+    <p-card class="card">
+        <ng-template pTemplate="header">
+            <header class="view-header">
+                <h1>{{'admin.users.all' | translate}}</h1>
+                <app-router-back [backRoute]="'/user'"></app-router-back>
+            </header>
+        </ng-template>
+
+        <div class="card-body">
+            <p-table [value]="users" [(contextMenuSelection)]="selected" [contextMenu]="cm"  dataKey="id" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>{{'user.id' | translate}}</th>
+                        <th>{{'user.username' | translate}}</th>
+                        <th>{{'user.firstName' | translate}}</th>
+                        <th>{{'user.lastName' | translate}}</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-user>
+                    <tr [pContextMenuRow]="user">
+                        <td>{{user.id}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-card>
+</div>

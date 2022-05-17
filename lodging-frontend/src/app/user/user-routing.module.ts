@@ -8,6 +8,7 @@ import { HotelResolver } from '../common/hotel.resolver';
 import { MyBookingsListComponent } from './my-bookings/my-bookings-list.component';
 import { AdminGuard } from '../common/admin.guard';
 import { AllHotelsComponent } from './all-hotels/all-hotels.component';
+import { AllUsersComponent } from './all-users/all-users.component';
 
 const routes: Routes = [
     { path: '', canActivate: [ UserGuard ], component: UserDashboardComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'hotels/:id', canActivate: [ UserGuard ], component: EditHotelComponent, resolve: { hotel: HotelResolver } },
     { path: 'bookings', canActivate: [ UserGuard ], component: MyBookingsListComponent },
     { path: 'admin/hotels', canActivate: [ AdminGuard ], component: AllHotelsComponent },
+    { path: 'admin/users', canActivate: [ AdminGuard ], component: AllUsersComponent },
 ];
 
 @NgModule({
