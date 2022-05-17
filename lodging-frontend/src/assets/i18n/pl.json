@@ -77,16 +77,23 @@
         "hotels.guestCount": "Liczba gości",
         "hotels.noBookings": "Ten hotel nie ma jeszcze rezerwacji",
         "bookings.title": "Moje rezerwacje",
-        "booking.delete.success": "Rezerwacja usunięta!"
+        "booking.delete.success": "Rezerwacja usunięta!",
+        "id": "ID",
+        "username": "Nazwa użytkownika",
+        "firstName": "Imię",
+        "lastName": "Nazwisko",
+        "promote.success": "Rola administratora została przydzielona!"
     },
     "admin": {
         "panel": "Panel",
-        "hotels.all": "Wszystkie hotele"
+        "hotels.all": "Wszystkie hotele",
+        "users.all": "Wszyscy użytkownicy"
     },
     "menu": {
         "back": "Wróć",
         "search": "Szukaj",
         "delete": "Usuń",
-        "edit": "Edytuj"
+        "edit": "Edytuj",
+        "promote": "Przydziel rolę administratora"
     }
 }
