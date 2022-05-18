@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Embeddable
@@ -19,4 +20,5 @@ public class BookingDetails {
     private LocalDate startDate;
     @NotNull
     private LocalDate endDate;
+    private BigDecimal price;
 }

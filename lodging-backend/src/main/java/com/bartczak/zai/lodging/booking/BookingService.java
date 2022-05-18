@@ -15,6 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,6 +39,7 @@ public class BookingService {
                                 .startDate(createBookingRequest.getStartDate())
                                 .endDate(createBookingRequest.getEndDate())
                                 .guestCount(createBookingRequest.getGuestCount())
+                                .price(getBookingPrice(createBookingRequest, hotel))
                                 .build())
                         .hotel(hotel)
                         .createdBy(user)
@@ -76,5 +79,12 @@ public class BookingService {
         }
         bookingRepository.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    private BigDecimal getBookingPrice(CreateBookingRequest createBookingRequest, Hotel hotel) {
+        val startDate = createBookingRequest.getStartDate();
+        val endDate = createBookingRequest.getEndDate();
+        val days = ChronoUnit.DAYS.between(startDate, endDate);
+        return hotel.getPricePerNight().multiply(BigDecimal.valueOf(days + 1));
     }
 }

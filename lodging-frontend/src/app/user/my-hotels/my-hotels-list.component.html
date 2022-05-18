@@ -33,7 +33,7 @@
                         <td>{{hotel.address.city}}</td>
                         <td>{{hotel.address.street}}</td>
                         <td>{{hotel.maxGuests}}</td>
-                        <td>{{hotel.pricePerNight}}</td>
+                        <td>{{hotel.pricePerNight | currency: 'PLN'}}</td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="rowexpansion" let-hotel>
@@ -46,6 +46,7 @@
                                             <th>{{'user.hotels.startDate' | translate}}</th>
                                             <th>{{'user.hotels.endDate' | translate}}</th>
                                             <th>{{'user.hotels.guestCount' | translate}}</th>
+                                            <th>{{'user.hotels.price' | translate}}</th>
                                         </tr>
                                     </ng-template>
                                     <ng-template pTemplate="body" let-booking>
@@ -53,6 +54,7 @@
                                             <td>{{booking.bookingDetails.startDate}}</td>
                                             <td>{{booking.bookingDetails.endDate}}</td>
                                             <td>{{booking.bookingDetails.guestCount}}</td>
+                                            <td>{{booking.bookingDetails.price | currency: 'PLN'}}</td>
                                         </tr>
                                     </ng-template>
                                     <ng-template pTemplate="emptymessage">

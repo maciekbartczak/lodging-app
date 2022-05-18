@@ -75,6 +75,7 @@
         "hotels.startDate": "Start date",
         "hotels.endDate": "End date",
         "hotels.guestCount": "Guest count",
+        "hotels.price": "Price",
         "hotels.noBookings": "There are no bookings for this hotel",
         "bookings.title": "My bookings",
         "booking.delete.success": "Booking deleted successfully!",
