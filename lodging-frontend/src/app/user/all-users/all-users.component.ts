@@ -3,6 +3,7 @@ import { UserDto, UserService } from '../../../core/openapi';
 import { MenuItem, MessageService, PrimeIcons } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 import { AppStateService } from '../../common/app-state.service';
+import { ContextMenu } from 'primeng/contextmenu';
 
 @Component({
   selector: 'app-all-users',
@@ -13,6 +14,7 @@ export class AllUsersComponent implements OnInit {
 
     users: UserDto[] = [];
     selected?: UserDto;
+    currentUser?: UserDto;
 
     menuItems: MenuItem[] = [
         { label: this.translateService.instant('menu.promote'), icon: PrimeIcons.USER_PLUS, command: () => this.promoteUser(this.selected) },
@@ -25,6 +27,7 @@ export class AllUsersComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.appState.user.subscribe(user => this.currentUser = user);
         this.fetchUsers();
     }
 
@@ -88,4 +91,26 @@ export class AllUsersComponent implements OnInit {
         });
     }
 
+    contextMenu($event: any, cm: ContextMenu) {
+
+        if (this.selected?.id === this.currentUser?.id) {
+            cm.hide();
+        }
+    }
+
+    private isAdmin(user?: UserDto): boolean {
+        console.log(user?.roles?.includes('ADMIN'))
+        return user?.roles?.includes('ADMIN') ?? false;
+    }
+
+    getMenuItems() {
+        if (this.isAdmin(this.selected)) {
+            this.menuItems[0].visible = false;
+            this.menuItems[1].visible = true;
+        } else {
+            this.menuItems[0].visible = true;
+            this.menuItems[1].visible = false;
+        }
+        return this.menuItems;
+    }
 }

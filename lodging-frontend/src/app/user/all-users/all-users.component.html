@@ -1,6 +1,6 @@
 <div class="container">
 
-    <p-contextMenu #cm [model]="menuItems"></p-contextMenu>
+    <p-contextMenu #cm [model]="menuItems" (onShow)="getMenuItems()"></p-contextMenu>
 
     <p-card class="card">
         <ng-template pTemplate="header">
@@ -11,7 +11,7 @@
         </ng-template>
 
         <div class="card-body">
-            <p-table [value]="users" [(contextMenuSelection)]="selected" [contextMenu]="cm"  dataKey="id" responsiveLayout="scroll">
+            <p-table [value]="users" [(contextMenuSelection)]="selected" [contextMenu]="cm" (contextmenu)="contextMenu($event, cm)" dataKey="id" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>{{'user.id' | translate}}</th>
