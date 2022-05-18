@@ -65,7 +65,9 @@
         "booking.toast.success.header": "Sukces!",
         "booking.toast.success.content": "Rezerwacja została utworzona.",
         "booking.toast.error.content ": "Nie mogliśmy utworzyć rezerwacji, spróbuj ponownie później.",
-        "edit.title": "Edytuj hotel"
+        "edit.title": "Edytuj hotel",
+        "booking.total": "Całkowity koszt",
+        "booking.max": "max."
     },
     "user": {
         "hotels.title": "Moje hotele",

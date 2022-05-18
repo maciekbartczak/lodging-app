@@ -22,13 +22,15 @@
                 </div>
                 <div class="form-input">
                     <label for="guests">
-                        {{'hotel.booking.guests.label' | translate}}
+                        {{'hotel.booking.guests.label' | translate}} ({{'hotel.booking.max' | translate}} {{hotel.maxGuests}})
                     </label>
                     <p-inputNumber id="guests" [min]="1" [max]="hotel.maxGuests" [showButtons]="true" name="guestCount"
                                    [(ngModel)]="guestCount">
                     </p-inputNumber >
                 </div>
-
+                <div>
+                    <strong>{{'hotel.booking.total' | translate}}: {{hotel.pricePerNight * guestCount * getDaysCount() | currency:'PLN'}}</strong>
+                </div>
                 <button pButton type="submit" [label]="'hotel.booking.button' | translate"></button>
             </form>
 

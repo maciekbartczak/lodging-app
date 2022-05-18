@@ -65,7 +65,9 @@
         "booking.toast.success.header": "Success!",
         "booking.toast.success.content": "Booking created successfully.",
         "booking.toast.error.content": "Booking could not be created, please try again",
-        "edit.title": "Edit hotel"
+        "edit.title": "Edit hotel",
+        "booking.total": "Total",
+        "booking.max": "max."
     },
     "user": {
         "hotels.title": "My hotels",

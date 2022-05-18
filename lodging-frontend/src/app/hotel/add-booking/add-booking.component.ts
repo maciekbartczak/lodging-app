@@ -91,4 +91,13 @@ export class AddBookingComponent {
 
     }
 
+    getDaysCount(): number {
+        if (this.dateRange.length === 2) {
+            if (!this.dateRange[1]) {
+                return 1;
+            }
+            return this.dateRange[1].getDate() - this.dateRange[0].getDate();
+        }
+        return 0;
+    }
 }
