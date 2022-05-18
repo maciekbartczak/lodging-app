@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HotelDto, HotelService, UserDto, UserService } from '../../../core/openapi';
+import { UserDto, UserService } from '../../../core/openapi';
 import { MenuItem, MessageService, PrimeIcons } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 import { AppStateService } from '../../common/app-state.service';
@@ -14,10 +14,10 @@ export class AllUsersComponent implements OnInit {
     users: UserDto[] = [];
     selected?: UserDto;
 
-    items: MenuItem[] = [
-        { label: this.translateService.instant('menu.promote'), icon: PrimeIcons.USER, command: () => this.promoteUser(this.selected) },
+    menuItems: MenuItem[] = [
+        { label: this.translateService.instant('menu.promote'), icon: PrimeIcons.USER_PLUS, command: () => this.promoteUser(this.selected) },
+        { label: this.translateService.instant('menu.demote'), icon: PrimeIcons.USER_MINUS, command: () => this.demote(this.selected) }
     ]
-
     constructor(private userService: UserService,
                 private translateService: TranslateService,
                 private messageService: MessageService,
@@ -48,6 +48,32 @@ export class AllUsersComponent implements OnInit {
                     severity: 'success',
                     summary: this.translateService.instant('hotel.booking.toast.success.header'),
                     detail: this.translateService.instant('user.promote.success')
+                });
+                this.fetchUsers();
+            },
+            error: _ => {
+                this.messageService.add(
+                    {
+                        severity: 'error',
+                        summary: this.translateService.instant('error.generic'),
+                        detail: this.translateService.instant('error.try-again')
+                    });
+            }
+        });
+    }
+
+    private demote(selected: UserDto | undefined) {
+        if (!selected) {
+            return ;
+        }
+
+        this.appState.setLoading(true);
+        this.userService.demoteUser(selected.id).subscribe({
+            next: _ => {
+                this.messageService.add({
+                    severity: 'success',
+                    summary: this.translateService.instant('hotel.booking.toast.success.header'),
+                    detail: this.translateService.instant('user.demote.success')
                 });
                 this.fetchUsers();
             },

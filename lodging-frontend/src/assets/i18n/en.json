@@ -82,7 +82,8 @@
         "username": "Username",
         "firstName": "First name",
         "lastName": "Last name",
-        "promote.success": "User has been promoted to administrator role!"
+        "promote.success": "User has been promoted to administrator role!",
+        "demote.success": "User has been demoted to regular user!"
     },
     "admin": {
         "panel": "Admin panel",
@@ -94,6 +95,7 @@
         "search": "Search",
         "delete": "Delete",
         "edit": "Edit",
-        "promote": "Promote to admin"
+        "promote": "Promote to admin",
+        "demote": "Demote to user"
     }
 }

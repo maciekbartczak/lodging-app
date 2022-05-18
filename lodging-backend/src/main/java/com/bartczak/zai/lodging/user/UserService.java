@@ -59,4 +59,13 @@ public class UserService {
                         .build())
                 .collect(Collectors.toList());
     }
+
+    public ResponseEntity<Void> demoteUser(Long id) {
+        val user = userRepository
+                .findById(id)
+                .orElseThrow(() -> new InvalidRequestException("User with id " + id + " does not exist"));
+        user.getAuthorities().removeIf(r -> r.getAuthority().equals(Role.ADMIN));
+        userRepository.save(user);
+        return ResponseEntity.ok().build();
+    }
 }

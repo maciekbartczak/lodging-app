@@ -33,4 +33,10 @@ public class UserController {
     public ResponseEntity<Void> promoteUser(@PathVariable Long id) {
         return userService.promoteUser(id);
     }
+
+    @PostMapping("/{id}/demote")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Void> demoteUser(@PathVariable Long id) {
+        return userService.demoteUser(id);
+    }
 }

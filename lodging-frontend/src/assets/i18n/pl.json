@@ -82,7 +82,8 @@
         "username": "Nazwa użytkownika",
         "firstName": "Imię",
         "lastName": "Nazwisko",
-        "promote.success": "Rola administratora została przydzielona!"
+        "promote.success": "Rola administratora została przydzielona!",
+        "demote.success": "Rola administratora została usunięta!"
     },
     "admin": {
         "panel": "Panel",
@@ -94,6 +95,7 @@
         "search": "Szukaj",
         "delete": "Usuń",
         "edit": "Edytuj",
-        "promote": "Przydziel rolę administratora"
+        "promote": "Przydziel rolę administratora",
+        "demote": "Usuń rolę administratora"
     }
 }
