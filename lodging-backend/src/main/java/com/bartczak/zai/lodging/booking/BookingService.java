@@ -85,6 +85,6 @@ public class BookingService {
         val startDate = createBookingRequest.getStartDate();
         val endDate = createBookingRequest.getEndDate();
         val days = ChronoUnit.DAYS.between(startDate, endDate);
-        return hotel.getPricePerNight().multiply(BigDecimal.valueOf(days + 1));
+        return hotel.getPricePerNight().multiply(BigDecimal.valueOf((days + 1) * createBookingRequest.getGuestCount()));
     }
 }
