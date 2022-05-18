@@ -18,7 +18,7 @@
                                 [(ngModel)]="dateRange" [inline]="true" [disabledDates]="bookedDates"
                                 *ngIf="!(appState.loading | async)" >
                     </p-calendar>
-                    <small *ngIf="bookingForm.submitted && dateRange.length < 1" class="p-error">{{ 'error.required' | translate }}</small>
+                    <small *ngIf="submitted && dateRange.length < 1" class="p-error">{{ 'error.required' | translate }}</small>
                 </div>
                 <div class="form-input">
                     <label for="guests">

@@ -57,6 +57,7 @@ export class AddBookingComponent {
     }
 
     createBooking(): void {
+        this.submitted = true;
         if (!this.hotel || this.dateRange.length < 1) {
             return
         }
@@ -77,6 +78,7 @@ export class AddBookingComponent {
                     summary: this.translateService.instant('hotel.booking.toast.success.header'),
                     detail: this.translateService.instant('hotel.booking.toast.success.content')
                 });
+                this.submitted = false;
             },
             error: _ => {
                 this.messageService.add({
