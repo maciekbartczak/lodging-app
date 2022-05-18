@@ -4,6 +4,7 @@ import com.bartczak.zai.lodging.common.BaseEntity;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import com.bartczak.zai.lodging.user.User;
 import com.bartczak.zai.lodging.util.DateUtil;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 

@@ -1,14 +1,17 @@
 package com.bartczak.zai.lodging.booking;
 
+import com.bartczak.zai.lodging.booking.dto.BookingDto;
 import com.bartczak.zai.lodging.booking.dto.CreateBookingRequest;
 import com.bartczak.zai.lodging.booking.entity.Booking;
 import com.bartczak.zai.lodging.booking.entity.BookingDetails;
 import com.bartczak.zai.lodging.common.InvalidRequestException;
 import com.bartczak.zai.lodging.hotel.HotelRepository;
+import com.bartczak.zai.lodging.hotel.dto.BookingHotelDto;
 import com.bartczak.zai.lodging.hotel.entity.Hotel;
 import com.bartczak.zai.lodging.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.hibernate.Hibernate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -65,9 +68,15 @@ public class BookingService {
         return bookingRepository.getAllByHotel_Id(id);
     }
 
-    public List<Booking> getMyBookings() {
+    public List<BookingDto> getMyBookings() {
         val user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return bookingRepository.getAllByCreatedBy_Id(user.getId());
+        return bookingRepository.getAllByCreatedBy_Id(user.getId()).stream()
+                .map(b -> BookingDto.builder()
+                        .id(b.getId())
+                        .bookingDetails(b.getBookingDetails())
+                        .hotel(BookingHotelDto.from(b.getHotel()))
+                        .build())
+                .toList();
     }
 
     public ResponseEntity<Void> deleteBookingById(Long id) {

@@ -1,5 +1,6 @@
 package com.bartczak.zai.lodging.booking;
 
+import com.bartczak.zai.lodging.booking.dto.BookingDto;
 import com.bartczak.zai.lodging.booking.dto.CreateBookingRequest;
 import com.bartczak.zai.lodging.booking.entity.Booking;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +35,7 @@ public class BookingController {
 
     @GetMapping("/my")
     @PreAuthorize("hasAuthority('USER')")
-    public List<Booking> getMyBookings() {
+    public List<BookingDto> getMyBookings() {
         return bookingService.getMyBookings();
     }
 

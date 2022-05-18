@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Booking, BookingService } from '../../../core/openapi';
+import { Booking, BookingDto, BookingService } from '../../../core/openapi';
 import { MenuItem, MessageService, PrimeIcons } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 import { AppStateService } from '../../common/app-state.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-bookings-list',
@@ -12,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class MyBookingsListComponent implements OnInit {
 
-    bookings: Booking[] = [];
-    selected?: Booking;
+    bookings: BookingDto[] = [];
+    selected?: BookingDto;
 
     items: MenuItem[] = [
         { label: this.translateService.instant('menu.delete'), icon: PrimeIcons.TIMES, command: () => this.deleteBooking(this.selected) },
@@ -37,7 +36,7 @@ export class MyBookingsListComponent implements OnInit {
         });
     }
 
-    private deleteBooking(selected: Booking | undefined) {
+    private deleteBooking(selected: BookingDto | undefined) {
         if (!selected || !selected.id) {
             return ;
         }

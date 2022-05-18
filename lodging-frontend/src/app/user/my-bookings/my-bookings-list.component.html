@@ -11,25 +11,32 @@
         </ng-template>
 
         <div class="card-body">
-            <p-table [value]="bookings" [(contextMenuSelection)]="selected" [contextMenu]="cm" dataKey="id"
-                     responsiveLayout="scroll">
+            <p-table [value]="bookings" [(contextMenuSelection)]="selected" [contextMenu]="cm" dataKey="id" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
                     <tr>
+                        <th>{{'hotel.add.name.label' | translate}}</th>
                         <th>{{'user.hotels.startDate' | translate}}</th>
                         <th>{{'user.hotels.endDate' | translate}}</th>
                         <th>{{'user.hotels.guestCount' | translate}}</th>
                         <th>{{'user.hotels.price' | translate}}</th>
+                        <th>{{'hotel.add.country.label' | translate}}</th>
+                        <th>{{'hotel.add.city.label' | translate}}</th>
+                        <th>{{'hotel.add.street.label' | translate}}</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-booking>
                     <tr [pContextMenuRow]="booking">
+                        <td>{{booking.hotel.name}}</td>
                         <td>{{booking.bookingDetails.startDate}}</td>
                         <td>{{booking.bookingDetails.endDate}}</td>
                         <td>{{booking.bookingDetails.guestCount}}</td>
                         <td>{{booking.bookingDetails.price | currency: 'PLN'}}</td>
+                        <td>{{booking.hotel.address.country}}</td>
+                        <td>{{booking.hotel.address.city}}</td>
+                        <td>{{booking.hotel.address.street}}</td>
+
                     </tr>
                 </ng-template>
-
             </p-table>
         </div>
     </p-card>
