@@ -44,7 +44,9 @@ export class MainComponent implements OnInit {
     changeLanguage(language: Language): void {
         if (this.cookieService.get('app-lang') != language) {
             this.cookieService.set('app-lang', language, new Date(9999, 11));
-            setTimeout(() => window.location.reload());
+            this.router.navigate(['/']).then(_ =>
+                setTimeout(() => window.location.reload())
+            );
         }
     }
 
